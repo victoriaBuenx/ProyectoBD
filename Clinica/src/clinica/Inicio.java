@@ -28,13 +28,15 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jTabbedPane6 = new javax.swing.JTabbedPane();
         jTabbedPane7 = new javax.swing.JTabbedPane();
         jTabbedPane8 = new javax.swing.JTabbedPane();
         jTabbedPane9 = new javax.swing.JTabbedPane();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jLabel1 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setForeground(java.awt.Color.white);
@@ -46,13 +48,20 @@ public class Inicio extends javax.swing.JFrame {
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setToolTipText("Clientes");
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(1000, 600));
-        jTabbedPane1.addTab("Doctores", jTabbedPane3);
         jTabbedPane1.addTab("Citas", jTabbedPane4);
         jTabbedPane1.addTab("Tratamientos", jTabbedPane5);
         jTabbedPane1.addTab("Historial Médico", jTabbedPane6);
         jTabbedPane1.addTab("Pagos", jTabbedPane7);
         jTabbedPane1.addTab("Productos", jTabbedPane8);
         jTabbedPane1.addTab("Proveedores", jTabbedPane9);
+
+        jLabel1.setText("jLabel1");
+        jTabbedPane3.addTab("Pacientes", jLabel1);
+
+        jToggleButton1.setText("jToggleButton1");
+        jTabbedPane3.addTab("tab2", jToggleButton1);
+
+        jTabbedPane1.addTab("Doctores", jTabbedPane3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,6 +132,7 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
@@ -132,5 +142,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane7;
     private javax.swing.JTabbedPane jTabbedPane8;
     private javax.swing.JTabbedPane jTabbedPane9;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
