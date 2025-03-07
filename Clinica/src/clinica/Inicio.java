@@ -2,7 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package clinicadental;
+package clinica;
+
+import clinica.Conexion;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+
+
 
 /**
  *
@@ -31,19 +41,19 @@ public class Inicio extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtNombrePaciente = new javax.swing.JTextField();
+        txtApellidoPatPaciente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtApellidoMatPaciente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtNacimientoPaciente = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtTelefonoPaciente = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtCorreoPaciente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
+        txtFechaRegistroPaciente = new javax.swing.JFormattedTextField();
+        btnRegistrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -176,7 +186,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel4.setText("Fecha de Nacimiento:");
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-DD"))));
+        txtNacimientoPaciente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-DD"))));
 
         jLabel5.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel5.setText("Telefono:");
@@ -187,10 +197,15 @@ public class Inicio extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel7.setText("Fecha de registro:");
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-DD"))));
+        txtFechaRegistroPaciente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-DD"))));
 
-        jButton1.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jButton1.setText("Registrar");
+        btnRegistrar.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         jTable1.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -217,7 +232,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(btnRegistrar)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5)
@@ -225,17 +240,17 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField1))
+                            .addComponent(txtNacimientoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                            .addComponent(txtApellidoMatPaciente)
+                            .addComponent(txtApellidoPatPaciente)
+                            .addComponent(txtTelefonoPaciente)
+                            .addComponent(txtNombrePaciente))
                         .addGap(40, 40, 40)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField5)
+                            .addComponent(txtCorreoPaciente)
                             .addComponent(jLabel7)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))))
+                            .addComponent(txtFechaRegistroPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -251,30 +266,30 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCorreoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtApellidoPatPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFechaRegistroPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtApellidoMatPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNacimientoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTelefonoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnRegistrar)
                         .addGap(53, 53, 53))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1041,6 +1056,106 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+       if (validarCampos()) {
+        String nombre = txtNombrePaciente.getText();
+        String apellidoPaterno = txtApellidoPatPaciente.getText();
+        String apellidoMaterno = txtApellidoMatPaciente.getText();
+        String fechaNacimiento = txtNacimientoPaciente.getText();
+        String telefono = txtTelefonoPaciente.getText();
+        String correo = txtCorreoPaciente.getText();
+        String fechaRegistro = txtFechaRegistroPaciente.getText();
+
+        Conexion conexion = new Conexion(); // Instanciamos la clase Conexion
+        Connection con = conexion.conexion(); // Obtenemos la conexión
+
+        if (con != null) { 
+            PacientesDao pacientesDao = new PacientesDao(); 
+            
+            // Insertar el nuevo paciente en la base de datos
+            boolean resultado = pacientesDao.insertarPaciente(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, telefono, correo, fechaRegistro);
+            
+            if (resultado) {
+                JOptionPane.showMessageDialog(this, "Paciente registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                
+                // Actualizar la tabla con los nuevos datos
+                verTablaPacientes();  // Llamar al método que actualiza la tabla
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo registrar el paciente.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            conexion.cerrarConexion(); 
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo establecer la conexión con la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private boolean validarCampos() {
+    
+        if (txtNombrePaciente.getText().isEmpty() || txtApellidoPatPaciente.getText().isEmpty() || txtApellidoMatPaciente.getText().isEmpty()
+                || txtNacimientoPaciente.getText().isEmpty() || txtTelefonoPaciente.getText().isEmpty() || txtCorreoPaciente.getText().isEmpty()
+                || txtFechaRegistroPaciente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        try {
+            Long.parseLong(txtTelefonoPaciente.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El teléfono debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (!txtNacimientoPaciente.getText().matches("\\d{4}/\\d{2}/\\d{2}")) {
+        JOptionPane.showMessageDialog(this, "La fecha de nacimiento debe estar en el formato YYYY/MM/DD.", "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+        }
+
+        if (!txtFechaRegistroPaciente.getText().matches("\\d{4}/\\d{2}/\\d{2}")) {
+            JOptionPane.showMessageDialog(this, "La fecha de registro debe estar en el formato YYYY/MM/DD.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+    
+    private void verTablaPacientes() {
+        
+        DefaultTableModel miModelo = (DefaultTableModel) jTable1.getModel(); 
+
+        miModelo.setRowCount(0);
+
+        String[] datos = new String[8];
+        String sql = "SELECT * FROM Pacientes"; 
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                datos[0] = String.valueOf(rs.getInt("idPaciente"));
+                datos[1] = rs.getString("Nombre");
+                datos[2] = rs.getString("ApellidoPaterno");
+                datos[3] = rs.getString("ApellidoMaterno");
+                datos[4] = rs.getString("FechaNacimiento");
+                datos[5] = rs.getString("Telefono");
+                datos[6] = rs.getString("Correo");
+                datos[7] = rs.getString("FechaRegistro");
+
+                miModelo.addRow(datos);
+            }
+
+            jTable1.setModel(miModelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
+    
     /**
      * @param args the command line arguments
      */
@@ -1077,7 +1192,7 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1092,13 +1207,11 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField10;
     private javax.swing.JFormattedTextField jFormattedTextField14;
     private javax.swing.JFormattedTextField jFormattedTextField15;
     private javax.swing.JFormattedTextField jFormattedTextField16;
     private javax.swing.JFormattedTextField jFormattedTextField17;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JFormattedTextField jFormattedTextField4;
     private javax.swing.JFormattedTextField jFormattedTextField5;
@@ -1186,16 +1299,12 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextArea jTextArea6;
     private javax.swing.JTextArea jTextArea7;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField34;
     private javax.swing.JTextField jTextField37;
     private javax.swing.JTextField jTextField38;
     private javax.swing.JTextField jTextField39;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField40;
     private javax.swing.JTextField jTextField42;
     private javax.swing.JTextField jTextField43;
@@ -1203,6 +1312,12 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField45;
     private javax.swing.JTextField jTextField46;
     private javax.swing.JTextField jTextField47;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField txtApellidoMatPaciente;
+    private javax.swing.JTextField txtApellidoPatPaciente;
+    private javax.swing.JTextField txtCorreoPaciente;
+    private javax.swing.JFormattedTextField txtFechaRegistroPaciente;
+    private javax.swing.JFormattedTextField txtNacimientoPaciente;
+    private javax.swing.JTextField txtNombrePaciente;
+    private javax.swing.JTextField txtTelefonoPaciente;
     // End of variables declaration//GEN-END:variables
 }

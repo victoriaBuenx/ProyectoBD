@@ -17,7 +17,7 @@ public class Conexion {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinicadental", "root", "mamapapa41");
-            System.out.println("Conexión realizada con éxito");
+            System.out.println("Conexion realizada con Exito");
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, "Error: No se encontró el driver JDBC.");
             e.printStackTrace();
@@ -32,7 +32,7 @@ public class Conexion {
         try {
             if (con != null && !con.isClosed()) {
                 con.close();
-                System.out.println("Conexión cerrada correctamente");
+                System.out.println("Conexion cerrada correctamente");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
