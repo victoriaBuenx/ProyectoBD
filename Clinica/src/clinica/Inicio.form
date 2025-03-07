@@ -95,7 +95,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -103,18 +103,18 @@
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jFormattedTextField1" alignment="0" pref="179" max="32767" attributes="0"/>
-                                      <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextField4" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtNacimientoPaciente" alignment="0" pref="179" max="32767" attributes="0"/>
+                                      <Component id="txtApellidoMatPaciente" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtApellidoPatPaciente" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtTelefonoPaciente" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtNombrePaciente" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField5" max="32767" attributes="0"/>
+                                      <Component id="txtCorreoPaciente" max="32767" attributes="0"/>
                                       <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jFormattedTextField2" alignment="0" pref="179" max="32767" attributes="0"/>
+                                      <Component id="txtFechaRegistroPaciente" alignment="0" pref="179" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -136,8 +136,8 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtNombrePaciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtCorreoPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -146,23 +146,23 @@
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jFormattedTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtApellidoPatPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtFechaRegistroPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtApellidoMatPaciente" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNacimientoPaciente" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTextField4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTelefonoPaciente" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="16" max="32767" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -191,9 +191,9 @@
                     <Property name="text" type="java.lang.String" value="Apellido Paterno:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="txtNombrePaciente">
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField2">
+                <Component class="javax.swing.JTextField" name="txtApellidoPatPaciente">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
@@ -203,7 +203,7 @@
                     <Property name="text" type="java.lang.String" value="Apellido Materno:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField3">
+                <Component class="javax.swing.JTextField" name="txtApellidoMatPaciente">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
@@ -213,7 +213,7 @@
                     <Property name="text" type="java.lang.String" value="Fecha de Nacimiento:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+                <Component class="javax.swing.JFormattedTextField" name="txtNacimientoPaciente">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                       <Format format="YYYY-MM-DD" subtype="-1" type="1"/>
@@ -228,7 +228,7 @@
                     <Property name="text" type="java.lang.String" value="Telefono:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField4">
+                <Component class="javax.swing.JTextField" name="txtTelefonoPaciente">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
@@ -238,7 +238,7 @@
                     <Property name="text" type="java.lang.String" value="Correo:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField5">
+                <Component class="javax.swing.JTextField" name="txtCorreoPaciente">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
@@ -248,20 +248,23 @@
                     <Property name="text" type="java.lang.String" value="Fecha de registro:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField2">
+                <Component class="javax.swing.JFormattedTextField" name="txtFechaRegistroPaciente">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                       <Format format="YYYY-MM-DD" subtype="-1" type="1"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="btnRegistrar">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Poppins Medium" size="12" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Registrar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane1">
                   <AuxValues>
