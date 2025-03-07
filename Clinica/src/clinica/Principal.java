@@ -4,6 +4,9 @@
  */
 package clinicadental;
 
+import clinica.Conexion;
+import com.sun.jdi.connect.spi.Connection;
+
 /**
  *
  * @author victo
@@ -15,6 +18,8 @@ public class Principal {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Conexion con= new Conexion();
+        Connection reg= (Connection) con.conexion();
        
     }
     
