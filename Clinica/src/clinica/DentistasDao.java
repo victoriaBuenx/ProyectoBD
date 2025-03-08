@@ -17,7 +17,7 @@ import java.util.Date;
  * @author victo
  */
 public class DentistasDao {
-    
+    Inicio cbxDentistas= new Inicio();
     
         public boolean insertarDentista(String nombre, String apellidoPaterno, String apellidoMaterno,
                                     String especialidad, String telefono, String correo, String horarioAtencion) {
@@ -44,6 +44,7 @@ public class DentistasDao {
 
             if (filasAfectadas > 0) {
                 JOptionPane.showMessageDialog(null, "Dentista registrado con éxito.");
+                cbxDentistas.llenarComboBox();
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo registrar el dentista.");

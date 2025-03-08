@@ -16,6 +16,7 @@ import java.util.Date;
  * @author victo
  */
 public class PacientesDao {
+    Inicio cbxPacientes= new Inicio();
     
     public boolean insertarPaciente(String nombre, String apellidoPaterno, String apellidoMaterno,
                                     Date fechaNacimiento, String telefono, String correo, Date fechaRegistro) {
@@ -42,6 +43,7 @@ public class PacientesDao {
 
             if (filasAfectadas > 0) {
                 JOptionPane.showMessageDialog(null, "Paciente registrado con éxito.");
+                cbxPacientes.llenarComboBox();
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo registrar el paciente.");

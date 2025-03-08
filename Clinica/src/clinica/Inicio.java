@@ -5,6 +5,10 @@
 package clinica;
 
 import clinica.Conexion;
+import com.toedter.calendar.JDateChooser;
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -28,8 +32,15 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         initComponents();
         
-        llenarComboBox(); 
-        llenarComboBoxPacientes();
+        llenarComboBox();
+        verTablaPacientes();
+        verTablaDentistas();
+        verTablaCitas();
+        verTablaHistorialMedico();
+        verTablaTratamientos();
+        verTablaPagos();
+        verTablaProductos();
+        verTablaProveedores();
     }
 
     /**
@@ -63,7 +74,6 @@ public class Inicio extends javax.swing.JFrame {
         jdNacimientoPaciente = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         txtApellidoPartDentista = new javax.swing.JTextField();
-        txtHorarioAtencionDentista = new javax.swing.JFormattedTextField();
         jLabel57 = new javax.swing.JLabel();
         btnRegistrarDentistas = new javax.swing.JButton();
         txtApellidoMatDentista = new javax.swing.JTextField();
@@ -79,13 +89,13 @@ public class Inicio extends javax.swing.JFrame {
         txtNombreDentista = new javax.swing.JTextField();
         jLabel63 = new javax.swing.JLabel();
         cbxEspecialidadDentista = new javax.swing.JComboBox<>();
+        txtHorarioAtencionDentista = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         btnRegistrarCitas = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        txtHoraCita = new javax.swing.JFormattedTextField();
         jLabel17 = new javax.swing.JLabel();
         txtMotivoCita = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
@@ -96,6 +106,7 @@ public class Inicio extends javax.swing.JFrame {
         cbxPacientesCitas = new javax.swing.JComboBox<>();
         cbxDentistasCitas = new javax.swing.JComboBox<>();
         jdFechaCita = new com.toedter.calendar.JDateChooser();
+        txtHoraCita = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         btnRegistrarHistorial = new javax.swing.JButton();
@@ -122,27 +133,27 @@ public class Inicio extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
-        jFormattedTextField8 = new javax.swing.JFormattedTextField();
         jLabel32 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cbxDentistasTratamientos = new javax.swing.JComboBox<>();
         jScrollPane14 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        txtAreaDescripcion = new javax.swing.JTextArea();
+        cbxNombreTratamiento = new javax.swing.JComboBox<>();
+        txtMontoTotal = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         btnRegistarPagos = new javax.swing.JButton();
         jLabel37 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
-        jFormattedTextField10 = new javax.swing.JFormattedTextField();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
-        jComboBox7 = new javax.swing.JComboBox<>();
+        cbxTratamientoPagos = new javax.swing.JComboBox<>();
+        cbxMetodoPago = new javax.swing.JComboBox<>();
+        cbxModalidadPago = new javax.swing.JComboBox<>();
+        jdFechaPago = new com.toedter.calendar.JDateChooser();
+        txtMontoPagado = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
         btnRegistrarProducto = new javax.swing.JButton();
@@ -162,12 +173,12 @@ public class Inicio extends javax.swing.JFrame {
         jLabel51 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable8 = new javax.swing.JTable();
-        txtEmpresaProveedor = new javax.swing.JFormattedTextField();
         jLabel52 = new javax.swing.JLabel();
         txtDireccionProveedor = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
         txtNombreProovedor = new javax.swing.JTextField();
+        txtEmpresaProveedor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setForeground(java.awt.Color.white);
@@ -186,6 +197,12 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel3.setText("Apellido Materno:");
+
+        txtApellidoMatPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoMatPacienteActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel4.setText("Fecha de Nacimiento:");
@@ -207,7 +224,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -302,8 +318,6 @@ public class Inicio extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Pacientes", jPanel2);
 
-        txtHorarioAtencionDentista.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-DD"))));
-
         jLabel57.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel57.setText("Apellido Materno:");
 
@@ -357,6 +371,12 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        txtHorarioAtencionDentista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHorarioAtencionDentistaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -380,9 +400,9 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel61)
-                            .addComponent(txtCorreoDentista)
+                            .addComponent(txtCorreoDentista, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                             .addComponent(jLabel63)
-                            .addComponent(txtHorarioAtencionDentista, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))))
+                            .addComponent(txtHorarioAtencionDentista))))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -420,7 +440,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jLabel59)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtTelefonoDentistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addComponent(btnRegistrarDentistas)
                         .addGap(53, 53, 53))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -460,13 +480,6 @@ public class Inicio extends javax.swing.JFrame {
             jTable3.getColumnModel().getColumn(6).setHeaderValue("Correo");
         }
 
-        txtHoraCita.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-DD"))));
-        txtHoraCita.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHoraCitaActionPerformed(evt);
-            }
-        });
-
         jLabel17.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel17.setText("Motivo:");
 
@@ -495,13 +508,13 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(btnRegistrarCitas)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jdFechaCita, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtHoraCita, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jdFechaCita, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtHoraCita, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                             .addComponent(txtMotivoCita, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbxPacientesCitas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbxDentistasCitas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -537,13 +550,13 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jdFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtHoraCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtMotivoCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addComponent(btnRegistrarCitas)
                         .addGap(53, 53, 53))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -696,6 +709,11 @@ public class Inicio extends javax.swing.JFrame {
 
         btnRegistrarTratamiento.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnRegistrarTratamiento.setText("Registrar");
+        btnRegistrarTratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarTratamientoActionPerformed(evt);
+            }
+        });
 
         jLabel30.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel30.setText("Monto Total:");
@@ -713,19 +731,17 @@ public class Inicio extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(jTable5);
 
-        jFormattedTextField8.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-DD"))));
-
         jLabel32.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel32.setText("Dentista:");
 
         jLabel34.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel34.setText("Nombre del tratamiento:");
 
-        jTextArea6.setColumns(20);
-        jTextArea6.setRows(5);
-        jScrollPane14.setViewportView(jTextArea6);
+        txtAreaDescripcion.setColumns(20);
+        txtAreaDescripcion.setRows(5);
+        jScrollPane14.setViewportView(txtAreaDescripcion);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Limpieza", "Profilaxis", "Fluorización", "Sellado de fisuras", "Relleno dental", "Corona", "Implante", "Endodoncia", "Extracción", "Cirugía de tercer molar", "Ortodoncia", "Gingivitis", "Blanqueamiento", "Carillas" }));
+        cbxNombreTratamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Limpieza", "Profilaxis", "Fluorización", "Sellado de fisuras", "Relleno dental", "Corona", "Implante", "Endodoncia", "Extracción", "Cirugía de tercer molar", "Ortodoncia", "Gingivitis", "Blanqueamiento", "Carillas" }));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -739,17 +755,17 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(jLabel29)
                             .addComponent(jLabel34)
                             .addComponent(jLabel32)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbxDentistasTratamientos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel30)
-                            .addComponent(jFormattedTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtMontoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnRegistrarTratamiento)
                             .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jComboBox4, 0, 179, Short.MAX_VALUE))
+                            .addComponent(cbxNombreTratamiento, 0, 179, Short.MAX_VALUE))
                         .addGap(255, 255, 255)))
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -765,12 +781,12 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(jLabel30))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbxDentistasTratamientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMontoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
                         .addComponent(jLabel34)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxNombreTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jLabel29)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -790,6 +806,11 @@ public class Inicio extends javax.swing.JFrame {
 
         btnRegistarPagos.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnRegistarPagos.setText("Registrar");
+        btnRegistarPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistarPagosActionPerformed(evt);
+            }
+        });
 
         jLabel37.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel37.setText("Monto Pagado:");
@@ -807,8 +828,6 @@ public class Inicio extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(jTable6);
 
-        jFormattedTextField10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-DD"))));
-
         jLabel38.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel38.setText("Modalidad de pago:");
 
@@ -818,13 +837,13 @@ public class Inicio extends javax.swing.JFrame {
         jLabel41.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel41.setText("Metodo de Pago:");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Limpieza", "Profilaxis", "Fluorización", "Sellado de fisuras", "Relleno dental", "Corona", "Implante", "Endodoncia", "Extracción", "Cirugía de tercer molar", "Ortodoncia", "Gingivitis", "Blanqueamiento", "Carillas" }));
+        cbxTratamientoPagos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Limpieza", "Profilaxis", "Fluorización", "Sellado de fisuras", "Relleno dental", "Corona", "Implante", "Endodoncia", "Extracción", "Cirugía de tercer molar", "Ortodoncia", "Gingivitis", "Blanqueamiento", "Carillas" }));
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta" }));
+        cbxMetodoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta" }));
 
-        jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-DD"))));
+        cbxModalidadPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abono", "Completo" }));
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abono", "Completo" }));
+        jdFechaPago.setToolTipText("yyyy/mm/dd");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -833,18 +852,18 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegistarPagos)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jComboBox7, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jFormattedTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jFormattedTextField10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox6, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel38)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnRegistarPagos)
+                        .addComponent(cbxModalidadPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel36)
+                        .addComponent(jLabel41)
+                        .addComponent(jLabel39)
+                        .addComponent(cbxTratamientoPagos, 0, 179, Short.MAX_VALUE)
+                        .addComponent(cbxMetodoPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jdFechaPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel37)
+                    .addComponent(txtMontoPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(200, 200, 200)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -857,23 +876,23 @@ public class Inicio extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel39)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxTratamientoPagos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel41)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxMetodoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel36)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jdFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel37)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFormattedTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel38)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbxModalidadPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel37)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMontoPagado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegistarPagos)
                         .addGap(53, 53, 53))
@@ -889,6 +908,11 @@ public class Inicio extends javax.swing.JFrame {
 
         btnRegistrarProducto.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnRegistrarProducto.setText("Registrar");
+        btnRegistrarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarProductoActionPerformed(evt);
+            }
+        });
 
         jTable7.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -930,7 +954,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(255, 255, 255)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -986,8 +1010,6 @@ public class Inicio extends javax.swing.JFrame {
         ));
         jScrollPane8.setViewportView(jTable8);
 
-        txtEmpresaProveedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("YYYY-MM-DD"))));
-
         jLabel52.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel52.setText("Dirección:");
 
@@ -1003,19 +1025,18 @@ public class Inicio extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnRegistrarProveedor)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel52)
-                        .addComponent(jLabel51)
-                        .addComponent(jLabel50)
-                        .addComponent(jLabel55)
-                        .addComponent(jLabel53)
-                        .addComponent(txtEmpresaProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                        .addComponent(txtCorreoProveedor)
-                        .addComponent(txtTelefonoProveedor)
-                        .addComponent(txtDireccionProveedor)
-                        .addComponent(txtNombreProovedor)))
+                    .addComponent(jLabel52)
+                    .addComponent(jLabel51)
+                    .addComponent(jLabel50)
+                    .addComponent(jLabel55)
+                    .addComponent(jLabel53)
+                    .addComponent(txtCorreoProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(txtTelefonoProveedor)
+                    .addComponent(txtDireccionProveedor)
+                    .addComponent(txtNombreProovedor)
+                    .addComponent(txtEmpresaProveedor))
                 .addGap(255, 255, 255)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -1039,18 +1060,18 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(txtCorreoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel51)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEmpresaProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel52)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDireccionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegistrarProveedor)
                         .addGap(53, 53, 53))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(37, Short.MAX_VALUE))))
         );
 
         jTabbedPane2.addTab("Proveedores", jPanel9);
@@ -1110,6 +1131,7 @@ public class Inicio extends javax.swing.JFrame {
                 if (resultado) {
                     JOptionPane.showMessageDialog(this, "Paciente registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaPacientes(); 
+                    limpiarCampos(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, jdNacimientoPaciente, txtTelefonoPaciente, txtCorreoPaciente, jdFechaRegistroPaciente);
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo registrar el paciente.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -1157,6 +1179,8 @@ public class Inicio extends javax.swing.JFrame {
                 if (resultado) {
                     JOptionPane.showMessageDialog(this, "Dentista registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaDentistas();
+                    limpiarCampos(txtNombreDentista, txtApellidoPartDentista, txtApellidoMatDentista, cbxEspecialidadDentista, txtTelefonoDentistas, txtCorreoDentista, txtHorarioAtencionDentista);
+
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo registrar el dentista.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -1188,7 +1212,8 @@ public class Inicio extends javax.swing.JFrame {
                 if (resultado) {
                     JOptionPane.showMessageDialog(this, "Cita registrada con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaCitas();  
-                    llenarComboBox();  
+                    llenarComboBox(); 
+                    limpiarCampos(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas);
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -1200,16 +1225,10 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRegistrarCitasActionPerformed
 
-    private void txtHoraCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoraCitaActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtHoraCitaActionPerformed
-
     private void btnRegistrarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarHistorialActionPerformed
         // TODO add your handling code here:
             if (validarCamposHistorialMedico()) {
             int idPaciente = obtenerIdPacienteSeleccionado();  
-
             String alergias = txAreaAlergias.getText();
             String enfermedades = txAreaEnfermedades.getText();
             String medicacion = txAreaMedicacion.getText();
@@ -1229,7 +1248,9 @@ public class Inicio extends javax.swing.JFrame {
 
                 if (resultado) {
                     JOptionPane.showMessageDialog(this, "Historial médico registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    verTablaHistorialMedico();  
+                    verTablaHistorialMedico();
+                    limpiarCampos(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, txAreaObservacion, jpUltimaActHistorial);  
+
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo registrar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -1258,143 +1279,231 @@ public class Inicio extends javax.swing.JFrame {
 
                 if (resultado) {
                     JOptionPane.showMessageDialog(this, "Proveedor registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    verTablaProveedores();  // Actualizar la tabla después de insertar
+                    verTablaProveedores();
+                    limpiarCampos(txtNombreProovedor, txtTelefonoProveedor, txtCorreoProveedor, txtEmpresaProveedor, txtDireccionProveedor);
+
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo registrar el proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
     }//GEN-LAST:event_btnRegistrarProveedorActionPerformed
 
-    
-    
-    private boolean validarCamposPacientes() {
-        if (txtNombrePaciente.getText().isEmpty() || txtApellidoPatPaciente.getText().isEmpty() ||
-            txtApellidoMatPaciente.getText().isEmpty() || txtTelefonoPaciente.getText().isEmpty() ||
-            txtCorreoPaciente.getText().isEmpty() || jdNacimientoPaciente.getDate() == null || 
-            jdFechaRegistroPaciente.getDate() == null) {
+    private void txtHorarioAtencionDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorarioAtencionDentistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHorarioAtencionDentistaActionPerformed
 
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+    private void txtApellidoMatPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMatPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoMatPacienteActionPerformed
+
+    private void btnRegistrarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTratamientoActionPerformed
+        // TODO add your handling code here:
+        if (validarCamposTratamientos()) {
+                int idDentista = Integer.parseInt(cbxDentistasTratamientos.getSelectedItem().toString().split("-")[0].trim());
+                String nombre = cbxNombreTratamiento.getSelectedItem().toString();
+                String descripcion = txtAreaDescripcion.getText();
+                int montoTotal;
+                try{
+                    montoTotal= Integer.parseInt(txtMontoTotal.getText());
+                }catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
+                    montoTotal= 0;
+                }
+                
+                TratamientosDao tratamientosDao = new TratamientosDao();
+
+                boolean resultado = tratamientosDao.insertarTratamientos(idDentista, nombre, descripcion, montoTotal);
+
+                if (resultado) {
+                    JOptionPane.showMessageDialog(this, "Tratamiento registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    verTablaTratamientos();
+                    llenarComboBox();
+                    limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
         }
+    }//GEN-LAST:event_btnRegistrarTratamientoActionPerformed
 
-        try {
-            Long.parseLong(txtTelefonoPaciente.getText()); 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El teléfono debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+    private void btnRegistarPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistarPagosActionPerformed
+        // TODO add your handling code here:
+        if (validarCamposPagos()) {
+                int idTratamiento = Integer.parseInt(cbxTratamientoPagos.getSelectedItem().toString().split("-")[0].trim());
+                String metodoPago = cbxMetodoPago.getSelectedItem().toString();
+                Date fechaPago= jdFechaPago.getDate();
+                String modalidadPago= cbxModalidadPago.getSelectedItem().toString();
+                int montoPagado;
+                try{
+                    montoPagado= Integer.parseInt(txtMontoPagado.getText());
+                }catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
+                    montoPagado= 0;
+                }
+                
+                PagosDao pagosDao = new PagosDao();
+
+                boolean resultado = pagosDao.insertarPagos(idTratamiento, metodoPago, fechaPago, modalidadPago, montoPagado);
+
+                if (resultado) {
+                    JOptionPane.showMessageDialog(this, "Pago registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    verTablaPagos();
+                    llenarComboBox();
+                    limpiarCampos(cbxTratamientoPagos, cbxMetodoPago, jdFechaPago, txtMontoPagado, cbxModalidadPago);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el Pago.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
         }
+    }//GEN-LAST:event_btnRegistarPagosActionPerformed
 
-        return true;
+    private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
+        // TODO add your handling code here:
+        if (validarCamposProductos()) {
+                String nombreProducto = txtNombreProducto.getText();
+                String descripcion= txaDescripcionProducto.getText();
+                int precioUnitario;
+                try{
+                    precioUnitario= Integer.parseInt(txtPrecioProducto.getText());
+                }catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
+                    precioUnitario= 0;
+                }
+                
+                ProductosDao productosDao = new ProductosDao();
+
+                boolean resultado = productosDao.insertarProductos(nombreProducto, descripcion, precioUnitario);
+
+                if (resultado) {
+                    JOptionPane.showMessageDialog(this, "Producto registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    verTablaProductos();
+                    limpiarCampos(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el Producto.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+        }
+    }//GEN-LAST:event_btnRegistrarProductoActionPerformed
+    
+    public static void limpiarCampo(JComponent campo) {
+        if (campo instanceof JTextField) {
+            ((JTextField) campo).setText("");
+        } else if (campo instanceof JTextArea) {
+            ((JTextArea) campo).setText("");
+        } else if (campo instanceof JDateChooser) {
+            ((JDateChooser) campo).setDate(null);
+        } else if (campo instanceof JComboBox) {
+            ((JComboBox<?>) campo).setSelectedItem(null); 
+        }
     }
     
-    private boolean validarCamposDentistas(){
-        if (txtNombreDentista.getText().isEmpty() || 
-        txtApellidoPartDentista.getText().isEmpty() || 
-        txtApellidoMatDentista.getText().isEmpty() || 
-        cbxEspecialidadDentista.getSelectedItem() == null ||
-        txtTelefonoDentistas.getText().isEmpty() || 
-        txtCorreoDentista.getText().isEmpty() || 
-        txtHorarioAtencionDentista.getText().isEmpty()) {
-        
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+    public static void limpiarCampos(JComponent... campos) {
+        for (JComponent campo : campos) {
+            limpiarCampo(campo);
         }
+    }
 
-        try {
-            Long.parseLong(txtTelefonoDentistas.getText()); 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El teléfono debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
-        if (!txtHorarioAtencionDentista.getText().matches("^(\\d{2}:\\d{2})-(\\d{2}:\\d{2})$")) {
-            JOptionPane.showMessageDialog(this, "El horario debe estar en formato HH:MM-HH:MM.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-
-        String especialidad = cbxEspecialidadDentista.getSelectedItem().toString();
-        String[] especialidadesValidas = {"Odontopedriata", "Ortodoncista", "Periodoncista", "Endodoncista",
-                                           "Patologo", "Prostodoncista", "Cirujano"};
-
-        boolean especialidadValida = false;
-        for (String esp : especialidadesValidas) {
-            if (esp.equals(especialidad)) {
-                especialidadValida = true;
-                break;
+    private boolean validarCamposVacios(Component... campos) {
+        for (Component campo : campos) {
+            if (campo instanceof JTextField && ((JTextField) campo).getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            } else if (campo instanceof JTextArea && ((JTextArea) campo).getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            } else if (campo instanceof JComboBox && ((JComboBox<?>) campo).getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            } else if (campo instanceof JDateChooser && ((JDateChooser) campo).getDate() == null) {
+                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
         }
+        return true;
+    }
 
-        if (!especialidadValida) {
+    private boolean validarNumero(JTextField campo, String mensaje) {
+        try {
+            Long.parseLong(campo.getText().trim());
+            return true;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
+    private boolean validarFormatoHora(JTextField campo, String mensaje) {
+        if (!campo.getText().matches("^(\\d{2}:\\d{2})$")) {
+            JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+    private boolean validarFormatoHoraA(JTextField campo, String mensaje) {
+        if (!campo.getText().matches("^(\\d{2}:\\d{2})-(\\d{2}:\\d{2})$")) {
+            JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validarEspecialidad(JComboBox <String> comboBox) {
+        List<String> especialidadesValidas = Arrays.asList("Odontopedriata", "Ortodoncista", "Periodoncista", 
+                                                            "Endodoncista", "Patologo", "Prostodoncista", "Cirujano");
+        Object selectedItem= comboBox.getSelectedItem();
+        if (selectedItem == null || !especialidadesValidas.contains(comboBox.getSelectedItem().toString())) {
             JOptionPane.showMessageDialog(this, "La especialidad seleccionada no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-
         return true;
     }
-    
-    
+
+    private boolean validarCamposPacientes() {
+        return validarCamposVacios(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, 
+                                   txtTelefonoPaciente, txtCorreoPaciente, jdNacimientoPaciente, jdFechaRegistroPaciente) &&
+               validarNumero(txtTelefonoPaciente, "El teléfono debe ser un número válido.");
+    }
+
+    private boolean validarCamposDentistas() {
+        return validarCamposVacios(txtNombreDentista, txtApellidoPartDentista, txtApellidoMatDentista, 
+                                   cbxEspecialidadDentista, txtTelefonoDentistas, txtCorreoDentista, txtHorarioAtencionDentista) &&
+               validarNumero(txtTelefonoDentistas, "El teléfono debe ser un número válido.") &&
+               validarFormatoHoraA(txtHorarioAtencionDentista, "El horario debe estar en formato HH:MM-HH:MM.") &&
+               validarEspecialidad(cbxEspecialidadDentista);
+    }
+
     private boolean validarCamposCitas() {
-        if (cbxPacientesCitas.getSelectedItem() == null ||
-            cbxDentistasCitas.getSelectedItem() == null ||
-            jdFechaCita.getDate() == null ||
-            txtHoraCita.getText().isEmpty() ||
-            txtMotivoCita.getText().isEmpty() ||
-            txtAreaNotas.getText().isEmpty()) {
-
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        try {
-            if (!txtHoraCita.getText().matches("^(\\d{2}:\\d{2})$")) {
-                JOptionPane.showMessageDialog(this, "La hora debe estar en formato HH:MM.", "Error", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error en la validación de la hora.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        return true;
+        return validarCamposVacios(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas) &&
+               validarFormatoHora(txtHoraCita, "La hora debe estar en formato HH:MM.");
     }
-    
+
     private boolean validarCamposHistorialMedico() {
-        if (cbxPacientesHistorial.getSelectedItem() == null || 
-            txAreaAlergias.getText().isEmpty() || 
-            txAreaEnfermedades.getText().isEmpty() || 
-            txAreaMedicacion.getText().isEmpty() || 
-            jpUltimaActHistorial.getDate() == null) {
-
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios, excepto Observaciones.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        return true;
+        return validarCamposVacios(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, jpUltimaActHistorial);
     }
-    
+
     private boolean validarCamposProveedores() {
-        if (txtNombreProovedor.getText().isEmpty() || 
-            txtTelefonoProveedor.getText().isEmpty() || 
-            txtCorreoProveedor.getText().isEmpty() || 
-            txtEmpresaProveedor.getText().isEmpty() || 
-            txtDireccionProveedor.getText().isEmpty()) {
-
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        return true;
+        return validarCamposVacios(txtNombreProovedor, txtTelefonoProveedor, txtCorreoProveedor, txtEmpresaProveedor, txtDireccionProveedor);
     }
 
+    private boolean validarCamposTratamientos() {
+        return validarCamposVacios(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal) &&
+               validarNumero(txtMontoTotal, "El monto total debe ser un número válido y mayor a 0.");
+    }
 
+    private boolean validarCamposPagos() {
+        return validarCamposVacios(cbxTratamientoPagos, cbxMetodoPago, jdFechaPago, cbxModalidadPago, txtMontoPagado) &&
+               validarNumero(txtMontoPagado, "El monto pagado debe ser un número válido y mayor a 0.");
+    }
 
+    private boolean validarCamposProductos() {
+        return validarCamposVacios(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto) &&
+               validarNumero(txtPrecioProducto, "El precio del producto debe ser un número válido y mayor a 0.");
+    }
 
     
     private void verTablaPacientes() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable1.getModel();
         miModelo.setRowCount(0);
-
         String sql = "SELECT * FROM Pacientes";
 
         try (Connection con = new Conexion().conexion();
@@ -1424,8 +1533,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaDentistas() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable9.getModel();
-        miModelo.setRowCount(0); 
-
+        miModelo.setRowCount(0);
         String[] datos = new String[8];  
         String sql = "SELECT * FROM Dentistas";
 
@@ -1456,8 +1564,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaCitas() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable3.getModel();
-        miModelo.setRowCount(0); 
-
+        miModelo.setRowCount(0);
         String sql = "SELECT * FROM Citas";
 
         try (Connection con = new Conexion().conexion();
@@ -1483,34 +1590,9 @@ public class Inicio extends javax.swing.JFrame {
         }
     }
     
-    private void llenarComboBox() {
-        cbxPacientesCitas.removeAllItems();
-        cbxDentistasCitas.removeAllItems();
-
-        try (Connection con = new Conexion().conexion()) {
-            String sqlPacientes = "SELECT idPaciente, Nombre FROM Pacientes";
-            PreparedStatement psPacientes = con.prepareStatement(sqlPacientes);
-            ResultSet rsPacientes = psPacientes.executeQuery();
-            while (rsPacientes.next()) {
-                cbxPacientesCitas.addItem(rsPacientes.getInt("idPaciente") + " - " + rsPacientes.getString("Nombre"));
-            }
-
-            String sqlDentistas = "SELECT idDentista, Nombre FROM Dentistas";
-            PreparedStatement psDentistas = con.prepareStatement(sqlDentistas);
-            ResultSet rsDentistas = psDentistas.executeQuery();
-            while (rsDentistas.next()) {
-                cbxDentistasCitas.addItem(rsDentistas.getInt("idDentista") + " - " + rsDentistas.getString("Nombre"));
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al cargar los datos de la base de datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
-    
     private void verTablaHistorialMedico() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable4.getModel();
-        miModelo.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+        miModelo.setRowCount(0);
 
         String sql = "SELECT hm.idHistorialMedico, p.Nombre, hm.Alergias, hm.Enfermedades, hm.Medicacion, hm.Observaciones, hm.UltimaActualizacion " +
                      "FROM HistorialMedico hm " +
@@ -1539,22 +1621,40 @@ public class Inicio extends javax.swing.JFrame {
         }
     }
 
-
-    
-    private void llenarComboBoxPacientes() {
-        cbxPacientesHistorial.removeAllItems();  
+    public void llenarComboBox() {
+        cbxPacientesCitas.removeAllItems();
+        cbxDentistasCitas.removeAllItems();
+        cbxPacientesHistorial.removeAllItems();
+        cbxDentistasTratamientos.removeAllItems();
+        cbxTratamientoPagos.removeAllItems();
 
         try (Connection con = new Conexion().conexion()) {
-            String sql = "SELECT idPaciente, Nombre FROM Pacientes";
-            PreparedStatement ps = con.prepareStatement(sql);
+            String sqlPacientes = "SELECT idPaciente, Nombre FROM Pacientes";
+            PreparedStatement ps = con.prepareStatement(sqlPacientes);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                cbxPacientesCitas.addItem(rs.getInt("idPaciente") + " - " + rs.getString("Nombre"));
                 cbxPacientesHistorial.addItem(rs.getInt("idPaciente") + " - " + rs.getString("Nombre"));
+            }
+            
+            String sqlDentistas = "SELECT idDentista, Nombre FROM Dentistas";
+            PreparedStatement psDentistas = con.prepareStatement(sqlDentistas);
+            ResultSet rsDentistas = psDentistas.executeQuery();
+            while (rsDentistas.next()) {
+                cbxDentistasCitas.addItem(rsDentistas.getInt("idDentista") + " - " + rsDentistas.getString("Nombre"));
+                cbxDentistasTratamientos.addItem(rsDentistas.getInt("idDentista") + " - " + rsDentistas.getString("Nombre"));
+            }
+            
+            String sqlTratamientos = "SELECT idTratamiento, Nombre FROM Tratamientos";
+            PreparedStatement psTratamientos = con.prepareStatement(sqlTratamientos);
+            ResultSet rsTratamientos = psTratamientos.executeQuery();
+            while (rsTratamientos.next()) {
+                cbxTratamientoPagos.addItem(rsTratamientos.getInt("idTratamiento") + " - " + rsTratamientos.getString("Nombre"));
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al cargar los pacientes: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al cargar los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -1572,7 +1672,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaProveedores() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable8.getModel();
-        miModelo.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+        miModelo.setRowCount(0);
 
         String sql = "SELECT * FROM Proveedores";
 
@@ -1597,14 +1697,88 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-
-
-
-
-
-
     
+    private void verTablaTratamientos(){
+        DefaultTableModel miModelo = (DefaultTableModel) jTable5.getModel();
+        miModelo.setRowCount(0);
+
+        String sql = "SELECT * FROM Tratamientos";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                miModelo.addRow(new Object[]{
+                    rs.getInt("idTratamiento"),
+                    rs.getInt("idDentista"),
+                    rs.getString("Nombre"),
+                    rs.getString("Descripcion"),
+                    rs.getString("MontoTotal")
+                });
+            }
+
+            jTable5.setModel(miModelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void verTablaPagos(){
+        DefaultTableModel miModelo = (DefaultTableModel) jTable6.getModel();
+        miModelo.setRowCount(0);
+
+        String sql = "SELECT * FROM Pagos";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                miModelo.addRow(new Object[]{
+                    rs.getInt("idPago"),
+                    rs.getInt("idTratamiento"),
+                    rs.getString("MetodoPago"),
+                    rs.getString("FechaPago"),
+                    rs.getString("ModalidadPago"),
+                    rs.getInt("MontoPagado")
+                });
+            }
+
+            jTable6.setModel(miModelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void verTablaProductos(){
+        DefaultTableModel miModelo = (DefaultTableModel) jTable7.getModel();
+        miModelo.setRowCount(0);
+
+        String sql = "SELECT * FROM Productos";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                miModelo.addRow(new Object[]{
+                    rs.getInt("idProducto"),
+                    rs.getString("NombreProducto"),
+                    rs.getString("Descripcion"),
+                    rs.getInt("PrecioUnitario")
+                });
+            }
+
+            jTable7.setModel(miModelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+   
     /**
      * @param args the command line arguments
      */
@@ -1650,17 +1824,14 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarProveedor;
     private javax.swing.JButton btnRegistrarTratamiento;
     private javax.swing.JComboBox<String> cbxDentistasCitas;
+    private javax.swing.JComboBox<String> cbxDentistasTratamientos;
     private javax.swing.JComboBox<String> cbxEspecialidadDentista;
+    private javax.swing.JComboBox<String> cbxMetodoPago;
+    private javax.swing.JComboBox<String> cbxModalidadPago;
+    private javax.swing.JComboBox<String> cbxNombreTratamiento;
     private javax.swing.JComboBox<String> cbxPacientesCitas;
     private javax.swing.JComboBox<String> cbxPacientesHistorial;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JFormattedTextField jFormattedTextField10;
-    private javax.swing.JFormattedTextField jFormattedTextField5;
-    private javax.swing.JFormattedTextField jFormattedTextField8;
+    private javax.swing.JComboBox<String> cbxTratamientoPagos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -1737,8 +1908,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTable jTable7;
     private javax.swing.JTable jTable8;
     private javax.swing.JTable jTable9;
-    private javax.swing.JTextArea jTextArea6;
     private com.toedter.calendar.JDateChooser jdFechaCita;
+    private com.toedter.calendar.JDateChooser jdFechaPago;
     private com.toedter.calendar.JDateChooser jdFechaRegistroPaciente;
     private com.toedter.calendar.JDateChooser jdNacimientoPaciente;
     private com.toedter.calendar.JDateChooser jpUltimaActHistorial;
@@ -1751,14 +1922,17 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTextField txtApellidoMatPaciente;
     private javax.swing.JTextField txtApellidoPartDentista;
     private javax.swing.JTextField txtApellidoPatPaciente;
+    private javax.swing.JTextArea txtAreaDescripcion;
     private javax.swing.JTextArea txtAreaNotas;
     private javax.swing.JTextField txtCorreoDentista;
     private javax.swing.JTextField txtCorreoPaciente;
     private javax.swing.JTextField txtCorreoProveedor;
     private javax.swing.JTextField txtDireccionProveedor;
-    private javax.swing.JFormattedTextField txtEmpresaProveedor;
-    private javax.swing.JFormattedTextField txtHoraCita;
-    private javax.swing.JFormattedTextField txtHorarioAtencionDentista;
+    private javax.swing.JTextField txtEmpresaProveedor;
+    private javax.swing.JTextField txtHoraCita;
+    private javax.swing.JTextField txtHorarioAtencionDentista;
+    private javax.swing.JTextField txtMontoPagado;
+    private javax.swing.JTextField txtMontoTotal;
     private javax.swing.JTextField txtMotivoCita;
     private javax.swing.JTextField txtNombreDentista;
     private javax.swing.JTextField txtNombrePaciente;
