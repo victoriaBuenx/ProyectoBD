@@ -6,6 +6,9 @@ package clinica;
 
 import clinica.Conexion;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -30,6 +33,14 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         
         llenarComboBox();
+        verTablaPacientes();
+        verTablaDentistas();
+        verTablaCitas();
+        verTablaHistorialMedico();
+        verTablaTratamientos();
+        verTablaPagos();
+        verTablaProductos();
+        verTablaProveedores();
     }
 
     /**
@@ -213,7 +224,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -944,7 +954,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(255, 255, 255)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1393,191 +1403,107 @@ public class Inicio extends javax.swing.JFrame {
         }
     }
 
-    private boolean validarCamposPacientes() {
-        if (txtNombrePaciente.getText().isEmpty() || txtApellidoPatPaciente.getText().isEmpty() ||
-            txtApellidoMatPaciente.getText().isEmpty() || txtTelefonoPaciente.getText().isEmpty() ||
-            txtCorreoPaciente.getText().isEmpty() || jdNacimientoPaciente.getDate() == null || 
-            jdFechaRegistroPaciente.getDate() == null) {
-
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        try {
-            Long.parseLong(txtTelefonoPaciente.getText()); 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El teléfono debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        return true;
-    }
-    
-    private boolean validarCamposDentistas(){
-        if (txtNombreDentista.getText().isEmpty() || 
-        txtApellidoPartDentista.getText().isEmpty() || 
-        txtApellidoMatDentista.getText().isEmpty() || 
-        cbxEspecialidadDentista.getSelectedItem() == null ||
-        txtTelefonoDentistas.getText().isEmpty() || 
-        txtCorreoDentista.getText().isEmpty() || 
-        txtHorarioAtencionDentista.getText().isEmpty()) {
-        
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        try {
-            Long.parseLong(txtTelefonoDentistas.getText()); 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El teléfono debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
-        if (!txtHorarioAtencionDentista.getText().matches("^(\\d{2}:\\d{2})-(\\d{2}:\\d{2})$")) {
-            JOptionPane.showMessageDialog(this, "El horario debe estar en formato HH:MM-HH:MM.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-
-        String especialidad = cbxEspecialidadDentista.getSelectedItem().toString();
-        String[] especialidadesValidas = {"Odontopedriata", "Ortodoncista", "Periodoncista", "Endodoncista",
-                                           "Patologo", "Prostodoncista", "Cirujano"};
-
-        boolean especialidadValida = false;
-        for (String esp : especialidadesValidas) {
-            if (esp.equals(especialidad)) {
-                especialidadValida = true;
-                break;
+    private boolean validarCamposVacios(Component... campos) {
+        for (Component campo : campos) {
+            if (campo instanceof JTextField && ((JTextField) campo).getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            } else if (campo instanceof JTextArea && ((JTextArea) campo).getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            } else if (campo instanceof JComboBox && ((JComboBox<?>) campo).getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            } else if (campo instanceof JDateChooser && ((JDateChooser) campo).getDate() == null) {
+                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
         }
+        return true;
+    }
 
-        if (!especialidadValida) {
+    private boolean validarNumero(JTextField campo, String mensaje) {
+        try {
+            Long.parseLong(campo.getText().trim());
+            return true;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
+    private boolean validarFormatoHora(JTextField campo, String mensaje) {
+        if (!campo.getText().matches("^(\\d{2}:\\d{2})$")) {
+            JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+    private boolean validarFormatoHoraA(JTextField campo, String mensaje) {
+        if (!campo.getText().matches("^(\\d{2}:\\d{2})-(\\d{2}:\\d{2})$")) {
+            JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validarEspecialidad(JComboBox <String> comboBox) {
+        List<String> especialidadesValidas = Arrays.asList("Odontopedriata", "Ortodoncista", "Periodoncista", 
+                                                            "Endodoncista", "Patologo", "Prostodoncista", "Cirujano");
+        Object selectedItem= comboBox.getSelectedItem();
+        if (selectedItem == null || !especialidadesValidas.contains(comboBox.getSelectedItem().toString())) {
             JOptionPane.showMessageDialog(this, "La especialidad seleccionada no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-
         return true;
     }
-    
-    
+
+    private boolean validarCamposPacientes() {
+        return validarCamposVacios(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, 
+                                   txtTelefonoPaciente, txtCorreoPaciente, jdNacimientoPaciente, jdFechaRegistroPaciente) &&
+               validarNumero(txtTelefonoPaciente, "El teléfono debe ser un número válido.");
+    }
+
+    private boolean validarCamposDentistas() {
+        return validarCamposVacios(txtNombreDentista, txtApellidoPartDentista, txtApellidoMatDentista, 
+                                   cbxEspecialidadDentista, txtTelefonoDentistas, txtCorreoDentista, txtHorarioAtencionDentista) &&
+               validarNumero(txtTelefonoDentistas, "El teléfono debe ser un número válido.") &&
+               validarFormatoHoraA(txtHorarioAtencionDentista, "El horario debe estar en formato HH:MM-HH:MM.") &&
+               validarEspecialidad(cbxEspecialidadDentista);
+    }
+
     private boolean validarCamposCitas() {
-        if (cbxPacientesCitas.getSelectedItem() == null ||
-            cbxDentistasCitas.getSelectedItem() == null ||
-            jdFechaCita.getDate() == null ||
-            txtHoraCita.getText().isEmpty() ||
-            txtMotivoCita.getText().isEmpty() ||
-            txtAreaNotas.getText().isEmpty()) {
-
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        try {
-            if (!txtHoraCita.getText().matches("^(\\d{2}:\\d{2})$")) {
-                JOptionPane.showMessageDialog(this, "La hora debe estar en formato HH:MM.", "Error", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error en la validación de la hora.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        return true;
+        return validarCamposVacios(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas) &&
+               validarFormatoHora(txtHoraCita, "La hora debe estar en formato HH:MM.");
     }
-    
+
     private boolean validarCamposHistorialMedico() {
-        if (cbxPacientesHistorial.getSelectedItem() == null || 
-            txAreaAlergias.getText().isEmpty() || 
-            txAreaEnfermedades.getText().isEmpty() || 
-            txAreaMedicacion.getText().isEmpty() || 
-            jpUltimaActHistorial.getDate() == null) {
-
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios, excepto Observaciones.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        return true;
+        return validarCamposVacios(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, jpUltimaActHistorial);
     }
-    
+
     private boolean validarCamposProveedores() {
-        if (txtNombreProovedor.getText().isEmpty() || 
-            txtTelefonoProveedor.getText().isEmpty() || 
-            txtCorreoProveedor.getText().isEmpty() || 
-            txtEmpresaProveedor.getText().isEmpty() || 
-            txtDireccionProveedor.getText().isEmpty()) {
-
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        return true;
-    }
-    
-    private boolean validarCamposTratamientos(){
-        if(cbxDentistasTratamientos.getSelectedItem()==null ||
-           cbxNombreTratamiento.getSelectedItem() ==null ||
-           txtAreaDescripcion.getText().isEmpty() ||
-           txtMontoTotal.getText().isEmpty())  {
-            
-           JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-           return false; 
-        }
-        try{
-            if(!esNumero (txtMontoTotal.getText())){
-                JOptionPane.showMessageDialog(this, "El monto total debe ser un número valido y mayor a 0.","Eror", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        return true;
-    }
-    
-    private boolean validarCamposPagos(){
-        if(cbxTratamientoPagos.getSelectedItem()==null ||
-           cbxMetodoPago.getSelectedItem() == null ||
-           jdFechaPago.getDate() == null ||
-           cbxModalidadPago.getSelectedItem()== null ||
-           txtMontoPagado.getText().isEmpty())  {
-            
-           JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-           return false; 
-        }
-        try{
-            if(!esNumero (txtMontoPagado.getText())){
-                JOptionPane.showMessageDialog(this, "El monto pagado debe ser un número valido y mayor a 0.","Eror", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        return true;
+        return validarCamposVacios(txtNombreProovedor, txtTelefonoProveedor, txtCorreoProveedor, txtEmpresaProveedor, txtDireccionProveedor);
     }
 
-    private boolean validarCamposProductos(){
-        if(txtNombreProducto.getText().isEmpty() ||
-           txaDescripcionProducto.getText().isEmpty() ||
-           txtPrecioProducto.getText().isEmpty())  {
-            
-           JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-           return false; 
-        }
-        try{
-            if(!esNumero (txtPrecioProducto.getText())){
-                JOptionPane.showMessageDialog(this, "El precio del producto debe ser un número valido y mayor a 0.","Eror", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        return true;
+    private boolean validarCamposTratamientos() {
+        return validarCamposVacios(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal) &&
+               validarNumero(txtMontoTotal, "El monto total debe ser un número válido y mayor a 0.");
     }
-    
+
+    private boolean validarCamposPagos() {
+        return validarCamposVacios(cbxTratamientoPagos, cbxMetodoPago, jdFechaPago, cbxModalidadPago, txtMontoPagado) &&
+               validarNumero(txtMontoPagado, "El monto pagado debe ser un número válido y mayor a 0.");
+    }
+
+    private boolean validarCamposProductos() {
+        return validarCamposVacios(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto) &&
+               validarNumero(txtPrecioProducto, "El precio del producto debe ser un número válido y mayor a 0.");
+    }
+
     
     private void verTablaPacientes() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable1.getModel();
+        miModelo.setRowCount(0);
         String sql = "SELECT * FROM Pacientes";
 
         try (Connection con = new Conexion().conexion();
@@ -1607,7 +1533,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaDentistas() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable9.getModel();
-        
+        miModelo.setRowCount(0);
         String[] datos = new String[8];  
         String sql = "SELECT * FROM Dentistas";
 
@@ -1638,6 +1564,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaCitas() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable3.getModel();
+        miModelo.setRowCount(0);
         String sql = "SELECT * FROM Citas";
 
         try (Connection con = new Conexion().conexion();
@@ -1665,6 +1592,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaHistorialMedico() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable4.getModel();
+        miModelo.setRowCount(0);
 
         String sql = "SELECT hm.idHistorialMedico, p.Nombre, hm.Alergias, hm.Enfermedades, hm.Medicacion, hm.Observaciones, hm.UltimaActualizacion " +
                      "FROM HistorialMedico hm " +
@@ -1693,7 +1621,7 @@ public class Inicio extends javax.swing.JFrame {
         }
     }
 
-    private void llenarComboBox() {
+    public void llenarComboBox() {
         cbxPacientesCitas.removeAllItems();
         cbxDentistasCitas.removeAllItems();
         cbxPacientesHistorial.removeAllItems();
@@ -1744,6 +1672,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaProveedores() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable8.getModel();
+        miModelo.setRowCount(0);
 
         String sql = "SELECT * FROM Proveedores";
 
@@ -1769,18 +1698,9 @@ public class Inicio extends javax.swing.JFrame {
         }
     }
     
-    private static boolean esNumero(String texto){
-        try{
-            int numero = Integer.parseInt(texto);
-            return numero > 0;
-        }catch (NumberFormatException e){
-            return false;
-        }
-        
-    }
-    
     private void verTablaTratamientos(){
         DefaultTableModel miModelo = (DefaultTableModel) jTable5.getModel();
+        miModelo.setRowCount(0);
 
         String sql = "SELECT * FROM Tratamientos";
 
@@ -1807,6 +1727,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaPagos(){
         DefaultTableModel miModelo = (DefaultTableModel) jTable6.getModel();
+        miModelo.setRowCount(0);
 
         String sql = "SELECT * FROM Pagos";
 
@@ -1834,6 +1755,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaProductos(){
         DefaultTableModel miModelo = (DefaultTableModel) jTable7.getModel();
+        miModelo.setRowCount(0);
 
         String sql = "SELECT * FROM Productos";
 
