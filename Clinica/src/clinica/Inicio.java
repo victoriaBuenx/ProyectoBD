@@ -29,8 +29,7 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         initComponents();
         
-        llenarComboBox(); 
-        llenarComboBoxPacientes();
+        llenarComboBox();
     }
 
     /**
@@ -1308,6 +1307,7 @@ public class Inicio extends javax.swing.JFrame {
                 if (resultado) {
                     JOptionPane.showMessageDialog(this, "Tratamiento registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaTratamientos();
+                    llenarComboBox();
                     limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal);
 
                 } else {
@@ -1325,7 +1325,7 @@ public class Inicio extends javax.swing.JFrame {
                 String modalidadPago= cbxModalidadPago.getSelectedItem().toString();
                 int montoPagado;
                 try{
-                    montoPagado= Integer.parseInt(txtMontoTotal.getText());
+                    montoPagado= Integer.parseInt(txtMontoPagado.getText());
                 }catch(NumberFormatException e){
                     JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
                     montoPagado= 0;
@@ -1338,6 +1338,7 @@ public class Inicio extends javax.swing.JFrame {
                 if (resultado) {
                     JOptionPane.showMessageDialog(this, "Pago registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaPagos();
+                    llenarComboBox();
                     limpiarCampos(cbxTratamientoPagos, cbxMetodoPago, jdFechaPago, txtMontoPagado, cbxModalidadPago);
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo registrar el Pago.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1662,30 +1663,6 @@ public class Inicio extends javax.swing.JFrame {
         }
     }
     
-    private void llenarComboBox() {
-        cbxPacientesCitas.removeAllItems();
-        cbxDentistasCitas.removeAllItems();
-
-        try (Connection con = new Conexion().conexion()) {
-            String sqlPacientes = "SELECT Nombre FROM Pacientes";
-            PreparedStatement psPacientes = con.prepareStatement(sqlPacientes);
-            ResultSet rsPacientes = psPacientes.executeQuery();
-            while (rsPacientes.next()) {
-                cbxPacientesCitas.addItem(rsPacientes.getString("Nombre"));
-            }
-
-            String sqlDentistas = "SELECT Nombre FROM Dentistas";
-            PreparedStatement psDentistas = con.prepareStatement(sqlDentistas);
-            ResultSet rsDentistas = psDentistas.executeQuery();
-            while (rsDentistas.next()) {
-                cbxDentistasCitas.addItem(rsDentistas.getString("Nombre"));
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al cargar los datos de la base de datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
     private void verTablaHistorialMedico() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable4.getModel();
 
@@ -1716,20 +1693,40 @@ public class Inicio extends javax.swing.JFrame {
         }
     }
 
-    private void llenarComboBoxPacientes() {
-        cbxPacientesHistorial.removeAllItems();  
+    private void llenarComboBox() {
+        cbxPacientesCitas.removeAllItems();
+        cbxDentistasCitas.removeAllItems();
+        cbxPacientesHistorial.removeAllItems();
+        cbxDentistasTratamientos.removeAllItems();
+        cbxTratamientoPagos.removeAllItems();
 
         try (Connection con = new Conexion().conexion()) {
-            String sql = "SELECT Nombre FROM Pacientes";
-            PreparedStatement ps = con.prepareStatement(sql);
+            String sqlPacientes = "SELECT idPaciente, Nombre FROM Pacientes";
+            PreparedStatement ps = con.prepareStatement(sqlPacientes);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                cbxPacientesHistorial.addItem(rs.getString("Nombre"));
+                cbxPacientesCitas.addItem(rs.getInt("idPaciente") + " - " + rs.getString("Nombre"));
+                cbxPacientesHistorial.addItem(rs.getInt("idPaciente") + " - " + rs.getString("Nombre"));
+            }
+            
+            String sqlDentistas = "SELECT idDentista, Nombre FROM Dentistas";
+            PreparedStatement psDentistas = con.prepareStatement(sqlDentistas);
+            ResultSet rsDentistas = psDentistas.executeQuery();
+            while (rsDentistas.next()) {
+                cbxDentistasCitas.addItem(rsDentistas.getInt("idDentista") + " - " + rsDentistas.getString("Nombre"));
+                cbxDentistasTratamientos.addItem(rsDentistas.getInt("idDentista") + " - " + rsDentistas.getString("Nombre"));
+            }
+            
+            String sqlTratamientos = "SELECT idTratamiento, Nombre FROM Tratamientos";
+            PreparedStatement psTratamientos = con.prepareStatement(sqlTratamientos);
+            ResultSet rsTratamientos = psTratamientos.executeQuery();
+            while (rsTratamientos.next()) {
+                cbxTratamientoPagos.addItem(rsTratamientos.getInt("idTratamiento") + " - " + rsTratamientos.getString("Nombre"));
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al cargar los pacientes: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al cargar los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
         }
     }
 
