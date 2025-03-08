@@ -700,6 +700,11 @@ public class Inicio extends javax.swing.JFrame {
 
         btnRegistrarTratamiento.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnRegistrarTratamiento.setText("Registrar");
+        btnRegistrarTratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarTratamientoActionPerformed(evt);
+            }
+        });
 
         jLabel30.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel30.setText("Monto Total:");
@@ -792,6 +797,11 @@ public class Inicio extends javax.swing.JFrame {
 
         btnRegistarPagos.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnRegistarPagos.setText("Registrar");
+        btnRegistarPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistarPagosActionPerformed(evt);
+            }
+        });
 
         jLabel37.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel37.setText("Monto Pagado:");
@@ -889,6 +899,11 @@ public class Inicio extends javax.swing.JFrame {
 
         btnRegistrarProducto.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnRegistrarProducto.setText("Registrar");
+        btnRegistrarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarProductoActionPerformed(evt);
+            }
+        });
 
         jTable7.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1205,7 +1220,6 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
             if (validarCamposHistorialMedico()) {
             int idPaciente = obtenerIdPacienteSeleccionado();  
-
             String alergias = txAreaAlergias.getText();
             String enfermedades = txAreaEnfermedades.getText();
             String medicacion = txAreaMedicacion.getText();
@@ -1273,11 +1287,92 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoMatPacienteActionPerformed
 
-    
-    //limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal);
-    //limpiarCampos(cbxTratamientoPagos, cbxMetodoPago, jdFechaPago, txtMontoPagado, cbxModalidadPago);
-    
-    //limpiarCampos(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto);
+    private void btnRegistrarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTratamientoActionPerformed
+        // TODO add your handling code here:
+        if (validarCamposTratamientos()) {
+                int idDentista = Integer.parseInt(cbxDentistasTratamientos.getSelectedItem().toString().split("-")[0].trim());
+                String nombre = cbxNombreTratamiento.getSelectedItem().toString();
+                String descripcion = txtAreaDescripcion.getText();
+                int montoTotal;
+                try{
+                    montoTotal= Integer.parseInt(txtMontoTotal.getText());
+                }catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
+                    montoTotal= 0;
+                }
+                
+                TratamientosDao tratamientosDao = new TratamientosDao();
+
+                boolean resultado = tratamientosDao.insertarTratamientos(idDentista, nombre, descripcion, montoTotal);
+
+                if (resultado) {
+                    JOptionPane.showMessageDialog(this, "Tratamiento registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    verTablaTratamientos();
+                    limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+        }
+    }//GEN-LAST:event_btnRegistrarTratamientoActionPerformed
+
+    private void btnRegistarPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistarPagosActionPerformed
+        // TODO add your handling code here:
+        if (validarCamposPagos()) {
+                int idTratamiento = Integer.parseInt(cbxTratamientoPagos.getSelectedItem().toString().split("-")[0].trim());
+                String metodoPago = cbxMetodoPago.getSelectedItem().toString();
+                Date fechaPago= jdFechaPago.getDate();
+                String modalidadPago= cbxModalidadPago.getSelectedItem().toString();
+                int montoPagado;
+                try{
+                    montoPagado= Integer.parseInt(txtMontoTotal.getText());
+                }catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
+                    montoPagado= 0;
+                }
+                
+                PagosDao pagosDao = new PagosDao();
+
+                boolean resultado = pagosDao.insertarPagos(idTratamiento, metodoPago, fechaPago, modalidadPago, montoPagado);
+
+                if (resultado) {
+                    JOptionPane.showMessageDialog(this, "Pago registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    verTablaPagos();
+                    limpiarCampos(cbxTratamientoPagos, cbxMetodoPago, jdFechaPago, txtMontoPagado, cbxModalidadPago);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el Pago.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+        }
+    }//GEN-LAST:event_btnRegistarPagosActionPerformed
+
+    private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
+        // TODO add your handling code here:
+        if (validarCamposProductos()) {
+                String nombreProducto = txtNombreProducto.getText();
+                String descripcion= txaDescripcionProducto.getText();
+                int precioUnitario;
+                try{
+                    precioUnitario= Integer.parseInt(txtPrecioProducto.getText());
+                }catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
+                    precioUnitario= 0;
+                }
+                
+                ProductosDao productosDao = new ProductosDao();
+
+                boolean resultado = productosDao.insertarProductos(nombreProducto, descripcion, precioUnitario);
+
+                if (resultado) {
+                    JOptionPane.showMessageDialog(this, "Producto registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    verTablaProductos();
+                    limpiarCampos(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el Producto.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+        }
+    }//GEN-LAST:event_btnRegistrarProductoActionPerformed
     
     public static void limpiarCampo(JComponent campo) {
         if (campo instanceof JTextField) {
@@ -1297,7 +1392,6 @@ public class Inicio extends javax.swing.JFrame {
         }
     }
 
-   
     private boolean validarCamposPacientes() {
         if (txtNombrePaciente.getText().isEmpty() || txtApellidoPatPaciente.getText().isEmpty() ||
             txtApellidoMatPaciente.getText().isEmpty() || txtTelefonoPaciente.getText().isEmpty() ||
@@ -1414,18 +1508,75 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-
+        return true;
+    }
+    
+    private boolean validarCamposTratamientos(){
+        if(cbxDentistasTratamientos.getSelectedItem()==null ||
+           cbxNombreTratamiento.getSelectedItem() ==null ||
+           txtAreaDescripcion.getText().isEmpty() ||
+           txtMontoTotal.getText().isEmpty())  {
+            
+           JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+           return false; 
+        }
+        try{
+            if(!esNumero (txtMontoTotal.getText())){
+                JOptionPane.showMessageDialog(this, "El monto total debe ser un número valido y mayor a 0.","Eror", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarCamposPagos(){
+        if(cbxTratamientoPagos.getSelectedItem()==null ||
+           cbxMetodoPago.getSelectedItem() == null ||
+           jdFechaPago.getDate() == null ||
+           cbxModalidadPago.getSelectedItem()== null ||
+           txtMontoPagado.getText().isEmpty())  {
+            
+           JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+           return false; 
+        }
+        try{
+            if(!esNumero (txtMontoPagado.getText())){
+                JOptionPane.showMessageDialog(this, "El monto pagado debe ser un número valido y mayor a 0.","Eror", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
         return true;
     }
 
-
-
-
+    private boolean validarCamposProductos(){
+        if(txtNombreProducto.getText().isEmpty() ||
+           txaDescripcionProducto.getText().isEmpty() ||
+           txtPrecioProducto.getText().isEmpty())  {
+            
+           JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+           return false; 
+        }
+        try{
+            if(!esNumero (txtPrecioProducto.getText())){
+                JOptionPane.showMessageDialog(this, "El precio del producto debe ser un número valido y mayor a 0.","Eror", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+    
     
     private void verTablaPacientes() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable1.getModel();
-        miModelo.setRowCount(0);
-
         String sql = "SELECT * FROM Pacientes";
 
         try (Connection con = new Conexion().conexion();
@@ -1455,8 +1606,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaDentistas() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable9.getModel();
-        miModelo.setRowCount(0); 
-
+        
         String[] datos = new String[8];  
         String sql = "SELECT * FROM Dentistas";
 
@@ -1487,8 +1637,6 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaCitas() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable3.getModel();
-        miModelo.setRowCount(0); 
-
         String sql = "SELECT * FROM Citas";
 
         try (Connection con = new Conexion().conexion();
@@ -1519,18 +1667,18 @@ public class Inicio extends javax.swing.JFrame {
         cbxDentistasCitas.removeAllItems();
 
         try (Connection con = new Conexion().conexion()) {
-            String sqlPacientes = "SELECT idPaciente, Nombre FROM Pacientes";
+            String sqlPacientes = "SELECT Nombre FROM Pacientes";
             PreparedStatement psPacientes = con.prepareStatement(sqlPacientes);
             ResultSet rsPacientes = psPacientes.executeQuery();
             while (rsPacientes.next()) {
-                cbxPacientesCitas.addItem(rsPacientes.getInt("idPaciente") + " - " + rsPacientes.getString("Nombre"));
+                cbxPacientesCitas.addItem(rsPacientes.getString("Nombre"));
             }
 
-            String sqlDentistas = "SELECT idDentista, Nombre FROM Dentistas";
+            String sqlDentistas = "SELECT Nombre FROM Dentistas";
             PreparedStatement psDentistas = con.prepareStatement(sqlDentistas);
             ResultSet rsDentistas = psDentistas.executeQuery();
             while (rsDentistas.next()) {
-                cbxDentistasCitas.addItem(rsDentistas.getInt("idDentista") + " - " + rsDentistas.getString("Nombre"));
+                cbxDentistasCitas.addItem(rsDentistas.getString("Nombre"));
             }
 
         } catch (SQLException ex) {
@@ -1538,10 +1686,8 @@ public class Inicio extends javax.swing.JFrame {
         }
     }
     
-    
     private void verTablaHistorialMedico() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable4.getModel();
-        miModelo.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
 
         String sql = "SELECT hm.idHistorialMedico, p.Nombre, hm.Alergias, hm.Enfermedades, hm.Medicacion, hm.Observaciones, hm.UltimaActualizacion " +
                      "FROM HistorialMedico hm " +
@@ -1570,18 +1716,16 @@ public class Inicio extends javax.swing.JFrame {
         }
     }
 
-
-    
     private void llenarComboBoxPacientes() {
         cbxPacientesHistorial.removeAllItems();  
 
         try (Connection con = new Conexion().conexion()) {
-            String sql = "SELECT idPaciente, Nombre FROM Pacientes";
+            String sql = "SELECT Nombre FROM Pacientes";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                cbxPacientesHistorial.addItem(rs.getInt("idPaciente") + " - " + rs.getString("Nombre"));
+                cbxPacientesHistorial.addItem(rs.getString("Nombre"));
             }
 
         } catch (SQLException ex) {
@@ -1603,7 +1747,6 @@ public class Inicio extends javax.swing.JFrame {
     
     private void verTablaProveedores() {
         DefaultTableModel miModelo = (DefaultTableModel) jTable8.getModel();
-        miModelo.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
 
         String sql = "SELECT * FROM Proveedores";
 
@@ -1628,14 +1771,95 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-
-
-
-
-
-
     
+    private static boolean esNumero(String texto){
+        try{
+            int numero = Integer.parseInt(texto);
+            return numero > 0;
+        }catch (NumberFormatException e){
+            return false;
+        }
+        
+    }
+    
+    private void verTablaTratamientos(){
+        DefaultTableModel miModelo = (DefaultTableModel) jTable5.getModel();
+
+        String sql = "SELECT * FROM Tratamientos";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                miModelo.addRow(new Object[]{
+                    rs.getInt("idTratamiento"),
+                    rs.getInt("idDentista"),
+                    rs.getString("Nombre"),
+                    rs.getString("Descripcion"),
+                    rs.getString("MontoTotal")
+                });
+            }
+
+            jTable5.setModel(miModelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void verTablaPagos(){
+        DefaultTableModel miModelo = (DefaultTableModel) jTable6.getModel();
+
+        String sql = "SELECT * FROM Pagos";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                miModelo.addRow(new Object[]{
+                    rs.getInt("idPago"),
+                    rs.getInt("idTratamiento"),
+                    rs.getString("MetodoPago"),
+                    rs.getString("FechaPago"),
+                    rs.getString("ModalidadPago"),
+                    rs.getInt("MontoPagado")
+                });
+            }
+
+            jTable6.setModel(miModelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void verTablaProductos(){
+        DefaultTableModel miModelo = (DefaultTableModel) jTable7.getModel();
+
+        String sql = "SELECT * FROM Productos";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                miModelo.addRow(new Object[]{
+                    rs.getInt("idProducto"),
+                    rs.getString("NombreProducto"),
+                    rs.getString("Descripcion"),
+                    rs.getInt("PrecioUnitario")
+                });
+            }
+
+            jTable7.setModel(miModelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+   
     /**
      * @param args the command line arguments
      */
