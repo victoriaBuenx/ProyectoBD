@@ -721,8 +721,6 @@ public class Inicio extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel34.setText("Nombre del tratamiento:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jTextArea6.setColumns(20);
         jTextArea6.setRows(5);
         jScrollPane14.setViewportView(jTextArea6);
@@ -966,6 +964,11 @@ public class Inicio extends javax.swing.JFrame {
 
         btnRegistrarProveedor.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnRegistrarProveedor.setText("Registrar");
+        btnRegistrarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarProveedorActionPerformed(evt);
+            }
+        });
 
         jLabel51.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel51.setText("Empresa:");
@@ -1238,6 +1241,30 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRegistrarHistorialActionPerformed
 
+    private void btnRegistrarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProveedorActionPerformed
+        // TODO add your handling code here:
+            if (validarCamposProveedores()) {
+                String nombre = txtNombreProovedor.getText();
+                String telefono = txtTelefonoProveedor.getText();
+                String correo = txtCorreoProveedor.getText();
+                String empresa = txtEmpresaProveedor.getText();
+                String direccion = txtDireccionProveedor.getText();
+
+                // Creamos una instancia del DAO
+                ProveedoresDao proveedoresDao = new ProveedoresDao();
+
+                // Insertamos el proveedor en la base de datos
+                boolean resultado = proveedoresDao.insertarTablaProveedores(nombre, telefono, correo, empresa, direccion);
+
+                if (resultado) {
+                    JOptionPane.showMessageDialog(this, "Proveedor registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    verTablaProveedores();  // Actualizar la tabla después de insertar
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+    }//GEN-LAST:event_btnRegistrarProveedorActionPerformed
+
     
     
     private boolean validarCamposPacientes() {
@@ -1345,6 +1372,21 @@ public class Inicio extends javax.swing.JFrame {
 
         return true;
     }
+    
+    private boolean validarCamposProveedores() {
+        if (txtNombreProovedor.getText().isEmpty() || 
+            txtTelefonoProveedor.getText().isEmpty() || 
+            txtCorreoProveedor.getText().isEmpty() || 
+            txtEmpresaProveedor.getText().isEmpty() || 
+            txtDireccionProveedor.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+
 
 
 
@@ -1526,6 +1568,36 @@ public class Inicio extends javax.swing.JFrame {
         }
         return -1;  
     }
+    
+    
+    private void verTablaProveedores() {
+        DefaultTableModel miModelo = (DefaultTableModel) jTable8.getModel();
+        miModelo.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+
+        String sql = "SELECT * FROM Proveedores";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                miModelo.addRow(new Object[]{
+                    rs.getInt("idProveedor"),
+                    rs.getString("Nombre"),
+                    rs.getString("Telefono"),
+                    rs.getString("Correo"),
+                    rs.getString("Empresa"),
+                    rs.getString("Direccion")
+                });
+            }
+
+            jTable8.setModel(miModelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 
 
 
