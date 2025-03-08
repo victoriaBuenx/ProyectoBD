@@ -10,4 +10,6 @@ package clinica;
  */
 public class HistorialMedicoDao {
     
+    
+    
 }

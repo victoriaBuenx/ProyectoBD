@@ -4,10 +4,61 @@
  */
 package clinica;
 
+
+import clinica.Conexion;
+
+import java.sql.*;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Date;
 /**
  *
  * @author victo
  */
 public class CitasDao {
+    
+
+    public boolean insertarCita(int idPaciente, int idDentista, Date fecha, String hora, String motivo, String notas) {
+        String sql = "INSERT INTO Citas (idPaciente, idDentista, Fecha, Hora, Motivo, Notas) VALUES (?, ?, ?, ?, ?, ?)";
+
+        PreparedStatement ps = null;
+        Connection con = null;
+
+        try {
+            Conexion conexion = new Conexion();
+            con = conexion.conexion();
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idPaciente);
+            ps.setInt(2, idDentista);
+            ps.setDate(3, new java.sql.Date(fecha.getTime()));
+            ps.setString(4, hora);
+            ps.setString(5, motivo);
+            ps.setString(6, notas);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Cita registrada con éxito.");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar la cita.");
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al insertar cita: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
+            }
+        }
+    }
     
 }
