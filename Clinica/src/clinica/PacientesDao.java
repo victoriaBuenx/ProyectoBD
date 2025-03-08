@@ -4,11 +4,13 @@
  */
 package clinica;
 import clinica.Conexion;
+
 import java.sql.*;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 /**
  *
  * @author victo
@@ -16,7 +18,7 @@ import java.sql.SQLException;
 public class PacientesDao {
     
     public boolean insertarPaciente(String nombre, String apellidoPaterno, String apellidoMaterno,
-                                    String fechaNacimiento, String telefono, String correo, String fechaRegistro) {
+                                    Date fechaNacimiento, String telefono, String correo, Date fechaRegistro) {
         String sql = "INSERT INTO Pacientes (Nombre, ApellidoPaterno, ApellidoMaterno, FechaNacimiento, Telefono, Correo, FechaRegistro) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -31,10 +33,10 @@ public class PacientesDao {
             ps.setString(1, nombre);
             ps.setString(2, apellidoPaterno);
             ps.setString(3, apellidoMaterno);
-            ps.setString(4, fechaNacimiento);
+            ps.setDate(4, new java.sql.Date(fechaNacimiento.getTime())); 
             ps.setString(5, telefono);
             ps.setString(6, correo);
-            ps.setString(7, fechaRegistro);
+            ps.setDate(7, new java.sql.Date(fechaRegistro.getTime())); 
 
             int filasAfectadas = ps.executeUpdate();
 
@@ -51,12 +53,8 @@ public class PacientesDao {
             return false;
         } finally {
             try {
-                if (ps != null) {
-                    ps.close();  
-                }
-                if (con != null) {
-                    con.close();  
-                }
+                if (ps != null) ps.close();
+                if (con != null) con.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
             }
