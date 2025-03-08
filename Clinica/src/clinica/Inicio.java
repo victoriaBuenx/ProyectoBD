@@ -29,6 +29,7 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         
         llenarComboBox(); 
+        llenarComboBoxPacientes();
     }
 
     /**
@@ -720,8 +721,6 @@ public class Inicio extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel34.setText("Nombre del tratamiento:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jTextArea6.setColumns(20);
         jTextArea6.setRows(5);
         jScrollPane14.setViewportView(jTextArea6);
@@ -965,6 +964,11 @@ public class Inicio extends javax.swing.JFrame {
 
         btnRegistrarProveedor.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnRegistrarProveedor.setText("Registrar");
+        btnRegistrarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarProveedorActionPerformed(evt);
+            }
+        });
 
         jLabel51.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel51.setText("Empresa:");
@@ -1203,7 +1207,63 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnRegistrarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarHistorialActionPerformed
         // TODO add your handling code here:
+            if (validarCamposHistorialMedico()) {
+            int idPaciente = obtenerIdPacienteSeleccionado();  
+
+            String alergias = txAreaAlergias.getText();
+            String enfermedades = txAreaEnfermedades.getText();
+            String medicacion = txAreaMedicacion.getText();
+            String observaciones = txAreaObservacion.getText();
+            if (observaciones.isEmpty()) {
+                observaciones = null;  
+            }
+            Date ultimaActualizacion = jpUltimaActHistorial.getDate();
+
+            Conexion conexion = new Conexion();
+            Connection con = conexion.conexion();
+
+            if (con != null) {
+                HistorialMedicoDao historialDao = new HistorialMedicoDao();
+
+                boolean resultado = historialDao.insertarHistorialMedico(idPaciente, alergias, enfermedades, medicacion, observaciones, ultimaActualizacion);
+
+                if (resultado) {
+                    JOptionPane.showMessageDialog(this, "Historial médico registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    verTablaHistorialMedico();  
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                conexion.cerrarConexion();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo conectar con la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnRegistrarHistorialActionPerformed
+
+    private void btnRegistrarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProveedorActionPerformed
+        // TODO add your handling code here:
+            if (validarCamposProveedores()) {
+                String nombre = txtNombreProovedor.getText();
+                String telefono = txtTelefonoProveedor.getText();
+                String correo = txtCorreoProveedor.getText();
+                String empresa = txtEmpresaProveedor.getText();
+                String direccion = txtDireccionProveedor.getText();
+
+                // Creamos una instancia del DAO
+                ProveedoresDao proveedoresDao = new ProveedoresDao();
+
+                // Insertamos el proveedor en la base de datos
+                boolean resultado = proveedoresDao.insertarTablaProveedores(nombre, telefono, correo, empresa, direccion);
+
+                if (resultado) {
+                    JOptionPane.showMessageDialog(this, "Proveedor registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    verTablaProveedores();  // Actualizar la tabla después de insertar
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+    }//GEN-LAST:event_btnRegistrarProveedorActionPerformed
 
     
     
@@ -1298,6 +1358,37 @@ public class Inicio extends javax.swing.JFrame {
 
         return true;
     }
+    
+    private boolean validarCamposHistorialMedico() {
+        if (cbxPacientesHistorial.getSelectedItem() == null || 
+            txAreaAlergias.getText().isEmpty() || 
+            txAreaEnfermedades.getText().isEmpty() || 
+            txAreaMedicacion.getText().isEmpty() || 
+            jpUltimaActHistorial.getDate() == null) {
+
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios, excepto Observaciones.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+    
+    private boolean validarCamposProveedores() {
+        if (txtNombreProovedor.getText().isEmpty() || 
+            txtTelefonoProveedor.getText().isEmpty() || 
+            txtCorreoProveedor.getText().isEmpty() || 
+            txtEmpresaProveedor.getText().isEmpty() || 
+            txtDireccionProveedor.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+
+
+
 
     
     private void verTablaPacientes() {
@@ -1415,6 +1506,101 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al cargar los datos de la base de datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    
+    private void verTablaHistorialMedico() {
+        DefaultTableModel miModelo = (DefaultTableModel) jTable4.getModel();
+        miModelo.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+
+        String sql = "SELECT hm.idHistorialMedico, p.Nombre, hm.Alergias, hm.Enfermedades, hm.Medicacion, hm.Observaciones, hm.UltimaActualizacion " +
+                     "FROM HistorialMedico hm " +
+                     "JOIN Pacientes p ON hm.idPaciente = p.idPaciente";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                miModelo.addRow(new Object[]{
+                    rs.getInt("idHistorialMedico"),
+                    rs.getString("Nombre"), // Solo el nombre, sin apellidos
+                    rs.getString("Alergias"),
+                    rs.getString("Enfermedades"),
+                    rs.getString("Medicacion"),
+                    rs.getString("Observaciones"),
+                    rs.getDate("UltimaActualizacion")
+                });
+            }
+
+            jTable4.setModel(miModelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
+    
+    private void llenarComboBoxPacientes() {
+        cbxPacientesHistorial.removeAllItems();  
+
+        try (Connection con = new Conexion().conexion()) {
+            String sql = "SELECT idPaciente, Nombre FROM Pacientes";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                cbxPacientesHistorial.addItem(rs.getInt("idPaciente") + " - " + rs.getString("Nombre"));
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al cargar los pacientes: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    
+    private int obtenerIdPacienteSeleccionado() {
+        String seleccion = (String) cbxPacientesHistorial.getSelectedItem();
+        if (seleccion != null) {
+            String[] partes = seleccion.split(" - ");
+            int idPaciente = Integer.parseInt(partes[0]); 
+            return idPaciente;
+        }
+        return -1;  
+    }
+    
+    
+    private void verTablaProveedores() {
+        DefaultTableModel miModelo = (DefaultTableModel) jTable8.getModel();
+        miModelo.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+
+        String sql = "SELECT * FROM Proveedores";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                miModelo.addRow(new Object[]{
+                    rs.getInt("idProveedor"),
+                    rs.getString("Nombre"),
+                    rs.getString("Telefono"),
+                    rs.getString("Correo"),
+                    rs.getString("Empresa"),
+                    rs.getString("Direccion")
+                });
+            }
+
+            jTable8.setModel(miModelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
+
+
 
 
 
