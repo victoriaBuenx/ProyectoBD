@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author victo
  */
 public class TratamientosDao {
+    Inicio cbxTratamientos= new Inicio();
     
     public boolean insertarTratamientos(int idDentista, String nombre, String descripcion, int montoTotal) {
         String sql = "INSERT INTO Tratamientos (idDentista, Nombre, Descripcion, MontoTotal) " +
@@ -37,6 +38,7 @@ public class TratamientosDao {
 
             if (filasAfectadas > 0) {
                 JOptionPane.showMessageDialog(null, "Tratamiento registrado con éxito.");
+                cbxTratamientos.llenarComboBox();
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo registrar el tratamiento.");
