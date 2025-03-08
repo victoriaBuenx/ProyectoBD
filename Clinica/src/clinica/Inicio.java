@@ -1627,6 +1627,7 @@ public class Inicio extends javax.swing.JFrame {
         cbxPacientesHistorial.removeAllItems();
         cbxDentistasTratamientos.removeAllItems();
         cbxTratamientoPagos.removeAllItems();
+        
 
         try (Connection con = new Conexion().conexion()) {
             String sqlPacientes = "SELECT idPaciente, Nombre FROM Pacientes";
@@ -1652,7 +1653,7 @@ public class Inicio extends javax.swing.JFrame {
             while (rsTratamientos.next()) {
                 cbxTratamientoPagos.addItem(rsTratamientos.getInt("idTratamiento") + " - " + rsTratamientos.getString("Nombre"));
             }
-
+        
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al cargar los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
         }
