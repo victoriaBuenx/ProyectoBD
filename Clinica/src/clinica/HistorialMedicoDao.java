@@ -19,7 +19,8 @@ import java.util.Date;
  */
 public class HistorialMedicoDao {
     
-    public boolean insertarHistorialMedico(int idPaciente, String alergias, String enfermedades, String medicacion, String observaciones, Date ultimaActualizacion) {
+    public boolean insertarHistorialMedico(int idPaciente, String alergias, String enfermedades, String medicacion, String observaciones, 
+            Date ultimaActualizacion) {
         String sql = "INSERT INTO HistorialMedico (idPaciente, Alergias, Enfermedades, Medicacion, Observaciones, UltimaActualizacion) " +
                      "VALUES (?, ?, ?, ?, ?, ?)";
 

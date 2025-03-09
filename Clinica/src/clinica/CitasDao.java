@@ -18,8 +18,7 @@ import java.util.Date;
  * @author victo
  */
 public class CitasDao {
-    
-
+   
     public boolean insertarCita(int idPaciente, int idDentista, Date fecha, String hora, String motivo, String notas) {
         String sql = "INSERT INTO Citas (idPaciente, idDentista, Fecha, Hora, Motivo, Notas) VALUES (?, ?, ?, ?, ?, ?)";
 

@@ -20,7 +20,8 @@ public class PacientesDao {
     
     public boolean insertarPaciente(String nombre, String apellidoPaterno, String apellidoMaterno,
                                     Date fechaNacimiento, String telefono, String correo, Date fechaRegistro) {
-        String sql = "INSERT INTO Pacientes (Nombre, ApellidoPaterno, ApellidoMaterno, FechaNacimiento, Telefono, Correo, FechaRegistro) " +
+        String sql = "INSERT INTO Pacientes (Nombre, ApellidoPaterno, ApellidoMaterno, FechaNacimiento, "
+                + "Telefono, Correo, FechaRegistro) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = null;

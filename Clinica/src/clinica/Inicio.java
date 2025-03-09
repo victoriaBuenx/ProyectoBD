@@ -1097,14 +1097,17 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPacientesActionPerformed
@@ -1129,9 +1132,9 @@ public class Inicio extends javax.swing.JFrame {
                 );
 
                 if (resultado) {
-                    JOptionPane.showMessageDialog(this, "Paciente registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaPacientes(); 
-                    limpiarCampos(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, jdNacimientoPaciente, txtTelefonoPaciente, txtCorreoPaciente, jdFechaRegistroPaciente);
+                    limpiarCampos(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, jdNacimientoPaciente, txtTelefonoPaciente, 
+                            txtCorreoPaciente, jdFechaRegistroPaciente);
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo registrar el paciente.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -1177,7 +1180,6 @@ public class Inicio extends javax.swing.JFrame {
                 );
 
                 if (resultado) {
-                    JOptionPane.showMessageDialog(this, "Dentista registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaDentistas();
                     limpiarCampos(txtNombreDentista, txtApellidoPartDentista, txtApellidoMatDentista, cbxEspecialidadDentista, txtTelefonoDentistas, txtCorreoDentista, txtHorarioAtencionDentista);
 
@@ -1210,7 +1212,6 @@ public class Inicio extends javax.swing.JFrame {
                 boolean resultado = citasDao.insertarCita(idPaciente, idDentista, fecha, hora, motivo, notas);
 
                 if (resultado) {
-                    JOptionPane.showMessageDialog(this, "Cita registrada con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaCitas();  
                     llenarComboBox(); 
                     limpiarCampos(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas);
@@ -1247,7 +1248,6 @@ public class Inicio extends javax.swing.JFrame {
                 boolean resultado = historialDao.insertarHistorialMedico(idPaciente, alergias, enfermedades, medicacion, observaciones, ultimaActualizacion);
 
                 if (resultado) {
-                    JOptionPane.showMessageDialog(this, "Historial médico registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaHistorialMedico();
                     limpiarCampos(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, txAreaObservacion, jpUltimaActHistorial);  
 
@@ -1278,7 +1278,6 @@ public class Inicio extends javax.swing.JFrame {
                 boolean resultado = proveedoresDao.insertarTablaProveedores(nombre, telefono, correo, empresa, direccion);
 
                 if (resultado) {
-                    JOptionPane.showMessageDialog(this, "Proveedor registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaProveedores();
                     limpiarCampos(txtNombreProovedor, txtTelefonoProveedor, txtCorreoProveedor, txtEmpresaProveedor, txtDireccionProveedor);
 
@@ -1315,7 +1314,6 @@ public class Inicio extends javax.swing.JFrame {
                 boolean resultado = tratamientosDao.insertarTratamientos(idDentista, nombre, descripcion, montoTotal);
 
                 if (resultado) {
-                    JOptionPane.showMessageDialog(this, "Tratamiento registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaTratamientos();
                     llenarComboBox();
                     limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal);
@@ -1346,7 +1344,6 @@ public class Inicio extends javax.swing.JFrame {
                 boolean resultado = pagosDao.insertarPagos(idTratamiento, metodoPago, fechaPago, modalidadPago, montoPagado);
 
                 if (resultado) {
-                    JOptionPane.showMessageDialog(this, "Pago registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaPagos();
                     llenarComboBox();
                     limpiarCampos(cbxTratamientoPagos, cbxMetodoPago, jdFechaPago, txtMontoPagado, cbxModalidadPago);
@@ -1375,7 +1372,6 @@ public class Inicio extends javax.swing.JFrame {
                 boolean resultado = productosDao.insertarProductos(nombreProducto, descripcion, precioUnitario);
 
                 if (resultado) {
-                    JOptionPane.showMessageDialog(this, "Producto registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     verTablaProductos();
                     limpiarCampos(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto);
                 } else {
@@ -1627,6 +1623,7 @@ public class Inicio extends javax.swing.JFrame {
         cbxPacientesHistorial.removeAllItems();
         cbxDentistasTratamientos.removeAllItems();
         cbxTratamientoPagos.removeAllItems();
+        
 
         try (Connection con = new Conexion().conexion()) {
             String sqlPacientes = "SELECT idPaciente, Nombre FROM Pacientes";
@@ -1652,7 +1649,7 @@ public class Inicio extends javax.swing.JFrame {
             while (rsTratamientos.next()) {
                 cbxTratamientoPagos.addItem(rsTratamientos.getInt("idTratamiento") + " - " + rsTratamientos.getString("Nombre"));
             }
-
+        
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al cargar los datos: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
         }
