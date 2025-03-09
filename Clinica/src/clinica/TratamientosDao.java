@@ -16,11 +16,9 @@ import javax.swing.JOptionPane;
  */
 public class TratamientosDao {
     Inicio cbxTratamientos= new Inicio();
-    
     public boolean insertarTratamientos(int idDentista, String nombre, String descripcion, int montoTotal) {
         String sql = "INSERT INTO Tratamientos (idDentista, Nombre, Descripcion, MontoTotal) " +
                      "VALUES (?, ?, ?, ?)";
-
         PreparedStatement ps = null;
         Connection con = null;  
 

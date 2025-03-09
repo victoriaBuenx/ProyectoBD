@@ -31,13 +31,18 @@ public class ProveedoresDao {
             ps.setString(4, empresa);
             ps.setString(5, direccion);
 
-            int rowsAffected = ps.executeUpdate();
-            return rowsAffected > 0; 
+            int filasAfectadas = ps.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Proveedor registrado con éxito.");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar el proveedor.");
+                return false;
+            } 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar proveedor: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
-
-    
 }
