@@ -29,6 +29,12 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
+    
+    private int idHistorialMedicoSeleccionado = -1;
+    private int idTratamientoSeleccionado = -1;  
+
+
+    
     public Inicio() {
         initComponents();
         
@@ -107,9 +113,9 @@ public class Inicio extends javax.swing.JFrame {
         cbxDentistasCitas = new javax.swing.JComboBox<>();
         jdFechaCita = new com.toedter.calendar.JDateChooser();
         txtHoraCita = new javax.swing.JTextField();
-        btnVisualizar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        btnVisualizarCitas = new javax.swing.JButton();
+        btnActualizarCitas = new javax.swing.JButton();
+        btnEliminarCitas = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         btnRegistrarHistorial = new javax.swing.JButton();
@@ -130,6 +136,9 @@ public class Inicio extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jpUltimaActHistorial = new com.toedter.calendar.JDateChooser();
         cbxPacientesHistorial = new javax.swing.JComboBox<>();
+        btnVisualizarHistorial = new javax.swing.JButton();
+        btnActualizarHistorial = new javax.swing.JButton();
+        btnEliminarHistorial = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         btnRegistrarTratamiento = new javax.swing.JButton();
@@ -143,6 +152,9 @@ public class Inicio extends javax.swing.JFrame {
         txtAreaDescripcion = new javax.swing.JTextArea();
         cbxNombreTratamiento = new javax.swing.JComboBox<>();
         txtMontoTotal = new javax.swing.JTextField();
+        btnVisualizarTratamiento = new javax.swing.JButton();
+        btnActualizarTratamiento = new javax.swing.JButton();
+        btnEliminarTratamiento = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         btnRegistarPagos = new javax.swing.JButton();
@@ -511,24 +523,24 @@ public class Inicio extends javax.swing.JFrame {
 
         jdFechaCita.setToolTipText("yyyy/mm/dd");
 
-        btnVisualizar.setText("Visualizar");
-        btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnVisualizarCitas.setText("Visualizar");
+        btnVisualizarCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisualizarActionPerformed(evt);
+                btnVisualizarCitasActionPerformed(evt);
             }
         });
 
-        btnActualizar.setText("Actualizar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizarCitas.setText("Actualizar");
+        btnActualizarCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
+                btnActualizarCitasActionPerformed(evt);
             }
         });
 
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarCitas.setText("Eliminar");
+        btnEliminarCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
+                btnEliminarCitasActionPerformed(evt);
             }
         });
 
@@ -553,7 +565,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(btnRegistrarCitas)
                         .addGap(18, 18, 18)
-                        .addComponent(btnActualizar)))
+                        .addComponent(btnActualizarCitas)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -562,10 +574,10 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(btnVisualizar))
+                        .addComponent(btnVisualizarCitas))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(btnEliminar)))
+                        .addComponent(btnEliminarCitas)))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -593,7 +605,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jdFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVisualizar))
+                            .addComponent(btnVisualizarCitas))
                         .addGap(11, 11, 11)
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -605,8 +617,8 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRegistrarCitas)
-                            .addComponent(btnActualizar)
-                            .addComponent(btnEliminar))
+                            .addComponent(btnActualizarCitas)
+                            .addComponent(btnEliminarCitas))
                         .addGap(53, 53, 53))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -643,6 +655,11 @@ public class Inicio extends javax.swing.JFrame {
                 "id", "Paciente", "Alergias", "Enfermedades", "Medicación", "Observaciones", "Ultima Actualización"
             }
         ));
+        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable4MouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable4);
         if (jTable4.getColumnModel().getColumnCount() > 0) {
             jTable4.getColumnModel().getColumn(6).setHeaderValue("Correo");
@@ -682,30 +699,62 @@ public class Inicio extends javax.swing.JFrame {
 
         jpUltimaActHistorial.setToolTipText("yyyy/mm/dd");
 
+        btnVisualizarHistorial.setText("Visualizar");
+        btnVisualizarHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarHistorialActionPerformed(evt);
+            }
+        });
+
+        btnActualizarHistorial.setText("Actualizar");
+        btnActualizarHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarHistorialActionPerformed(evt);
+            }
+        });
+
+        btnEliminarHistorial.setText("Eliminacion");
+        btnEliminarHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarHistorialActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegistrarHistorial)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel23)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel27)
-                            .addComponent(jLabel25)
-                            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                            .addComponent(cbxPacientesHistorial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel26)
-                            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                            .addComponent(jLabel8)
-                            .addComponent(jpUltimaActHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(btnRegistrarHistorial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnActualizarHistorial))
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel25)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(cbxPacientesHistorial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel26)
+                                .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                                .addComponent(jLabel8)
+                                .addComponent(jpUltimaActHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnVisualizarHistorial)
+                            .addGap(56, 56, 56)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminarHistorial)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
@@ -739,12 +788,17 @@ public class Inicio extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnRegistrarHistorial)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnRegistrarHistorial)
+                                    .addComponent(btnActualizarHistorial)
+                                    .addComponent(btnEliminarHistorial))
                                 .addGap(53, 53, 53))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jpUltimaActHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnVisualizarHistorial)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -778,6 +832,11 @@ public class Inicio extends javax.swing.JFrame {
                 "id", "Dentista", "Nombre del tratamiento", "Descripción", "Monto Total"
             }
         ));
+        jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable5MouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(jTable5);
 
         jLabel32.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
@@ -791,6 +850,27 @@ public class Inicio extends javax.swing.JFrame {
         jScrollPane14.setViewportView(txtAreaDescripcion);
 
         cbxNombreTratamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Limpieza", "Profilaxis", "Fluorización", "Sellado de fisuras", "Relleno dental", "Corona", "Implante", "Endodoncia", "Extracción", "Cirugía de tercer molar", "Ortodoncia", "Gingivitis", "Blanqueamiento", "Carillas" }));
+
+        btnVisualizarTratamiento.setText("Visualizar");
+        btnVisualizarTratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarTratamientoActionPerformed(evt);
+            }
+        });
+
+        btnActualizarTratamiento.setText("Actualizar");
+        btnActualizarTratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarTratamientoActionPerformed(evt);
+            }
+        });
+
+        btnEliminarTratamiento.setText("Eliminar");
+        btnEliminarTratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarTratamientoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -812,10 +892,20 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(41, 41, 41))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnRegistrarTratamiento)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(btnRegistrarTratamiento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnActualizarTratamiento))
                             .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(cbxNombreTratamiento, 0, 179, Short.MAX_VALUE))
-                        .addGap(255, 255, 255)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(btnVisualizarTratamiento))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(btnEliminarTratamiento)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
@@ -835,17 +925,22 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jLabel34)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbxNombreTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxNombreTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnVisualizarTratamiento))
+                        .addGap(11, 11, 11)
                         .addComponent(jLabel29)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegistrarTratamiento)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRegistrarTratamiento)
+                            .addComponent(btnActualizarTratamiento)
+                            .addComponent(btnEliminarTratamiento))
                         .addGap(53, 53, 53))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(37, Short.MAX_VALUE))))
+                        .addContainerGap(41, Short.MAX_VALUE))))
         );
 
         jTabbedPane2.addTab("Tratamientos", jPanel6);
@@ -1320,10 +1415,8 @@ public class Inicio extends javax.swing.JFrame {
                 String empresa = txtEmpresaProveedor.getText();
                 String direccion = txtDireccionProveedor.getText();
 
-                // Creamos una instancia del DAO
                 ProveedoresDao proveedoresDao = new ProveedoresDao();
 
-                // Insertamos el proveedor en la base de datos
                 boolean resultado = proveedoresDao.insertarTablaProveedores(nombre, telefono, correo, empresa, direccion);
 
                 if (resultado) {
@@ -1430,14 +1523,14 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRegistrarProductoActionPerformed
 
-    private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
+    private void btnVisualizarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarCitasActionPerformed
         // TODO add your handling code here:
         llenarComboBox(); 
         verTablaCitas();  
         JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_btnVisualizarActionPerformed
+    }//GEN-LAST:event_btnVisualizarCitasActionPerformed
 
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+    private void btnActualizarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCitasActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable3.getSelectedRow();
         if (filaSeleccionada == -1) {
@@ -1483,7 +1576,7 @@ public class Inicio extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo actualizar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnActualizarActionPerformed
+    }//GEN-LAST:event_btnActualizarCitasActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
         // TODO add your handling code here:
@@ -1500,7 +1593,7 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable3MouseClicked
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    private void btnEliminarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCitasActionPerformed
         // TODO add your handling code here:
         UIManager.put("OptionPane.yesButtonText", "Sí");
         UIManager.put("OptionPane.noButtonText", "No");
@@ -1532,7 +1625,167 @@ public class Inicio extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_btnEliminarCitasActionPerformed
+
+    private void btnVisualizarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarHistorialActionPerformed
+        // TODO add your handling code here:
+        llenarComboBox();  
+        verTablaHistorialMedico();
+        JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnVisualizarHistorialActionPerformed
+
+    private void btnActualizarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarHistorialActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable4.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un historial médico para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int idHistorialMedico = (int) jTable4.getValueAt(filaSeleccionada, 0);
+        int idPaciente = obtenerIdPacienteSeleccionado();
+        String alergias = txAreaAlergias.getText();
+        String enfermedades = txAreaEnfermedades.getText();
+        String medicacion = txAreaMedicacion.getText();
+        String observaciones = txAreaObservacion.getText();
+        if (observaciones.isEmpty()) {
+            observaciones = null;
+        }
+        Date ultimaActualizacion = jpUltimaActHistorial.getDate();
+
+        if (validarCamposHistorialMedico()) {
+            HistorialMedicoDao historialDao = new HistorialMedicoDao();
+            boolean resultado = historialDao.actualizarHistorialMedico(idHistorialMedico, idPaciente, alergias, enfermedades, 
+                                                                      medicacion, observaciones, ultimaActualizacion);
+
+            if (resultado) {
+                JOptionPane.showMessageDialog(this, "Historial médico actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                verTablaHistorialMedico();  
+                limpiarCampos(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, txAreaObservacion, jpUltimaActHistorial);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnActualizarHistorialActionPerformed
+
+    private void btnEliminarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarHistorialActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable4.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un historial médico para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int idHistorialMedico = (int) jTable4.getValueAt(filaSeleccionada, 0);
+
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que deseas eliminar este historial médico?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            HistorialMedicoDao historialDao = new HistorialMedicoDao();
+            boolean resultado = historialDao.eliminarHistorialMedico(idHistorialMedico);
+
+            if (resultado) {
+                JOptionPane.showMessageDialog(this, "Historial médico eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                verTablaHistorialMedico();  
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnEliminarHistorialActionPerformed
+
+    private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
+        // TODO add your handling code here:
+        
+        int filaSeleccionada = jTable4.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            idHistorialMedicoSeleccionado = (int) jTable4.getValueAt(filaSeleccionada, 0);
+
+            cbxPacientesHistorial.setSelectedItem(jTable4.getValueAt(filaSeleccionada, 1).toString());
+            txAreaAlergias.setText(jTable4.getValueAt(filaSeleccionada, 2).toString());
+            txAreaEnfermedades.setText(jTable4.getValueAt(filaSeleccionada, 3).toString());
+            txAreaMedicacion.setText(jTable4.getValueAt(filaSeleccionada, 4).toString());
+
+            Object observaciones = jTable4.getValueAt(filaSeleccionada, 5);
+            txAreaObservacion.setText(observaciones == null ? "" : observaciones.toString());
+
+            Object fechaUltimaActualizacion = jTable4.getValueAt(filaSeleccionada, 6);
+            if (fechaUltimaActualizacion instanceof Date) {
+                jpUltimaActHistorial.setDate((Date) fechaUltimaActualizacion);
+            } else {
+                jpUltimaActHistorial.setDate(null);
+            }
+        }
+    }//GEN-LAST:event_jTable4MouseClicked
+
+    private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable5.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int idTratamiento = Integer.parseInt(jTable5.getValueAt(filaSeleccionada, 0).toString());
+            cbxDentistasTratamientos.setSelectedItem(jTable5.getValueAt(filaSeleccionada, 1).toString());
+            cbxNombreTratamiento.setSelectedItem(jTable5.getValueAt(filaSeleccionada, 2).toString());
+            txtAreaDescripcion.setText(jTable5.getValueAt(filaSeleccionada, 3).toString());
+            txtMontoTotal.setText(jTable5.getValueAt(filaSeleccionada, 4).toString());
+
+            idTratamientoSeleccionado = idTratamiento;
+        }
+    }//GEN-LAST:event_jTable5MouseClicked
+
+    private void btnVisualizarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarTratamientoActionPerformed
+        // TODO add your handling code here:
+        llenarComboBox(); 
+        verTablaTratamientos();
+        JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_btnVisualizarTratamientoActionPerformed
+
+    private void btnActualizarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarTratamientoActionPerformed
+        // TODO add your handling code here:
+            if (validarCamposTratamientos()) {
+            int idDentista = Integer.parseInt(cbxDentistasTratamientos.getSelectedItem().toString().split("-")[0].trim());
+            String nombre = cbxNombreTratamiento.getSelectedItem().toString();
+            String descripcion = txtAreaDescripcion.getText();
+            int montoTotal;
+            try {
+                montoTotal = Integer.parseInt(txtMontoTotal.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un monto válido", "Error", JOptionPane.ERROR_MESSAGE);
+                montoTotal = 0;
+            }
+
+            TratamientosDao tratamientosDao = new TratamientosDao();
+            boolean resultado = tratamientosDao.actualizarTratamiento(idTratamientoSeleccionado, idDentista, nombre, descripcion, montoTotal);
+
+            if (resultado) {
+                verTablaTratamientos();
+                llenarComboBox();
+                limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnActualizarTratamientoActionPerformed
+
+    private void btnEliminarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTratamientoActionPerformed
+        // TODO add your handling code here:
+            if (idTratamientoSeleccionado != -1) {
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de eliminar este tratamiento?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                // Instanciar el DAO y ejecutar la eliminación
+                TratamientosDao tratamientosDao = new TratamientosDao();
+                boolean resultado = tratamientosDao.eliminarTratamiento(idTratamientoSeleccionado);
+
+                if (resultado) {
+                    verTablaTratamientos();
+                    llenarComboBox();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona un tratamiento para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarTratamientoActionPerformed
     
     public static void limpiarCampo(JComponent campo) {
         if (campo instanceof JTextField) {
@@ -1754,7 +2007,7 @@ public class Inicio extends javax.swing.JFrame {
             while (rs.next()) {
                 miModelo.addRow(new Object[]{
                     rs.getInt("idHistorialMedico"),
-                    rs.getString("Nombre"), // Solo el nombre, sin apellidos
+                    rs.getString("Nombre"), 
                     rs.getString("Alergias"),
                     rs.getString("Enfermedades"),
                     rs.getString("Medicacion"),
@@ -1833,7 +2086,7 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     
-        private int obtenerIdDesdeComboBox(JComboBox<String> comboBox) {
+    private int obtenerIdDesdeComboBox(JComboBox<String> comboBox) {
         String seleccion = (String) comboBox.getSelectedItem();
         if (seleccion != null && !seleccion.isEmpty()) {
             return Integer.parseInt(seleccion.split(" - ")[0]);
@@ -1987,8 +2240,12 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnActualizarCitas;
+    private javax.swing.JButton btnActualizarHistorial;
+    private javax.swing.JButton btnActualizarTratamiento;
+    private javax.swing.JButton btnEliminarCitas;
+    private javax.swing.JButton btnEliminarHistorial;
+    private javax.swing.JButton btnEliminarTratamiento;
     private javax.swing.JButton btnRegistarPagos;
     private javax.swing.JButton btnRegistrarCitas;
     private javax.swing.JButton btnRegistrarDentistas;
@@ -1997,7 +2254,9 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarProducto;
     private javax.swing.JButton btnRegistrarProveedor;
     private javax.swing.JButton btnRegistrarTratamiento;
-    private javax.swing.JButton btnVisualizar;
+    private javax.swing.JButton btnVisualizarCitas;
+    private javax.swing.JButton btnVisualizarHistorial;
+    private javax.swing.JButton btnVisualizarTratamiento;
     private javax.swing.JComboBox<String> cbxDentistasCitas;
     private javax.swing.JComboBox<String> cbxDentistasTratamientos;
     private javax.swing.JComboBox<String> cbxEspecialidadDentista;

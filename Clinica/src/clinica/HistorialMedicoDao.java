@@ -33,20 +33,70 @@ public class HistorialMedicoDao {
             ps.setString(4, medicacion);
 
             if (observaciones != null && !observaciones.isEmpty()) {
-                ps.setString(5, observaciones);  // Si hay observaciones, las insertamos
+                ps.setString(5, observaciones);  
             } else {
-                ps.setNull(5, Types.VARCHAR);  // Si no hay observaciones, insertamos NULL
+                ps.setNull(5, Types.VARCHAR); 
             }
 
             ps.setDate(6, new java.sql.Date(ultimaActualizacion.getTime()));
 
             int rowsAffected = ps.executeUpdate();
-            return rowsAffected > 0;  // Si se insertaron filas, la inserción fue exitosa
+            return rowsAffected > 0;  
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar historial médico: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
+    
+    public boolean actualizarHistorialMedico(int idHistorial, int idPaciente, String alergias, String enfermedades, 
+                                           String medicacion, String observaciones, Date ultimaActualizacion) {
+            String sql = "UPDATE HistorialMedico SET idPaciente = ?, Alergias = ?, Enfermedades = ?, Medicacion = ?, " +
+                         "Observaciones = ?, UltimaActualizacion = ? WHERE idHistorialMedico = ?";
+
+            try (Connection con = new Conexion().conexion();
+                 PreparedStatement ps = con.prepareStatement(sql)) {
+
+                ps.setInt(1, idPaciente);
+                ps.setString(2, alergias);
+                ps.setString(3, enfermedades);
+                ps.setString(4, medicacion);
+
+                if (observaciones != null && !observaciones.isEmpty()) {
+                    ps.setString(5, observaciones);  
+                } else {
+                    ps.setNull(5, Types.VARCHAR);  
+                }
+
+                ps.setDate(6, new java.sql.Date(ultimaActualizacion.getTime()));
+                ps.setInt(7, idHistorial);
+
+                int rowsAffected = ps.executeUpdate();
+                return rowsAffected > 0;  
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al actualizar historial médico: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
+
+        public boolean eliminarHistorialMedico(int idHistorial) {
+        String sql = "DELETE FROM HistorialMedico WHERE idHistorialMedico = ?";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idHistorial);
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;  
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar historial médico: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
+
     
 }

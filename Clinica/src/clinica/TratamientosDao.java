@@ -56,4 +56,80 @@ public class TratamientosDao {
         }
     }
     
+    public boolean actualizarTratamiento(int idTratamiento, int idDentista, String nombre, String descripcion, int montoTotal) {
+        String sql = "UPDATE Tratamientos SET idDentista = ?, Nombre = ?, Descripcion = ?, MontoTotal = ? WHERE idTratamiento = ?";
+        PreparedStatement ps = null;
+        Connection con = null;
+
+        try {
+            Conexion conexion = new Conexion();
+            con = conexion.conexion();
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idDentista);
+            ps.setString(2, nombre);
+            ps.setString(3, descripcion);
+            ps.setInt(4, montoTotal);
+            ps.setInt(5, idTratamiento);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Tratamiento actualizado con éxito.");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el tratamiento.");
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar tratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
+            }
+        }
+    }
+    
+    public boolean eliminarTratamiento(int idTratamiento) {
+        String sql = "DELETE FROM Tratamientos WHERE idTratamiento = ?";
+        PreparedStatement ps = null;
+        Connection con = null;
+
+        try {
+            Conexion conexion = new Conexion();
+            con = conexion.conexion();
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idTratamiento);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Tratamiento eliminado con éxito.");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar el tratamiento.");
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar tratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
+            }
+        }
+    }
+
+
+    
 }
