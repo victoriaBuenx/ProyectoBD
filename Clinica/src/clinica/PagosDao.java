@@ -57,4 +57,43 @@ public class PagosDao {
         }
     }
     
+    public boolean actualizarPago(int idPago, int idTratamiento, String metodoPago, Date fechaPago, String modalidadPago, int montoPagado) {
+        String sql = "UPDATE Pagos SET idTratamiento = ?, MetodoPago = ?, FechaPago = ?, ModalidadPago = ?, MontoPagado = ? WHERE idPago = ?";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idTratamiento);
+            ps.setString(2, metodoPago);
+            ps.setDate(3, new java.sql.Date(fechaPago.getTime()));
+            ps.setString(4, modalidadPago);
+            ps.setInt(5, montoPagado);
+            ps.setInt(6, idPago);
+
+            int filasAfectadas = ps.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar pago: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+    
+    public boolean eliminarPago(int idPago) {
+        String sql = "DELETE FROM Pagos WHERE idPago = ?";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idPago);
+
+            int filasAfectadas = ps.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar pago: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
+
+    
 }

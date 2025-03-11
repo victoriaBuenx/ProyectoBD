@@ -94,28 +94,39 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="btnRegistrarPacientes" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnActualizarPacientes" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jdNacimientoPaciente" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtApellidoMatPaciente" alignment="0" pref="179" max="32767" attributes="0"/>
+                              <Component id="txtApellidoPatPaciente" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtTelefonoPaciente" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtNombrePaciente" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnRegistrarPacientes" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jdNacimientoPaciente" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtApellidoMatPaciente" alignment="0" pref="179" max="32767" attributes="0"/>
-                                      <Component id="txtApellidoPatPaciente" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtTelefonoPaciente" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtNombrePaciente" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                              <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtCorreoPaciente" max="32767" attributes="0"/>
-                                      <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jdFechaRegistroPaciente" alignment="0" pref="179" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtCorreoPaciente" max="32767" attributes="0"/>
+                                          <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jdFechaRegistroPaciente" alignment="0" pref="179" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="btnEliminarPacientes" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                                  <Component id="btnVisualizarPacientes" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
@@ -152,7 +163,10 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtApellidoMatPaciente" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txtApellidoMatPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnVisualizarPacientes" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -161,8 +175,12 @@
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="txtTelefonoPaciente" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="34" max="32767" attributes="0"/>
-                                  <Component id="btnRegistrarPacientes" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="btnRegistrarPacientes" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnActualizarPacientes" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnEliminarPacientes" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -324,6 +342,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -336,6 +357,30 @@
                   <Properties>
                     <Property name="toolTipText" type="java.lang.String" value="yyyy/mm/dd"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnActualizarPacientes">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Actualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarPacientesActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnEliminarPacientes">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Eliminar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarPacientesActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnVisualizarPacientes">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Visualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarPacientesActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -353,31 +398,43 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="btnRegistrarDentistas" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnActualizarDentistas" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="cbxEspecialidadDentista" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel59" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel58" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel57" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel62" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel60" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtApellidoMatDentista" alignment="0" pref="179" max="32767" attributes="0"/>
+                              <Component id="txtApellidoPartDentista" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtTelefonoDentistas" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtNombreDentista" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnRegistrarDentistas" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="cbxEspecialidadDentista" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel59" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel58" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel57" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel62" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel60" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtApellidoMatDentista" alignment="0" pref="179" max="32767" attributes="0"/>
-                                      <Component id="txtApellidoPartDentista" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtTelefonoDentistas" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtNombreDentista" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                              <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jLabel61" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtCorreoDentista" alignment="0" pref="179" max="32767" attributes="0"/>
-                                      <Component id="jLabel63" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtHorarioAtencionDentista" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabel61" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtCorreoDentista" alignment="0" pref="179" max="32767" attributes="0"/>
+                                          <Component id="jLabel63" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtHorarioAtencionDentista" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="btnEliminarDentistas" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnVisualizarDentistas" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="jScrollPane9" min="-2" pref="397" max="-2" attributes="0"/>
                           <EmptySpace pref="34" max="32767" attributes="0"/>
                       </Group>
@@ -411,7 +468,10 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel57" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtApellidoMatDentista" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="txtApellidoMatDentista" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnVisualizarDentistas" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel58" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -420,8 +480,12 @@
                                   <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="txtTelefonoDentistas" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="16" max="32767" attributes="0"/>
-                                  <Component id="btnRegistrarDentistas" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="btnRegistrarDentistas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnActualizarDentistas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnEliminarDentistas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -534,6 +598,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable9MouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -607,6 +674,30 @@
                 <Component class="javax.swing.JTextField" name="txtHorarioAtencionDentista">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHorarioAtencionDentistaActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnActualizarDentistas">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Actualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarDentistasActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnEliminarDentistas">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Eliminar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarDentistasActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnVisualizarDentistas">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Visualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarDentistasActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1564,24 +1655,32 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnRegistarPagos" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cbxModalidadPago" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jLabel36" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel41" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel39" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cbxTratamientoPagos" alignment="0" pref="179" max="32767" attributes="0"/>
-                                  <Component id="cbxMetodoPago" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jdFechaPago" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="btnActualizarPagos" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btnRegistarPagos" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbxModalidadPago" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel36" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel41" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel39" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbxTratamientoPagos" alignment="0" pref="179" max="32767" attributes="0"/>
+                                      <Component id="cbxMetodoPago" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jdFechaPago" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel37" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMontoPagado" min="-2" pref="179" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel37" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtMontoPagado" min="-2" pref="179" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnEliminarPagos" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnVisualizarPagos" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                           <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="34" max="32767" attributes="0"/>
+                          <EmptySpace pref="29" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1593,7 +1692,10 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbxTratamientoPagos" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="cbxTratamientoPagos" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnVisualizarPagos" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1611,7 +1713,11 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="txtMontoPagado" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnRegistarPagos" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="btnRegistarPagos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnActualizarPagos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnEliminarPagos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -1708,6 +1814,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable6MouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1793,6 +1902,30 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtMontoPagado">
                 </Component>
+                <Component class="javax.swing.JButton" name="btnActualizarPagos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Actualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarPagosActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnEliminarPagos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Eliminar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarPagosActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnVisualizarPagos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Visualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarPagosActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel8">
@@ -1809,20 +1942,26 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnRegistrarProducto" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel43" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel48" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel46" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtPrecioProducto" alignment="0" pref="179" max="32767" attributes="0"/>
-                                  <Component id="txtNombreProducto" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnRegistrarProducto" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnActualizarProductos" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jLabel43" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel48" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel46" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPrecioProducto" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtNombreProducto" alignment="0" max="32767" attributes="0"/>
                               <Component id="jScrollPane15" min="-2" pref="179" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnEliminarProductos" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnVisualizarProductos" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                           <Component id="jScrollPane7" min="-2" pref="397" max="-2" attributes="0"/>
-                          <EmptySpace pref="54" max="32767" attributes="0"/>
+                          <EmptySpace pref="31" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1844,7 +1983,12 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="txtPrecioProducto" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnRegistrarProducto" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="btnRegistrarProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnActualizarProductos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnEliminarProductos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnVisualizarProductos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -1923,6 +2067,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable7MouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1959,6 +2106,30 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="btnActualizarProductos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Actualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarProductosActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnEliminarProductos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Eliminar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarProductosActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnVisualizarProductos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Visualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarProductosActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel9">
@@ -1976,7 +2147,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnRegistrarProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnRegistrarProveedor" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnActualizarProveedores" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="jLabel52" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel51" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel50" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1988,9 +2163,13 @@
                               <Component id="txtNombreProovedor" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtEmpresaProveedor" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnEliminarProveedores" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnVisualizarProveedores" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                           <Component id="jScrollPane8" min="-2" pref="397" max="-2" attributes="0"/>
-                          <EmptySpace pref="34" max="32767" attributes="0"/>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2020,7 +2199,12 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="txtDireccionProveedor" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnRegistrarProveedor" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="btnRegistrarProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnActualizarProveedores" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnEliminarProveedores" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnVisualizarProveedores" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -2121,6 +2305,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable8MouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -2153,6 +2340,30 @@
                 <Component class="javax.swing.JTextField" name="txtNombreProovedor">
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtEmpresaProveedor">
+                </Component>
+                <Component class="javax.swing.JButton" name="btnActualizarProveedores">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Actualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarProveedoresActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnEliminarProveedores">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Eliminar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarProveedoresActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnVisualizarProveedores">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Vizualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarProveedoresActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

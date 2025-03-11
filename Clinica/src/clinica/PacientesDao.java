@@ -64,4 +64,63 @@ public class PacientesDao {
         }
     }
     
+    public boolean actualizarPaciente(int idPaciente, String nombre, String apellidoPaterno, String apellidoMaterno,
+                                  Date fechaNacimiento, String telefono, String correo, Date fechaRegistro) {
+        String sql = "UPDATE Pacientes SET Nombre = ?, ApellidoPaterno = ?, ApellidoMaterno = ?, FechaNacimiento = ?, " +
+                     "Telefono = ?, Correo = ?, FechaRegistro = ? WHERE idPaciente = ?";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            ps.setString(2, apellidoPaterno);
+            ps.setString(3, apellidoMaterno);
+            ps.setDate(4, new java.sql.Date(fechaNacimiento.getTime()));
+            ps.setString(5, telefono);
+            ps.setString(6, correo);
+            ps.setDate(7, new java.sql.Date(fechaRegistro.getTime()));
+            ps.setInt(8, idPaciente);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Paciente actualizado con éxito.");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el paciente.");
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar paciente: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean eliminarPaciente(int idPaciente) {
+        String sql = "DELETE FROM Pacientes WHERE idPaciente = ?";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idPaciente);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Paciente eliminado con éxito.");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar el paciente.");
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar paciente: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    
 }
