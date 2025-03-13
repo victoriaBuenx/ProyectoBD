@@ -119,8 +119,5 @@ public class PacientesDao {
             e.printStackTrace();
             return false;
         }
-    }
-
-
-    
+    }  
 }
