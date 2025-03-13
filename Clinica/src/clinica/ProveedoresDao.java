@@ -45,4 +45,56 @@ public class ProveedoresDao {
             return false;
         }
     }
+     
+     public boolean actualizarProveedor(int idProveedor, String nombre, String telefono, String correo, String empresa, String direccion) {
+        String sql = "UPDATE Proveedores SET Nombre = ?, Telefono = ?, Correo = ?, Empresa = ?, Direccion = ? WHERE idProveedor = ?";
+
+        try (Connection con = new Conexion().conexion(); 
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            ps.setString(2, telefono);
+            ps.setString(3, correo);
+            ps.setString(4, empresa);
+            ps.setString(5, direccion);
+            ps.setInt(6, idProveedor);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Proveedor actualizado con éxito.");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el proveedor.");
+                return false;
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar proveedor: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+     
+     public boolean eliminarProveedor(int idProveedor) {
+        String sql = "DELETE FROM Proveedores WHERE idProveedor = ?";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idProveedor);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Proveedor eliminado con éxito.");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar el proveedor.");
+                return false;
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar proveedor: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+     
 }
