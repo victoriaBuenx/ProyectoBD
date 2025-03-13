@@ -6,9 +6,12 @@ package clinica;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+
 
 /**
  *
@@ -16,44 +19,38 @@ import javax.swing.JOptionPane;
  */
 public class TratamientosDao {
     Inicio cbxTratamientos= new Inicio();
-    public boolean insertarTratamientos(int idDentista, String nombre, String descripcion, int montoTotal) {
-        String sql = "INSERT INTO Tratamientos (idDentista, Nombre, Descripcion, MontoTotal) " +
-                     "VALUES (?, ?, ?, ?)";
-        PreparedStatement ps = null;
-        Connection con = null;  
+    
+        public int insertarTratamiento(int idDentista, String nombre, String descripcion, int montoTotal) {
+        String sql = "INSERT INTO Tratamientos (idDentista, Nombre, Descripcion, MontoTotal) VALUES (?, ?, ?, ?)";
+        int idTratamientoGenerado = -1;  // Valor por defecto en caso de error
 
-        try {
-            Conexion conexion = new Conexion();  
-            con = conexion.conexion();  
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            ps = con.prepareStatement(sql);
             ps.setInt(1, idDentista);
             ps.setString(2, nombre);
             ps.setString(3, descripcion);
-            ps.setInt(4, montoTotal); 
+            ps.setInt(4, montoTotal);
 
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
+                // Obtener el idTratamiento generado
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    idTratamientoGenerado = rs.getInt(1);  // El primer valor de la fila es el id generado
+                }
                 JOptionPane.showMessageDialog(null, "Tratamiento registrado con éxito.");
-                cbxTratamientos.llenarComboBox();
-                return true;
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo registrar el tratamiento.");
-                return false;
             }
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al insertar tratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
-            return false;
-        } finally {
-            try {
-                if (ps != null) ps.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
-            }
         }
+
+        return idTratamientoGenerado;
     }
     
     public boolean actualizarTratamiento(int idTratamiento, int idDentista, String nombre, String descripcion, int montoTotal) {
