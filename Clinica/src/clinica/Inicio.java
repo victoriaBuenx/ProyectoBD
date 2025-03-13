@@ -34,6 +34,7 @@ public class Inicio extends javax.swing.JFrame {
     VisualizarTablas visualizarTab= new VisualizarTablas();
     ValidarCampos validarCamp= new ValidarCampos();
     LimpiarCampos limpiar= new LimpiarCampos();
+    
 
     
     public Inicio() {
@@ -1989,9 +1990,12 @@ public class Inicio extends javax.swing.JFrame {
         if (filaSeleccionada != -1) {
             int idTratamiento = Integer.parseInt(jTable5.getValueAt(filaSeleccionada, 0).toString());
             cbxDentistasTratamientos.setSelectedItem(jTable5.getValueAt(filaSeleccionada, 1).toString());
-            cbxNombreTratamiento.setSelectedItem(jTable5.getValueAt(filaSeleccionada, 2).toString());
-            txtAreaDescripcion.setText(jTable5.getValueAt(filaSeleccionada, 3).toString());
-            txtMontoTotal.setText(jTable5.getValueAt(filaSeleccionada, 4).toString());
+            cbxPacientesTratamientos.setSelectedItem(jTable5.getValueAt(filaSeleccionada, 2).toString());
+            cbxNombreTratamiento.setSelectedItem(jTable5.getValueAt(filaSeleccionada, 3).toString());
+            txtAreaDescripcion.setText(jTable5.getValueAt(filaSeleccionada, 4).toString());
+            jpFechaInicioTrat.setDate((Date) jTable5.getValueAt(filaSeleccionada, 5));
+            jpFechaFinTrat.setDate((Date) jTable5.getValueAt(filaSeleccionada, 6));
+            txtMontoTotal.setText(jTable5.getValueAt(filaSeleccionada, 7).toString());
 
             idTratamientoSeleccionado = idTratamiento;
         }
@@ -2007,29 +2011,48 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnActualizarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarTratamientoActionPerformed
         // TODO add your handling code here:
-            if (validarCamposTratamientos()) {
+            int filaSeleccionada = jTable5.getSelectedRow();
+            if (filaSeleccionada == -1) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un tratamiento para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            int idTratamiento = (int) jTable5.getValueAt(filaSeleccionada, 0);
             int idDentista = Integer.parseInt(cbxDentistasTratamientos.getSelectedItem().toString().split("-")[0].trim());
             String nombre = cbxNombreTratamiento.getSelectedItem().toString();
             String descripcion = txtAreaDescripcion.getText();
             int montoTotal;
+
             try {
                 montoTotal = Integer.parseInt(txtMontoTotal.getText());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ingrese un monto válido", "Error", JOptionPane.ERROR_MESSAGE);
-                montoTotal = 0;
+                return;
             }
 
             TratamientosDao tratamientosDao = new TratamientosDao();
-            boolean resultado = tratamientosDao.actualizarTratamiento(idTratamientoSeleccionado, idDentista, nombre, descripcion, montoTotal);
+            boolean resultadoTratamiento = tratamientosDao.actualizarTratamiento(idTratamiento, idDentista, nombre, descripcion, montoTotal);
 
-            if (resultado) {
-                verTablaTratamientos();
-                llenarComboBox();
-                limpiar.limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal);
+            if (resultadoTratamiento) {
+                int idPaciente = Integer.parseInt(cbxPacientesTratamientos.getSelectedItem().toString().split("-")[0].trim());
+                PacientesTratamientosDao pacientesTratDao= new PacientesTratamientosDao();
+                
+                int idPacienteTratamiento = pacientesTratDao.obtenerIdPacienteTratamiento(idPaciente, idTratamiento);
+
+                Date fechaInicio = jpFechaInicioTrat.getDate();
+                Date fechaFin = jpFechaFinTrat.getDate();
+
+                boolean resultadoPacienteTrat = pacientesTratDao.actualizarPacienteTratamiento(idPacienteTratamiento, idPaciente, idTratamiento, fechaInicio, fechaFin);
+
+                if (resultadoPacienteTrat) {
+                    JOptionPane.showMessageDialog(this, "Tratamiento y PacienteTratamiento actualizados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    verTablaTratamientos();
+                    limpiar.limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal, cbxPacientesTratamientos, jpFechaInicioTrat, jpFechaFinTrat);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo actualizar el PacienteTratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "No se pudo actualizar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar el Tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }
     }//GEN-LAST:event_btnActualizarTratamientoActionPerformed
 
     private void btnEliminarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTratamientoActionPerformed

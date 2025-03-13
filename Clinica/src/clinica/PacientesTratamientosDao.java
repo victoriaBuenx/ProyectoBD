@@ -5,6 +5,7 @@
 package clinica;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
@@ -56,32 +57,45 @@ public class PacientesTratamientosDao {
     }
     
     public boolean actualizarPacienteTratamiento(int idPacienteTratamiento, int idPaciente, int idTratamiento, Date fechaInicio, Date fechaFin) {
-        String sql = "UPDATE PacientesTratamiento SET idPaciente = ?, idTratamiento = ?, fechaInicio = ?, "
-                + "fechaFin = ?, ? WHERE idPaciente = ?";
+        String sql = "UPDATE PacientesTratamientos SET idPaciente = ?, idTratamiento = ?, fechaInicio = ?, fechaFin = ? WHERE idPacienteTratamiento = ?";
 
         try (Connection con = new Conexion().conexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, idPaciente);
             ps.setInt(2, idTratamiento);
-            ps.setDate(3, new java.sql.Date(fechaInicio.getTime())); 
+            ps.setDate(3, new java.sql.Date(fechaInicio.getTime()));
             ps.setDate(4, new java.sql.Date(fechaFin.getTime()));
             ps.setInt(5, idPacienteTratamiento);
 
             int filasAfectadas = ps.executeUpdate();
 
-            if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "PacienteTratamiento actualizado con éxito.");
-                return true;
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar el pacienteTratamiento.");
-                return false;
-            }
+            return filasAfectadas > 0;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar pacienteTratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al actualizar PacienteTratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+    }
+    
+    public int obtenerIdPacienteTratamiento(int idPaciente, int idTratamiento) {
+        String sql = "SELECT idPacienteTratamiento FROM PacientesTratamientos WHERE idPaciente = ? AND idTratamiento = ?";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idPaciente);
+            ps.setInt(2, idTratamiento);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("idPacienteTratamiento");
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener idPacienteTratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return -1; // Retorna -1 si no se encuentra el idPacienteTratamiento
     }
     
     public boolean eliminarPaciente(int idPacienteTratamiento) {
