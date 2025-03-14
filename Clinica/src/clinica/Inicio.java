@@ -427,10 +427,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jScrollPane9.setViewportView(jTable9);
-        if (jTable9.getColumnModel().getColumnCount() > 0) {
-            jTable9.getColumnModel().getColumn(6).setHeaderValue("Correo");
-            jTable9.getColumnModel().getColumn(7).setHeaderValue("Fecha de Registro");
-        }
 
         jLabel59.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel59.setText("Telefono:");
@@ -757,7 +753,7 @@ public class Inicio extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Paciente", "Alergias", "Enfermedades", "Medicación", "Observaciones", "Ultima Actualización"
+                "id", "Paciente", "Alergias", "Enfermedades", "Medicación", "Observaciones", "Última Actualización"
             }
         ));
         jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -766,9 +762,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jScrollPane4.setViewportView(jTable4);
-        if (jTable4.getColumnModel().getColumnCount() > 0) {
-            jTable4.getColumnModel().getColumn(6).setHeaderValue("Correo");
-        }
 
         jLabel25.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel25.setText("Paciente:");
@@ -821,7 +814,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         btnEliminarHistorial.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        btnEliminarHistorial.setText("Eliminacion");
+        btnEliminarHistorial.setText("Eliminar");
         btnEliminarHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarHistorialActionPerformed(evt);
@@ -1105,7 +1098,7 @@ public class Inicio extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Tratamiento", "Metodo de Pago", "Fecha de pago", "Monto Pagado", "Modalidad de pago"
+                "id", "Tratamiento", "Metodo de Pago", "Fecha de pago", "Modalidad de pago", "Monto Pagado"
             }
         ));
         jTable6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1491,7 +1484,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
@@ -1500,13 +1493,11 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
         );
 
         pack();
@@ -1522,30 +1513,19 @@ public class Inicio extends javax.swing.JFrame {
             Date fechaNacimiento = jdNacimientoPaciente.getDate(); 
             String telefono = txtTelefonoPaciente.getText();
             String correo = txtCorreoPaciente.getText();
-            Date fechaRegistro = jdFechaRegistroPaciente.getDate(); 
-
-            Conexion conexion = new Conexion();
-            Connection con = conexion.conexion();
-
-            if (con != null) {
-                PacientesDao pacientesDao = new PacientesDao();
-
-                boolean resultado = pacientesDao.insertarPaciente(
-                    nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, telefono, correo, fechaRegistro
-                );
-
-                if (resultado) {
-                    verTablaPacientes(); 
-                    limpiar.limpiarCampos(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, jdNacimientoPaciente, txtTelefonoPaciente, 
-                            txtCorreoPaciente, jdFechaRegistroPaciente);
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo registrar el paciente.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-                conexion.cerrarConexion();
+            Date fechaRegistro = jdFechaRegistroPaciente.getDate();
+            
+            PacientesDao pacientesDao = new PacientesDao();
+            boolean resultado = pacientesDao.insertarPaciente(
+                nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, telefono, correo, fechaRegistro);
+            
+            if (resultado) { 
+                verTablaPacientes();
+                limpiar.limpiarCampos(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, jdNacimientoPaciente, txtTelefonoPaciente, 
+                        txtCorreoPaciente, jdFechaRegistroPaciente);
             } else {
-                JOptionPane.showMessageDialog(this, "No se pudo conectar con la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+                JOptionPane.showMessageDialog(this, "No se pudo registrar el paciente.", "Error", JOptionPane.ERROR_MESSAGE);
+            }    
         }
     }//GEN-LAST:event_btnRegistrarPacientesActionPerformed
 
@@ -1564,37 +1544,17 @@ public class Inicio extends javax.swing.JFrame {
             String correo = txtCorreoDentista.getText();
             String horarioAtencion = txtHorarioAtencionDentista.getText();
 
-            System.out.println("Nombre: " + nombre);
-            System.out.println("Apellido Paterno: " + apellidoPaterno);
-            System.out.println("Apellido Materno: " + apellidoMaterno);
-            System.out.println("Especialidad: " + especialidad);
-            System.out.println("Teléfono: " + telefono);
-            System.out.println("Correo: " + correo);
-            System.out.println("Horario: " + horarioAtencion);
+            DentistasDao dentistasDao = new DentistasDao();
+            boolean resultado = dentistasDao.insertarDentista(
+                nombre, apellidoPaterno, apellidoMaterno, especialidad, telefono, correo, horarioAtencion);
+            if (resultado) {
+                verTablaDentistas();
+                limpiar.limpiarCampos(txtNombreDentista, txtApellidoPartDentista, txtApellidoMatDentista, cbxEspecialidadDentista, txtTelefonoDentistas, txtCorreoDentista, txtHorarioAtencionDentista);
 
-            Conexion conexion = new Conexion();
-            Connection con = conexion.conexion();
-
-                if (con != null) {
-                    DentistasDao dentistasDao = new DentistasDao();
-
-                    boolean resultado = dentistasDao.insertarDentista(
-                        nombre, apellidoPaterno, apellidoMaterno, especialidad, telefono, correo, horarioAtencion
-                    );
-
-                    if (resultado) {
-                        verTablaDentistas();
-                        limpiar.limpiarCampos(txtNombreDentista, txtApellidoPartDentista, txtApellidoMatDentista, cbxEspecialidadDentista, txtTelefonoDentistas, txtCorreoDentista, txtHorarioAtencionDentista);
-
-                    } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo registrar el dentista.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                    conexion.cerrarConexion();
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo conectar con la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo registrar el dentista.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
     }//GEN-LAST:event_btnRegistrarDentistasActionPerformed
 
     private void btnRegistrarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCitasActionPerformed
@@ -1606,25 +1566,15 @@ public class Inicio extends javax.swing.JFrame {
                 String hora = txtHoraCita.getText();
                 String motivo = txtMotivoCita.getText();
                 String notas = txtAreaNotas.getText();
-
-                Conexion conexion = new Conexion();
-                Connection con = conexion.conexion();
-
-                if (con != null) {
-                    CitasDao citasDao = new CitasDao();
-                    boolean resultado = citasDao.insertarCita(idPaciente, idDentista, fecha, hora, motivo, notas);
-
-                    if (resultado) {
-                        verTablaCitas();  
-                        llenarComboBox(); 
-                        limpiar.limpiarCampos(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                    conexion.cerrarConexion();
+                
+                CitasDao citasDao = new CitasDao();
+                boolean resultado = citasDao.insertarCita(idPaciente, idDentista, fecha, hora, motivo, notas);
+                if (resultado) {
+                    verTablaCitas();  
+                    llenarComboBox(); 
+                    limpiar.limpiarCampos(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas);
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo conectar con la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
     }//GEN-LAST:event_btnRegistrarCitasActionPerformed
@@ -1642,25 +1592,13 @@ public class Inicio extends javax.swing.JFrame {
                 }
                 Date ultimaActualizacion = jpUltimaActHistorial.getDate();
 
-                Conexion conexion = new Conexion();
-                Connection con = conexion.conexion();
-
-                if (con != null) {
-                    HistorialMedicoDao historialDao = new HistorialMedicoDao();
-
-                    boolean resultado = historialDao.insertarHistorialMedico(idPaciente, alergias, enfermedades, medicacion, observaciones, ultimaActualizacion);
-
-                    if (resultado) {
-                        verTablaHistorialMedico();
-                        limpiar.limpiarCampos(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, txAreaObservacion, jpUltimaActHistorial);  
-
-                    } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo registrar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                    conexion.cerrarConexion();
+                HistorialMedicoDao historialDao = new HistorialMedicoDao();
+                boolean resultado = historialDao.insertarHistorialMedico(idPaciente, alergias, enfermedades, medicacion, observaciones, ultimaActualizacion);
+                if (resultado) {
+                    verTablaHistorialMedico();
+                    limpiar.limpiarCampos(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, txAreaObservacion, jpUltimaActHistorial);  
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo conectar con la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
     }//GEN-LAST:event_btnRegistrarHistorialActionPerformed
@@ -1675,13 +1613,10 @@ public class Inicio extends javax.swing.JFrame {
                 String direccion = txtDireccionProveedor.getText();
 
                 ProveedoresDao proveedoresDao = new ProveedoresDao();
-
                 boolean resultado = proveedoresDao.insertarTablaProveedores(nombre, telefono, correo, empresa, direccion);
-
                 if (resultado) {
                     verTablaProveedores();
                     limpiar.limpiarCampos(txtNombreProovedor, txtTelefonoProveedor, txtCorreoProveedor, txtEmpresaProveedor, txtDireccionProveedor);
-
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo registrar el proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -1698,42 +1633,41 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnRegistrarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTratamientoActionPerformed
         // TODO add your handling code here:
-        if (validarCamposTratamientos()) {
-            int idDentista = Integer.parseInt(cbxDentistasTratamientos.getSelectedItem().toString().split("-")[0].trim());
-            String nombre = cbxNombreTratamiento.getSelectedItem().toString();
-            String descripcion = txtAreaDescripcion.getText();
-            Date FechaInicio = jpFechaInicioTrat.getDate();
-            Date FechaFin = jpFechaFinTrat.getDate();
-            int montoTotal;
+            if (validarCamposTratamientos()) {
+                int idDentista = Integer.parseInt(cbxDentistasTratamientos.getSelectedItem().toString().split("-")[0].trim());
+                String nombre = cbxNombreTratamiento.getSelectedItem().toString();
+                String descripcion = txtAreaDescripcion.getText();
+                Date FechaInicio = jpFechaInicioTrat.getDate();
+                Date FechaFin = jpFechaFinTrat.getDate();
+                int montoTotal;
 
-            try {
-                montoTotal = Integer.parseInt(txtMontoTotal.getText());
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Ingrese un monto válido", "Error", JOptionPane.ERROR_MESSAGE);
-                montoTotal = 0;
-            }
-
-            TratamientosDao tratamientosDao = new TratamientosDao();
-            int idTratamiento = tratamientosDao.insertarTratamiento(idDentista, nombre, descripcion, montoTotal);
-
-            if (idTratamiento != -1) {  
-                
-                int idPaciente = Integer.parseInt(cbxPacientesTratamientos.getSelectedItem().toString().split("-")[0].trim());
-                PacientesTratamientosDao pacientesTratDao = new PacientesTratamientosDao();
-                boolean resultado = pacientesTratDao.insertarPacienteTratamiento(idPaciente, idTratamiento, FechaInicio, FechaFin);
-
-                if (resultado) {
-                    verTablaTratamientos();
-                    llenarComboBox();
-                    limpiar.limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal, cbxPacientesTratamientos, jpFechaInicioTrat, jpFechaFinTrat);
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo registrar el paciente tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                try {
+                    montoTotal = Integer.parseInt(txtMontoTotal.getText());
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Ingrese un monto válido", "Error", JOptionPane.ERROR_MESSAGE);
+                    montoTotal = 0;
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo registrar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
 
+                TratamientosDao tratamientosDao = new TratamientosDao();
+                int idTratamiento = tratamientosDao.insertarTratamiento(idDentista, nombre, descripcion, montoTotal);
+
+                if (idTratamiento != -1) {  
+
+                    int idPaciente = Integer.parseInt(cbxPacientesTratamientos.getSelectedItem().toString().split("-")[0].trim());
+                    PacientesTratamientosDao pacientesTratDao = new PacientesTratamientosDao();
+                    boolean resultado = pacientesTratDao.insertarPacienteTratamiento(idPaciente, idTratamiento, FechaInicio, FechaFin);
+
+                    if (resultado) {
+                        verTablaTratamientos();
+                        llenarComboBox();
+                        limpiar.limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal, cbxPacientesTratamientos, jpFechaInicioTrat, jpFechaFinTrat);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se pudo registrar el paciente tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
     }//GEN-LAST:event_btnRegistrarTratamientoActionPerformed
 
     private void btnRegistarPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistarPagosActionPerformed
@@ -1752,9 +1686,7 @@ public class Inicio extends javax.swing.JFrame {
                 }
                 
                 PagosDao pagosDao = new PagosDao();
-
                 boolean resultado = pagosDao.insertarPagos(idTratamiento, metodoPago, fechaPago, modalidadPago, montoPagado);
-
                 if (resultado) {
                     verTablaPagos();
                     llenarComboBox();
@@ -1780,7 +1712,6 @@ public class Inicio extends javax.swing.JFrame {
 
             ProductosDao productosDao = new ProductosDao();
             boolean resultado = productosDao.insertarProductos(nombreProducto, descripcion, precioUnitario);
-
             if (resultado) {
                 verTablaProductos();
                 limpiar.limpiarCampos(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto);
@@ -1800,49 +1731,28 @@ public class Inicio extends javax.swing.JFrame {
     private void btnActualizarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCitasActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable3.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una cita de la tabla.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            if (filaSeleccionada != -1) {
+
+            int idCita = (int)jTable3.getValueAt(filaSeleccionada, 0); 
+            int idPaciente = Integer.parseInt(cbxPacientesCitas.getSelectedItem().toString().split("-")[0].trim());  
+            int idDentista = Integer.parseInt(cbxDentistasCitas.getSelectedItem().toString().split("-")[0].trim());
+            Date fecha = jdFechaCita.getDate();
+            String hora = txtHoraCita.getText();
+            String motivo = txtMotivoCita.getText();
+            String notas = txtAreaNotas.getText();
+            
+            if(validarCamposCitas()){
+                CitasDao citasDao = new CitasDao();
+                boolean resultado = citasDao.actualizarCita(idCita, idPaciente, idDentista, fecha, hora, motivo, notas);
+               
+                if (resultado) {
+                    verTablaCitas();
+                }
+            }
+        }else {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona una cita de la tabla." , "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-
-        Object value = jTable3.getValueAt(filaSeleccionada, 0); 
-        if (value == null) {
-            JOptionPane.showMessageDialog(this, "El ID de la cita está vacío. No se puede actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int idCita = Integer.parseInt(value.toString());  
-
-        Date fecha = jdFechaCita.getDate();
-        if (fecha == null) {
-            JOptionPane.showMessageDialog(this, "La fecha no puede ser vacía.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        String hora = txtHoraCita.getText();
-        String motivo = txtMotivoCita.getText();
-        String notas = txtAreaNotas.getText();
-
-        if (notas != null && notas.isEmpty()) {
-            notas = null;
-        }
-
-        if (!validarCamposCitas()) {
-            return;
-        }
-
-        int idPaciente = obtenerIdDesdeComboBox(cbxPacientesCitas);
-        int idDentista = obtenerIdDesdeComboBox(cbxDentistasCitas);
-
-        CitasDao citasDao = new CitasDao();
-        boolean resultado = citasDao.actualizarCita(idCita, idPaciente, idDentista, fecha, hora, motivo, notas);
-
-        if (resultado) {
-            JOptionPane.showMessageDialog(this, "Cita actualizada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            verTablaCitas(); 
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo actualizar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        limpiar.limpiarCampos(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas);
     }//GEN-LAST:event_btnActualizarCitasActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
@@ -1862,35 +1772,26 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnEliminarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCitasActionPerformed
         // TODO add your handling code here:
-        UIManager.put("OptionPane.yesButtonText", "Sí");
-        UIManager.put("OptionPane.noButtonText", "No");
-
         int filaSeleccionada = jTable3.getSelectedRow();
 
-        if (filaSeleccionada == -1) { 
-            JOptionPane.showMessageDialog(this, "Selecciona una cita para eliminar.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+        if (filaSeleccionada != -1) { 
+            int idCita = (int) jTable3.getValueAt(filaSeleccionada, 0); 
 
-        int idCita = (int) jTable3.getValueAt(filaSeleccionada, 0); 
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar la cita seleccionada?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
-        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que deseas eliminar esta cita?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            try {
+            if (confirmacion == JOptionPane.YES_OPTION) {
                 CitasDao citasDao = new CitasDao();
-                boolean eliminado = citasDao.eliminarCita(idCita);
-
-                if (eliminado) {
-                    JOptionPane.showMessageDialog(this, "Cita eliminada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    verTablaCitas(); 
+                boolean resultado = citasDao.eliminarCita(idCita);
+                
+                if (resultado) {
+                    verTablaCitas();
+                    limpiar.limpiarCampos(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas);
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo eliminar la cita. Verifica la conexión a la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Ocurrió un error al eliminar la cita: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una cita de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarCitasActionPerformed
 
@@ -1904,59 +1805,54 @@ public class Inicio extends javax.swing.JFrame {
     private void btnActualizarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarHistorialActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable4.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un historial médico para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int idHistorialMedico = (int) jTable4.getValueAt(filaSeleccionada, 0);
-        int idPaciente = obtenerIdPacienteSeleccionado();
-        String alergias = txAreaAlergias.getText();
-        String enfermedades = txAreaEnfermedades.getText();
-        String medicacion = txAreaMedicacion.getText();
-        String observaciones = txAreaObservacion.getText();
-        if (observaciones.isEmpty()) {
-            observaciones = null;
-        }
-        Date ultimaActualizacion = jpUltimaActHistorial.getDate();
-
-        if (validarCamposHistorialMedico()) {
-            HistorialMedicoDao historialDao = new HistorialMedicoDao();
-            boolean resultado = historialDao.actualizarHistorialMedico(idHistorialMedico, idPaciente, alergias, enfermedades, 
-                                                                      medicacion, observaciones, ultimaActualizacion);
-
-            if (resultado) {
-                JOptionPane.showMessageDialog(this, "Historial médico actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                verTablaHistorialMedico();  
-                limpiar.limpiarCampos(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, txAreaObservacion, jpUltimaActHistorial);
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo actualizar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (filaSeleccionada != -1) {
+            int idHistorialMedico = (int) jTable4.getValueAt(filaSeleccionada, 0);
+            int idPaciente = Integer.parseInt(cbxPacientesHistorial.getSelectedItem().toString().split("-")[0].trim());
+            String alergias = txAreaAlergias.getText();
+            String enfermedades = txAreaEnfermedades.getText();
+            String medicacion = txAreaMedicacion.getText();
+            String observaciones = txAreaObservacion.getText();
+            if (observaciones.isEmpty()) {
+                observaciones = null;
             }
+            Date ultimaActualizacion = jpUltimaActHistorial.getDate();
+
+            if (validarCamposHistorialMedico()) {
+                HistorialMedicoDao historialDao = new HistorialMedicoDao();
+                boolean resultado = historialDao.actualizarHistorialMedico(idHistorialMedico, idPaciente, alergias, enfermedades, 
+                                                                          medicacion, observaciones, ultimaActualizacion);
+
+                if (resultado) {
+                    verTablaHistorialMedico();  
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Por favor selecciona un historial médico de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
+        limpiar.limpiarCampos(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, txAreaObservacion, jpUltimaActHistorial);
     }//GEN-LAST:event_btnActualizarHistorialActionPerformed
 
     private void btnEliminarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarHistorialActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable4.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un historial médico para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        if (filaSeleccionada != -1) {
+            int idHistorialMedico = (int) jTable4.getValueAt(filaSeleccionada, 0);
 
-        int idHistorialMedico = (int) jTable4.getValueAt(filaSeleccionada, 0);
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar el historial médico seleccionado?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
-        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que deseas eliminar este historial médico?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                HistorialMedicoDao historialDao = new HistorialMedicoDao();
+                boolean resultado = historialDao.eliminarHistorialMedico(idHistorialMedico);
 
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            HistorialMedicoDao historialDao = new HistorialMedicoDao();
-            boolean resultado = historialDao.eliminarHistorialMedico(idHistorialMedico);
-
-            if (resultado) {
-                JOptionPane.showMessageDialog(this, "Historial médico eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                verTablaHistorialMedico();  
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo eliminar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (resultado) {
+                    verTablaHistorialMedico(); 
+                    limpiar.limpiarCampos(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, txAreaObservacion, jpUltimaActHistorial);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un historial médico de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarHistorialActionPerformed
 
@@ -2012,67 +1908,67 @@ public class Inicio extends javax.swing.JFrame {
     private void btnActualizarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarTratamientoActionPerformed
         // TODO add your handling code here:
             int filaSeleccionada = jTable5.getSelectedRow();
-            if (filaSeleccionada == -1) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un tratamiento para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            int idTratamiento = (int) jTable5.getValueAt(filaSeleccionada, 0);
-            int idDentista = Integer.parseInt(cbxDentistasTratamientos.getSelectedItem().toString().split("-")[0].trim());
-            String nombre = cbxNombreTratamiento.getSelectedItem().toString();
-            String descripcion = txtAreaDescripcion.getText();
-            int montoTotal;
+            if (filaSeleccionada != -1) {
+                int idTratamiento = (int) jTable5.getValueAt(filaSeleccionada, 0);
+                int idDentista = Integer.parseInt(cbxDentistasTratamientos.getSelectedItem().toString().split("-")[0].trim());
+                String nombre = cbxNombreTratamiento.getSelectedItem().toString();
+                String descripcion = txtAreaDescripcion.getText();
+                int montoTotal;
 
-            try {
-                montoTotal = Integer.parseInt(txtMontoTotal.getText());
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Ingrese un monto válido", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            TratamientosDao tratamientosDao = new TratamientosDao();
-            boolean resultadoTratamiento = tratamientosDao.actualizarTratamiento(idTratamiento, idDentista, nombre, descripcion, montoTotal);
-
-            if (resultadoTratamiento) {
-                int idPaciente = Integer.parseInt(cbxPacientesTratamientos.getSelectedItem().toString().split("-")[0].trim());
-                PacientesTratamientosDao pacientesTratDao= new PacientesTratamientosDao();
-                
-                int idPacienteTratamiento = pacientesTratDao.obtenerIdPacienteTratamiento(idPaciente, idTratamiento);
-
-                Date fechaInicio = jpFechaInicioTrat.getDate();
-                Date fechaFin = jpFechaFinTrat.getDate();
-
-                boolean resultadoPacienteTrat = pacientesTratDao.actualizarPacienteTratamiento(idPacienteTratamiento, idPaciente, idTratamiento, fechaInicio, fechaFin);
-
-                if (resultadoPacienteTrat) {
-                    JOptionPane.showMessageDialog(this, "Tratamiento y PacienteTratamiento actualizados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    verTablaTratamientos();
-                    limpiar.limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal, cbxPacientesTratamientos, jpFechaInicioTrat, jpFechaFinTrat);
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo actualizar el PacienteTratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                try {
+                    montoTotal = Integer.parseInt(txtMontoTotal.getText());
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Ingrese un monto válido", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo actualizar el Tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+
+                TratamientosDao tratamientosDao = new TratamientosDao();
+                boolean resultadoTratamiento = tratamientosDao.actualizarTratamiento(idTratamiento, idDentista, nombre, descripcion, montoTotal);
+
+                if (resultadoTratamiento) {
+                    int idPaciente = Integer.parseInt(cbxPacientesTratamientos.getSelectedItem().toString().split("-")[0].trim());
+                    PacientesTratamientosDao pacientesTratDao= new PacientesTratamientosDao();
+
+                    int idPacienteTratamiento = pacientesTratDao.obtenerIdPacienteTratamiento(idPaciente, idTratamiento);
+
+                    Date fechaInicio = jpFechaInicioTrat.getDate();
+                    Date fechaFin = jpFechaFinTrat.getDate();
+
+                    boolean resultadoPacienteTrat = pacientesTratDao.actualizarPacienteTratamiento(idPacienteTratamiento, idPaciente, idTratamiento, fechaInicio, fechaFin);
+
+                    if (resultadoPacienteTrat) {
+                        verTablaTratamientos();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se pudo actualizar el PacienteTratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo actualizar el Tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
+            limpiar.limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal, cbxPacientesTratamientos, jpFechaInicioTrat, jpFechaFinTrat);
     }//GEN-LAST:event_btnActualizarTratamientoActionPerformed
 
     private void btnEliminarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTratamientoActionPerformed
         // TODO add your handling code here:
-            if (idTratamientoSeleccionado != -1) {
-            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de eliminar este tratamiento?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        int filaSeleccionada = jTable5.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int idTratamiento= (int)jTable5.getValueAt(filaSeleccionada, 0);
+            
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar el tratamiento seleccionado?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            
             if (confirmacion == JOptionPane.YES_OPTION) {
-                // Instanciar el DAO y ejecutar la eliminación
                 TratamientosDao tratamientosDao = new TratamientosDao();
-                boolean resultado = tratamientosDao.eliminarTratamiento(idTratamientoSeleccionado);
+                boolean resultado = tratamientosDao.eliminarTratamiento(idTratamiento);
 
                 if (resultado) {
                     verTablaTratamientos();
-                    llenarComboBox();
+                    limpiar.limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal, cbxPacientesTratamientos, jpFechaInicioTrat, jpFechaFinTrat);
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo eliminar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Selecciona un tratamiento para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un tratamiento de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarTratamientoActionPerformed
 
@@ -2116,14 +2012,14 @@ public class Inicio extends javax.swing.JFrame {
                         fechaNacimiento, telefono, correo, fechaRegistro);
 
                 if (resultado) {
-                    verTablaPacientes();  
-                    limpiar.limpiarCampos(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, jdNacimientoPaciente, 
-                                  txtTelefonoPaciente, txtCorreoPaciente, jdFechaRegistroPaciente);
+                    verTablaPacientes();
                 }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, selecciona un paciente de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
+        limpiar.limpiarCampos(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, jdNacimientoPaciente, 
+                                  txtTelefonoPaciente, txtCorreoPaciente, jdFechaRegistroPaciente);
     }//GEN-LAST:event_btnActualizarPacientesActionPerformed
 
     private void btnEliminarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPacientesActionPerformed
@@ -2132,7 +2028,7 @@ public class Inicio extends javax.swing.JFrame {
         if (filaSeleccionada != -1) {
             int idPaciente = (int) jTable1.getValueAt(filaSeleccionada, 0); 
 
-            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este paciente?", 
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar al paciente seleccionado?", 
                                                              "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
             if (confirmacion == JOptionPane.YES_OPTION) {
@@ -2140,11 +2036,15 @@ public class Inicio extends javax.swing.JFrame {
                 boolean resultado = pacientesDao.eliminarPaciente(idPaciente);
 
                 if (resultado) {
-                    verTablaPacientes();  
+                    verTablaPacientes(); 
+                    limpiar.limpiarCampos(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, jdNacimientoPaciente, 
+                                  txtTelefonoPaciente, txtCorreoPaciente, jdFechaRegistroPaciente);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar el paciente.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona un paciente de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un paciente de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarPacientesActionPerformed
 
@@ -2166,74 +2066,52 @@ public class Inicio extends javax.swing.JFrame {
     private void btnActualizarDentistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDentistasActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable9.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int idDentista = (int) jTable9.getValueAt(filaSeleccionada, 0);
+            String nombre = txtNombreDentista.getText();
+            String apellidoPaterno = txtApellidoPartDentista.getText();
+            String apellidoMaterno = txtApellidoMatDentista.getText();
+            String especialidad = cbxEspecialidadDentista.getSelectedItem().toString();
+            String telefono = txtTelefonoDentistas.getText();
+            String correo = txtCorreoDentista.getText();
+            String horarioAtencion = txtHorarioAtencionDentista.getText();
 
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione un dentista para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int idDentista = (int) jTable9.getValueAt(filaSeleccionada, 0);
-        String nombre = txtNombreDentista.getText();
-        String apellidoPaterno = txtApellidoPartDentista.getText();
-        String apellidoMaterno = txtApellidoMatDentista.getText();
-        String especialidad = cbxEspecialidadDentista.getSelectedItem().toString();
-        String telefono = txtTelefonoDentistas.getText();
-        String correo = txtCorreoDentista.getText();
-        String horarioAtencion = txtHorarioAtencionDentista.getText();
-
-        if (validarCamposDentistas()) {
-            Conexion conexion = new Conexion();
-            Connection con = conexion.conexion();
-
-            if (con != null) {
+            if (validarCamposDentistas()) {
                 DentistasDao dentistasDao = new DentistasDao();
                 boolean resultado = dentistasDao.actualizarDentista(idDentista, nombre, apellidoPaterno, apellidoMaterno, especialidad, telefono, correo, horarioAtencion);
-
+                
                 if (resultado) {
                     verTablaDentistas();
-                    limpiar.limpiarCampos(txtNombreDentista, txtApellidoPartDentista, txtApellidoMatDentista, cbxEspecialidadDentista, txtTelefonoDentistas, txtCorreoDentista, txtHorarioAtencionDentista);
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo actualizar el dentista.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-                conexion.cerrarConexion();
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo conectar con la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+                } 
+            }   
+        }else{
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un dentista de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
+        limpiar.limpiarCampos(txtNombreDentista, txtApellidoPartDentista, txtApellidoMatDentista, cbxEspecialidadDentista, txtTelefonoDentistas, txtCorreoDentista, txtHorarioAtencionDentista);
     }//GEN-LAST:event_btnActualizarDentistasActionPerformed
 
     private void btnEliminarDentistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDentistasActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable9.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int idDentista = (int) jTable9.getValueAt(filaSeleccionada, 0);
 
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione un dentista para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar al dentista seleccionado?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
-        int idDentista = (int) jTable9.getValueAt(filaSeleccionada, 0);
-
-        int respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar al dentista seleccionado?", "Confirmación", JOptionPane.YES_NO_OPTION);
-
-        if (respuesta == JOptionPane.YES_OPTION) {
-            Conexion conexion = new Conexion();
-            Connection con = conexion.conexion();
-
-            if (con != null) {
+            if (confirmacion == JOptionPane.YES_OPTION) {
                 DentistasDao dentistasDao = new DentistasDao();
                 boolean resultado = dentistasDao.eliminarDentista(idDentista);
-
+                
                 if (resultado) {
                     verTablaDentistas();
+                    limpiar.limpiarCampos(txtNombreDentista, txtApellidoPartDentista, txtApellidoMatDentista, cbxEspecialidadDentista, txtTelefonoDentistas, txtCorreoDentista, txtHorarioAtencionDentista);
+
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo eliminar el dentista.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
-                conexion.cerrarConexion();
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo conectar con la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }else {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un dentista de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarDentistasActionPerformed
 
@@ -2260,55 +2138,55 @@ public class Inicio extends javax.swing.JFrame {
     private void btnActualizarPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPagosActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable6.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int idPago = (int) jTable6.getValueAt(filaSeleccionada, 0);
+            int idTratamiento = Integer.parseInt(cbxTratamientoPagos.getSelectedItem().toString().split("-")[0].trim());
+            String metodoPago = cbxMetodoPago.getSelectedItem().toString();
+            Date fechaPago = jdFechaPago.getDate();
+            String modalidadPago = cbxModalidadPago.getSelectedItem().toString();
+            int montoPagado;
+                 try{
+                     montoPagado= Integer.parseInt(txtMontoPagado.getText());
+                 }catch(NumberFormatException e){
+                     JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
+                     montoPagado= 0;
+                 }
 
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione un pago para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+            if (validarCamposPagos()) {
+                PagosDao pagosDao = new PagosDao();
+                boolean resultado = pagosDao.actualizarPago(idPago, idTratamiento, metodoPago, fechaPago, modalidadPago, montoPagado);
 
-        int idPago = (int) jTable6.getValueAt(filaSeleccionada, 0);
-        int idTratamiento = Integer.parseInt(jTable6.getValueAt(filaSeleccionada, 1).toString());
-        String metodoPago = jTable6.getValueAt(filaSeleccionada, 2).toString();
-        Date fechaPago = java.sql.Date.valueOf(jTable6.getValueAt(filaSeleccionada, 3).toString());
-        String modalidadPago = jTable6.getValueAt(filaSeleccionada, 4).toString();
-        int montoPagado = (int) jTable6.getValueAt(filaSeleccionada, 5);
-
-        if (validarCamposPagos()) {
-            PagosDao pagosDao = new PagosDao();
-            boolean resultado = pagosDao.actualizarPago(idPago, idTratamiento, metodoPago, fechaPago, modalidadPago, montoPagado);
-
-            if (resultado) {
-                verTablaPagos();  
-                JOptionPane.showMessageDialog(this, "Pago actualizado correctamente.");
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo actualizar el pago.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (resultado) {
+                    verTablaPagos();
+                } 
             }
+        }else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un pago de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
+        limpiar.limpiarCampos(cbxTratamientoPagos, cbxMetodoPago, jdFechaPago, txtMontoPagado, cbxModalidadPago);
     }//GEN-LAST:event_btnActualizarPagosActionPerformed
 
     private void btnEliminarPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPagosActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable6.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int idPago = (int) jTable6.getValueAt(filaSeleccionada, 0);
 
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione un pago para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar el pago seleccionado?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
-        int idPago = (int) jTable6.getValueAt(filaSeleccionada, 0);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                PagosDao pagosDao = new PagosDao();
+                boolean resultado = pagosDao.eliminarPago(idPago);
 
-        int respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar el pago seleccionado?", "Confirmación", JOptionPane.YES_NO_OPTION);
-
-        if (respuesta == JOptionPane.YES_OPTION) {
-            PagosDao pagosDao = new PagosDao();
-            boolean resultado = pagosDao.eliminarPago(idPago);
-
-            if (resultado) {
-                verTablaPagos();  
-                JOptionPane.showMessageDialog(this, "Pago eliminado correctamente.");
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo eliminar el pago.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (resultado) {
+                    verTablaPagos();
+                    limpiar.limpiarCampos(cbxTratamientoPagos, cbxMetodoPago, jdFechaPago, txtMontoPagado, cbxModalidadPago);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar el pago.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
+        }else {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un pago de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarPagosActionPerformed
 
@@ -2337,19 +2215,28 @@ public class Inicio extends javax.swing.JFrame {
         int filaSeleccionada = jTable7.getSelectedRow();
         if (filaSeleccionada != -1) {
             int idProducto = (int) jTable7.getValueAt(filaSeleccionada, 0);
-            String nombreProducto = (String) jTable7.getValueAt(filaSeleccionada, 1);
-            String descripcion = (String) jTable7.getValueAt(filaSeleccionada, 2);
-            int precioUnitario = (int) jTable7.getValueAt(filaSeleccionada, 3);
-
-            ProductosDao productosDao = new ProductosDao();
-            boolean resultado = productosDao.actualizarProducto(idProducto, nombreProducto, descripcion, precioUnitario);
-
-            if (resultado) {
-                verTablaProductos();
+            String nombreProducto = txtNombreProducto.getText();
+            String descripcion = txaDescripcionProducto.getText();
+            int precioUnitario;
+            try {
+                precioUnitario = Integer.parseInt(txtPrecioProducto.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
+                precioUnitario = 0;
             }
+            
+            if (validarCamposProductos()){
+                ProductosDao productosDao = new ProductosDao();
+                boolean resultado = productosDao.actualizarProducto(idProducto, nombreProducto, descripcion, precioUnitario);
+                
+                if (resultado) {
+                    verTablaProductos();
+                }
+            }   
         } else {
             JOptionPane.showMessageDialog(this, "Por favor seleccione un producto para actualizar.", "Error", JOptionPane.WARNING_MESSAGE);
         }
+        limpiar.limpiarCampos(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto);
     }//GEN-LAST:event_btnActualizarProductosActionPerformed
 
     private void btnEliminarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductosActionPerformed
@@ -2358,18 +2245,20 @@ public class Inicio extends javax.swing.JFrame {
         if (filaSeleccionada != -1) {
             int idProducto = (int) jTable7.getValueAt(filaSeleccionada, 0);
 
-            int respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar este producto?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-            if (respuesta == JOptionPane.YES_OPTION) {
-                // Instancia de ProductosDao
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar el producto seleccionado?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
                 ProductosDao productosDao = new ProductosDao();
                 boolean resultado = productosDao.eliminarProducto(idProducto);
 
                 if (resultado) {
                     verTablaProductos();
+                    limpiar.limpiarCampos(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto);
+                }else {
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione un producto para eliminar.", "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un producto de la tabla.", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarProductosActionPerformed
 
@@ -2402,21 +2291,24 @@ public class Inicio extends javax.swing.JFrame {
         int filaSeleccionada = jTable8.getSelectedRow();
         if (filaSeleccionada != -1) {
             int idProveedor = (int) jTable8.getValueAt(filaSeleccionada, 0);
-            String nombre = (String) jTable8.getValueAt(filaSeleccionada, 1);
-            String telefono = (String) jTable8.getValueAt(filaSeleccionada, 2);
-            String correo = (String) jTable8.getValueAt(filaSeleccionada, 3);
-            String empresa = (String) jTable8.getValueAt(filaSeleccionada, 4);
-            String direccion = (String) jTable8.getValueAt(filaSeleccionada, 5);
+            String nombre = txtNombreProovedor.getText();
+            String telefono = txtTelefonoProveedor.getText();
+            String correo = txtCorreoProveedor.getText();
+            String empresa = txtEmpresaProveedor.getText();
+            String direccion = txtDireccionProveedor.getText();
+            
+            if(validarCamposProveedores()){
+                ProveedoresDao proveedoresDao = new ProveedoresDao();
+                boolean resultado = proveedoresDao.actualizarProveedor(idProveedor, nombre, telefono, correo, empresa, direccion);
 
-            ProveedoresDao proveedoresDao = new ProveedoresDao();
-            boolean resultado = proveedoresDao.actualizarProveedor(idProveedor, nombre, telefono, correo, empresa, direccion);
-
-            if (resultado) {
-                verTablaProveedores();  
-            }
+                if (resultado) {
+                    verTablaProveedores(); 
+                }
+            }  
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione un proveedor para actualizar.", "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un proveedor de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
+        limpiar.limpiarCampos(txtNombreProovedor, txtTelefonoProveedor, txtCorreoProveedor, txtEmpresaProveedor, txtDireccionProveedor);
     }//GEN-LAST:event_btnActualizarProveedoresActionPerformed
 
     private void btnEliminarProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProveedoresActionPerformed
@@ -2425,17 +2317,21 @@ public class Inicio extends javax.swing.JFrame {
         if (filaSeleccionada != -1) {
             int idProveedor = (int) jTable8.getValueAt(filaSeleccionada, 0);
 
-            int respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar este proveedor?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            int respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar el proveedor seleccionado?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            
             if (respuesta == JOptionPane.YES_OPTION) {
                 ProveedoresDao proveedoresDao = new ProveedoresDao();
                 boolean resultado = proveedoresDao.eliminarProveedor(idProveedor);
 
                 if (resultado) {
-                    verTablaProveedores(); 
+                    verTablaProveedores();
+                    limpiar.limpiarCampos(txtNombreProovedor, txtTelefonoProveedor, txtCorreoProveedor, txtEmpresaProveedor, txtDireccionProveedor);
+                }else {
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar el proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione un proveedor para eliminar.", "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un proveedor de la tabla.", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarProveedoresActionPerformed
 
@@ -2558,28 +2454,6 @@ public class Inicio extends javax.swing.JFrame {
         }
         return -1;  
     }
-    
-    private int obtenerIdDentistaSeleccionado() {
-        String seleccion = (String) cbxDentistasCitas.getSelectedItem(); 
-        if (seleccion != null) {
-            String[] partes = seleccion.split(" - "); 
-            try {
-                return Integer.parseInt(partes[0]); 
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Error al obtener el ID del dentista.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        return -1; 
-    }
-
-    private int obtenerIdDesdeComboBox(JComboBox<String> comboBox) {
-        String seleccion = (String) comboBox.getSelectedItem();
-        if (seleccion != null && !seleccion.isEmpty()) {
-            return Integer.parseInt(seleccion.split(" - ")[0]);
-        }
-        return -1;
-    }
-    
     /**
      * @param args the command line arguments
      */

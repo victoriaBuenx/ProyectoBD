@@ -43,25 +43,18 @@ public class DentistasDao {
                 int filasAfectadas = ps.executeUpdate();
 
                 if (filasAfectadas > 0) {
-                    JOptionPane.showMessageDialog(null, "Dentista registrado con éxito.");
+                    JOptionPane.showMessageDialog(null, "Dentista registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     cbxDentistas.llenarComboBox();
                     return true;
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo registrar el dentista.");
+                    JOptionPane.showMessageDialog(null, "No se pudo registrar el dentista.",  "Error", JOptionPane.ERROR_MESSAGE);
                     return false;
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al insertar dentista: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
                 return false;
-            } finally {
-                try {
-                    if (ps != null) ps.close();
-                    if (con != null) con.close();
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
-                }
-            }
+            } 
         }
     
         
@@ -83,7 +76,13 @@ public class DentistasDao {
                 ps.setInt(8, idDentista);
 
                 int filasAfectadas = ps.executeUpdate();
-                return filasAfectadas > 0;
+                 if (filasAfectadas > 0) {
+                    JOptionPane.showMessageDialog(null, "Dentista actualizado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo actualizar el dentista.",  "Error", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al actualizar dentista: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
                 return false;
@@ -100,7 +99,13 @@ public class DentistasDao {
                 ps.setInt(1, idDentista);
 
                 int filasAfectadas = ps.executeUpdate();
-                return filasAfectadas > 0;
+                if (filasAfectadas > 0) {
+                    JOptionPane.showMessageDialog(null, "Dentista eliminado con éxito." ,"Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar el dentista.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al eliminar dentista: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
                 return false;

@@ -40,10 +40,10 @@ public class CitasDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Cita registrada con éxito.");
+                JOptionPane.showMessageDialog(null, "Cita registrada con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar la cita.");
+                JOptionPane.showMessageDialog(null, "No se pudo registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException e) {
@@ -80,7 +80,7 @@ public class CitasDao {
                 JOptionPane.showMessageDialog(null, "Cita actualizada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar la cita. Verifica el ID.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException e) {
@@ -105,25 +105,16 @@ public class CitasDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Cita eliminada con éxito.");
+                JOptionPane.showMessageDialog(null, "Cita eliminada con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontró la cita a eliminar.");
+                JOptionPane.showMessageDialog(null, "No se encontró la cita a eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al eliminar cita: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (ps != null) ps.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
-            }
         }
-    }
-
-    
+    }  
 }
