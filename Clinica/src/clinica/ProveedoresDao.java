@@ -74,7 +74,7 @@ public class ProveedoresDao {
         }
     }
      
-     public boolean eliminarProveedor(int idProveedor) {
+    public boolean eliminarProveedor(int idProveedor) {
         String sql = "DELETE FROM Proveedores WHERE idProveedor = ?";
 
         try (Connection con = new Conexion().conexion();

@@ -56,7 +56,7 @@ public class HistorialMedicoDao {
         }
     }
     
-    public boolean actualizarHistorialMedico(int idHistorial, int idPaciente, String alergias, String enfermedades, 
+        public boolean actualizarHistorialMedico(int idHistorial, int idPaciente, String alergias, String enfermedades, 
                                            String medicacion, String observaciones, Date ultimaActualizacion) {
             String sql = "UPDATE HistorialMedico SET idPaciente = ?, Alergias = ?, Enfermedades = ?, Medicacion = ?, " +
                          "Observaciones = ?, UltimaActualizacion = ? WHERE idHistorialMedico = ?";
@@ -94,7 +94,7 @@ public class HistorialMedicoDao {
             }
         }
 
-        public boolean eliminarHistorialMedico(int idHistorial) {
+    public boolean eliminarHistorialMedico(int idHistorial) {
         String sql = "DELETE FROM HistorialMedico WHERE idHistorialMedico = ?";
 
         try (Connection con = new Conexion().conexion();
