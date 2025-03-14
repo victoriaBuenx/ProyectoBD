@@ -35,21 +35,19 @@ public class TratamientosDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                // Obtener el idTratamiento generado
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
-                    idTratamientoGenerado = rs.getInt(1);  // El primer valor de la fila es el id generado
+                    idTratamientoGenerado = rs.getInt(1); 
                 }
-                JOptionPane.showMessageDialog(null, "Tratamiento registrado con éxito.");
+                JOptionPane.showMessageDialog(null, "Tratamiento registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar el tratamiento.");
+                JOptionPane.showMessageDialog(null, "No se pudo registrar el tratamiento.",  "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al insertar tratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
-
         return idTratamientoGenerado;
     }
     
@@ -67,7 +65,13 @@ public class TratamientosDao {
 
             int filasAfectadas = ps.executeUpdate();
 
-            return filasAfectadas > 0;
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Tratamiento actualizado con éxito." , "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar tratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -89,26 +93,16 @@ public class TratamientosDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Tratamiento eliminado con éxito.");
+                JOptionPane.showMessageDialog(null, "Tratamiento eliminado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo eliminar el tratamiento.");
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al eliminar tratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (ps != null) ps.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
-            }
         }
-    }
-
-
-    
+    } 
 }

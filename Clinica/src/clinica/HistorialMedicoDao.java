@@ -40,8 +40,15 @@ public class HistorialMedicoDao {
 
             ps.setDate(6, new java.sql.Date(ultimaActualizacion.getTime()));
 
-            int rowsAffected = ps.executeUpdate();
-            return rowsAffected > 0;  
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Historial médico registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar historial médico: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
@@ -71,8 +78,15 @@ public class HistorialMedicoDao {
                 ps.setDate(6, new java.sql.Date(ultimaActualizacion.getTime()));
                 ps.setInt(7, idHistorial);
 
-                int rowsAffected = ps.executeUpdate();
-                return rowsAffected > 0;  
+                int filasAfectadas = ps.executeUpdate();
+                 
+                if (filasAfectadas > 0) {
+                    JOptionPane.showMessageDialog(null, "Historial Médico actualizado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo actualizar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error al actualizar historial médico: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
@@ -88,8 +102,15 @@ public class HistorialMedicoDao {
 
             ps.setInt(1, idHistorial);
 
-            int rowsAffected = ps.executeUpdate();
-            return rowsAffected > 0;  
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Historial médico eliminado con éxito." ,"Éxito", JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar el historial médico.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            } 
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al eliminar historial médico: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
@@ -97,6 +118,4 @@ public class HistorialMedicoDao {
         }
     }
 
-
-    
 }

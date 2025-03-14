@@ -35,24 +35,17 @@ public class ProductosDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Producto registrado con éxito.");
+                JOptionPane.showMessageDialog(null, "Producto registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar el producto.");
+                JOptionPane.showMessageDialog(null, "No se pudo registrar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al insertar producto: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (ps != null) ps.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
-            }
-        }
+        } 
     }
     
     public boolean actualizarProducto(int idProducto, String nombreProducto, String descripcion, int precioUnitario) {
@@ -74,23 +67,16 @@ public class ProductosDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Producto actualizado con éxito.");
+                JOptionPane.showMessageDialog(null, "Producto actualizado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar el producto.");
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar el producto: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (ps != null) ps.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
-            }
         }
     }
     
@@ -110,28 +96,16 @@ public class ProductosDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Producto eliminado con éxito.");
+                JOptionPane.showMessageDialog(null, "Producto eliminado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo eliminar el producto.");
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al eliminar el producto: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (ps != null) ps.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
-            }
-        }
-    }
-    
-    
-
-
-    
+        } 
+    }   
 }

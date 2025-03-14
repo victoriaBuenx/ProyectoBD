@@ -37,10 +37,10 @@ public class PagosDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Pago registrado con éxito.");
+                JOptionPane.showMessageDialog(null, "Pago registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar el pago.");
+                JOptionPane.showMessageDialog(null, "No se pudo registrar el pago.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException e) {
@@ -71,7 +71,13 @@ public class PagosDao {
             ps.setInt(6, idPago);
 
             int filasAfectadas = ps.executeUpdate();
-            return filasAfectadas > 0;
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Pago actualizado con éxito." , "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el pago.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }     
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar pago: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -87,7 +93,13 @@ public class PagosDao {
             ps.setInt(1, idPago);
 
             int filasAfectadas = ps.executeUpdate();
-            return filasAfectadas > 0;
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Pago eliminado con éxito." ,"Éxito", JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar el pago.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al eliminar pago: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
