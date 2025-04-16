@@ -1,0 +1,108 @@
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
+<jasperReport name="ClinicaDental" language="java" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8263b428-e795-4c52-a8c6-754a2e3998d9">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BDClinica"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<dataset name="Dataset1" uuid="759e7af3-1af5-4d35-a00a-86b8de915441">
+		<query language="sql"><![CDATA[]]></query>
+	</dataset>
+	<query language="sql"><![CDATA[SELECT Nombre, ApellidoPaterno, ApellidoMaterno, FechaNacimiento, Telefono, Correo 
+FROM clinicadental.pacientes]]></query>
+	<field name="Nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pacientes"/>
+	</field>
+	<field name="ApellidoPaterno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ApellidoPaterno"/>
+		<property name="com.jaspersoft.studio.field.label" value="ApellidoPaterno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pacientes"/>
+	</field>
+	<field name="ApellidoMaterno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ApellidoMaterno"/>
+		<property name="com.jaspersoft.studio.field.label" value="ApellidoMaterno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pacientes"/>
+	</field>
+	<field name="FechaNacimiento" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="FechaNacimiento"/>
+		<property name="com.jaspersoft.studio.field.label" value="FechaNacimiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pacientes"/>
+	</field>
+	<field name="Telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="Telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pacientes"/>
+	</field>
+	<field name="Correo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Correo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Correo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pacientes"/>
+	</field>
+	<background height="106"/>
+	<title height="72">
+		<element kind="frame" uuid="15f1f5eb-a446-40ff-b3e5-d473282f8a56" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699">
+			<element kind="staticText" uuid="bddd71ef-4b1a-4a75-937d-dd34b739d462" x="20" y="20" width="234" height="43" forecolor="#FFFFFF" fontName="Poppins Medium" fontSize="25.0" bold="true">
+				<text><![CDATA[Clinica Dental]]></text>
+			</element>
+			<element kind="staticText" uuid="690eb564-bb04-471f-964f-c4435a2781e4" x="400" y="30" width="180" height="20" forecolor="#FFFFFF" fontName="Poppins Light" fontSize="12.0" bold="false" hTextAlign="Right">
+				<text><![CDATA[Listado de Pacientes]]></text>
+			</element>
+		</element>
+	</title>
+	<pageHeader height="13"/>
+	<columnHeader height="43">
+		<element kind="line" uuid="b9d37668-a598-431c-af93-3325796ea608" x="-20" y="37" width="595" height="1" forecolor="#666666">
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+		</element>
+		<element kind="staticText" uuid="257a951f-2094-4321-a416-47fe3bfcdbd3" x="0" y="10" width="50" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Nombre]]></text>
+		</element>
+		<element kind="staticText" uuid="f82881c3-a7dc-47d7-b624-3f316ece0403" x="80" y="11" width="90" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Apellido Paterno]]></text>
+		</element>
+		<element kind="staticText" uuid="e070cc00-9b54-4536-8c97-4ea787671e05" x="190" y="10" width="100" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Apellido Materno]]></text>
+		</element>
+		<element kind="staticText" uuid="3e728a74-5dcf-4ca4-9fdd-6bb18ab58c81" x="310" y="10" width="100" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Fecha Nacimiento]]></text>
+		</element>
+		<element kind="staticText" uuid="fca80bf7-f4ae-427d-b544-4d880e66c2a2" x="440" y="10" width="50" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Telefono]]></text>
+		</element>
+		<element kind="staticText" uuid="8435cb83-c225-4118-89b4-398f33bb51dd" x="510" y="10" width="45" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Correo]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="47">
+			<element kind="frame" uuid="8850128d-c412-42ef-b884-1cb464d63135" x="-20" y="0" width="595" height="47">
+				<element kind="textField" uuid="71e67fd8-c437-44a8-b3e9-6e3237f3b77a" x="20" y="0" width="60" height="20" textAdjust="StretchHeight" vTextAlign="Middle">
+					<expression><![CDATA[$F{Nombre}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd8c9b9c-be58-460c-88ec-242e36e823a0"/>
+				</element>
+				<element kind="textField" uuid="fc78c4f2-d4d6-4ed7-8608-03f2ccf3f9f5" x="100" y="0" width="90" height="20" textAdjust="StretchHeight" vTextAlign="Middle">
+					<expression><![CDATA[$F{ApellidoPaterno}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d66a4770-43cd-46db-967f-646b0186a694"/>
+				</element>
+				<element kind="textField" uuid="91bcb911-f733-4462-bf9a-ee82f3bdcebc" x="210" y="0" width="100" height="20" textAdjust="StretchHeight" vTextAlign="Middle">
+					<expression><![CDATA[$F{ApellidoMaterno}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cc438dec-c65d-4687-8ea3-a3cac91eff68"/>
+				</element>
+				<element kind="textField" uuid="ac021891-8282-4d6f-a133-7332d7f4eabf" x="330" y="0" width="100" height="20" textAdjust="StretchHeight" vTextAlign="Middle">
+					<expression><![CDATA[$F{FechaNacimiento}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="faf242b5-2188-49de-83a3-1cf659ef11c9"/>
+				</element>
+				<element kind="textField" uuid="15eb28d8-8990-45d7-ac76-73d870dad0d9" x="460" y="0" width="60" height="20" textAdjust="StretchHeight" vTextAlign="Middle">
+					<expression><![CDATA[$F{Telefono}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ca6b7865-3d6f-48d3-9ee4-e96797fa7e07"/>
+				</element>
+				<element kind="textField" uuid="54ce67ac-ce09-46b5-955a-8862d919eeab" x="530" y="0" width="50" height="20" textAdjust="StretchHeight" vTextAlign="Middle">
+					<expression><![CDATA[$F{Correo}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5bf7e32b-43fa-4c78-9601-adc9cf787432"/>
+				</element>
+			</element>
+		</band>
+	</detail>
+	<columnFooter/>
+	<pageFooter height="17"/>
+	<summary/>
+</jasperReport>
