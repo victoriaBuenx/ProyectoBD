@@ -31,6 +31,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private int idHistorialMedicoSeleccionado = -1;
     private int idTratamientoSeleccionado = -1;  
+    private int idProductoSeleccionado = -1;
     VisualizarTablas visualizarTab= new VisualizarTablas();
     ValidarCampos validarCamp= new ValidarCampos();
     LimpiarCampos limpiar= new LimpiarCampos();
@@ -200,6 +201,12 @@ public class Inicio extends javax.swing.JFrame {
         btnActualizarProductos = new javax.swing.JButton();
         btnEliminarProductos = new javax.swing.JButton();
         btnVisualizarProductos = new javax.swing.JButton();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        txtCantidadDisponible = new javax.swing.JTextField();
+        jLabel54 = new javax.swing.JLabel();
+        cbxProveedores = new javax.swing.JComboBox<>();
+        jdFechaRegistroP = new com.toedter.calendar.JDateChooser();
         jPanel9 = new javax.swing.JPanel();
         txtTelefonoProveedor = new javax.swing.JTextField();
         jLabel50 = new javax.swing.JLabel();
@@ -312,6 +319,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jButton1.setText("Reporte");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,36 +333,37 @@ public class Inicio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnRegistrarPacientes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnActualizarPacientes))
-                    .addComponent(jdNacimientoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(txtApellidoMatPaciente)
-                    .addComponent(txtApellidoPatPaciente)
-                    .addComponent(txtTelefonoPaciente)
-                    .addComponent(txtNombrePaciente))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminarPacientes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVisualizarPacientes))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnRegistrarPacientes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnActualizarPacientes))
+                            .addComponent(jdNacimientoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(txtApellidoMatPaciente)
+                            .addComponent(txtApellidoPatPaciente)
+                            .addComponent(txtTelefonoPaciente)
+                            .addComponent(txtNombrePaciente))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel6)
-                                .addComponent(txtCorreoPaciente)
-                                .addComponent(jLabel7)
-                                .addComponent(jdFechaRegistroPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminarPacientes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnVisualizarPacientes))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6)
+                                    .addComponent(txtCorreoPaciente)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jdFechaRegistroPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))))
+                    .addComponent(jButton1))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
@@ -386,21 +395,21 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(txtApellidoMatPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jdNacimientoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                        .addGap(16, 16, 16)
+                        .addComponent(jdNacimientoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtTelefonoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRegistrarPacientes)
                             .addComponent(btnActualizarPacientes)
                             .addComponent(btnEliminarPacientes)
                             .addComponent(btnVisualizarPacientes))
-                        .addGap(53, 53, 53))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(21, 21, 21))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -1243,13 +1252,13 @@ public class Inicio extends javax.swing.JFrame {
 
         jTable7.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Nombre del prducto", "Descripción", "Precio Unitario"
+                "id", "Proveedor", "Nombre del prducto", "Descripción", "Precio Unitario", "Cantidad Disponible", "Precio Total", "Fecha de Registro"
             }
         ));
         jTable7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1293,20 +1302,24 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        jLabel49.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel49.setText("Cantidad disponible:");
+
+        jLabel44.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel44.setText("Fecha de registro:");
+
+        jLabel54.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel54.setText("Proveedor:");
+
+        jdFechaRegistroP.setToolTipText("yyyy/mm/dd");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel43)
-                        .addComponent(jLabel48)
-                        .addComponent(jLabel46)
-                        .addComponent(txtPrecioProducto)
-                        .addComponent(txtNombreProducto)
-                        .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(btnRegistrarProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1314,8 +1327,25 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminarProductos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVisualizarProductos)))
-                .addGap(100, 100, 100)
+                        .addComponent(btnVisualizarProductos)
+                        .addGap(100, 100, 100))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel43)
+                            .addComponent(jLabel48)
+                            .addComponent(jLabel46)
+                            .addComponent(txtPrecioProducto)
+                            .addComponent(txtNombreProducto)
+                            .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                            .addComponent(jLabel54)
+                            .addComponent(cbxProveedores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel44)
+                            .addComponent(jLabel49)
+                            .addComponent(txtCantidadDisponible, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                            .addComponent(jdFechaRegistroP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(50, 50, 50)))
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(10, Short.MAX_VALUE))
         );
@@ -1325,24 +1355,39 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel46)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel48)
-                        .addGap(3, 3, 3)
-                        .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel43)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPrecioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnRegistrarProducto)
-                            .addComponent(btnActualizarProductos)
-                            .addComponent(btnEliminarProductos)
-                            .addComponent(btnVisualizarProductos))
-                        .addGap(53, 53, 53))
+                            .addComponent(jLabel54)
+                            .addComponent(jLabel49))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCantidadDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel46)
+                            .addComponent(jLabel44))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel48)
+                                .addGap(3, 3, 3)
+                                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel43)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPrecioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jdFechaRegistroP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnRegistrarProducto)
+                                    .addComponent(btnActualizarProductos)
+                                    .addComponent(btnEliminarProductos)
+                                    .addComponent(btnVisualizarProductos))
+                                .addGap(53, 53, 53))))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(37, Short.MAX_VALUE))))
@@ -1674,7 +1719,7 @@ public class Inicio extends javax.swing.JFrame {
                         llenarComboBox();
                         limpiar.limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal, cbxPacientesTratamientos, jpFechaInicioTrat, jpFechaFinTrat);
                     } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo registrar el paciente tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "No se pudo registrar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo registrar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1712,25 +1757,40 @@ public class Inicio extends javax.swing.JFrame {
     private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
         // TODO add your handling code here:
          if (validarCamposProductos()) {
-            String nombreProducto = txtNombreProducto.getText();
-            String descripcion = txaDescripcionProducto.getText();
-            int precioUnitario;
-            try {
-                precioUnitario = Integer.parseInt(txtPrecioProducto.getText());
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
-                precioUnitario = 0;
-            }
+                String nombreProducto = txtNombreProducto.getText();
+                String descripcion = txaDescripcionProducto.getText();
+                int precioUnitario;
+                int cantidadDisponible;
+                Date FechaRegistro = jdFechaRegistroP.getDate();
 
-            ProductosDao productosDao = new ProductosDao();
-            boolean resultado = productosDao.insertarProductos(nombreProducto, descripcion, precioUnitario);
-            if (resultado) {
-                verTablaProductos();
-                limpiar.limpiarCampos(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto);
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo registrar el Producto.", "Error", JOptionPane.ERROR_MESSAGE);
+                try {
+                    precioUnitario = Integer.parseInt(txtPrecioProducto.getText());
+                    cantidadDisponible = Integer.parseInt(txtCantidadDisponible.getText());
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
+                    precioUnitario = 0;
+                    cantidadDisponible = 0;
+                }
+
+                ProductosDao productosDao = new ProductosDao();
+                int idProducto = productosDao.insertarProductos(nombreProducto, descripcion, precioUnitario);
+
+                if (idProducto != -1) {  
+                    int idProveedor = Integer.parseInt(cbxProveedores.getSelectedItem().toString().split("-")[0].trim());
+                    ProveedorProductoDao proveedorProvDao = new ProveedorProductoDao ();
+                    boolean resultado = proveedorProvDao.insertarProveedorProducto(idProveedor, idProducto, cantidadDisponible, FechaRegistro);
+
+                    if (resultado) {
+                        verTablaProductos();
+                        llenarComboBox();
+                        limpiar.limpiarCampos(cbxProveedores, txtNombreProducto, txaDescripcionProducto, txtPrecioProducto, txtCantidadDisponible, jdFechaRegistroP);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se pudo registrar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo registrar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
-        }
     }//GEN-LAST:event_btnRegistrarProductoActionPerformed
 
     private void btnVisualizarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarCitasActionPerformed
@@ -1951,10 +2011,10 @@ public class Inicio extends javax.swing.JFrame {
                     if (resultadoPacienteTrat) {
                         verTablaTratamientos();
                     } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo actualizar el PacienteTratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "No se pudo actualizar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo actualizar el Tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "No se pudo actualizar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
             limpiar.limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal, cbxPacientesTratamientos, jpFechaInicioTrat, jpFechaFinTrat);
@@ -2212,13 +2272,15 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         int filaSeleccionada = jTable7.getSelectedRow();
         if (filaSeleccionada != -1) {
-            String nombreProducto = (String) jTable7.getValueAt(filaSeleccionada, 1);
-            String descripcion = (String) jTable7.getValueAt(filaSeleccionada, 2);
-            int precioUnitario = (int) jTable7.getValueAt(filaSeleccionada, 3);
-
-            txtNombreProducto.setText(nombreProducto);
-            txaDescripcionProducto.setText(descripcion);
-            txtPrecioProducto.setText(String.valueOf(precioUnitario));
+            int idProducto = Integer.parseInt(jTable7.getValueAt(filaSeleccionada, 0).toString());
+            cbxProveedores.setSelectedItem(jTable7.getValueAt(filaSeleccionada, 1).toString());
+            txtNombreProducto.setText(jTable7.getValueAt(filaSeleccionada, 2).toString());
+            txaDescripcionProducto.setText(jTable7.getValueAt(filaSeleccionada, 3).toString());
+            txtPrecioProducto.setText(jTable7.getValueAt(filaSeleccionada, 4).toString());
+            txtCantidadDisponible.setText(jTable7.getValueAt(filaSeleccionada, 5).toString());
+            jdFechaRegistroP.setDate((Date) jTable7.getValueAt(filaSeleccionada, 7));
+            
+            idProductoSeleccionado= idProducto;
         }
     }//GEN-LAST:event_jTable7MouseClicked
 
@@ -2230,25 +2292,40 @@ public class Inicio extends javax.swing.JFrame {
             String nombreProducto = txtNombreProducto.getText();
             String descripcion = txaDescripcionProducto.getText();
             int precioUnitario;
+            int cantidadDisponible;
+
             try {
                 precioUnitario = Integer.parseInt(txtPrecioProducto.getText());
+                cantidadDisponible = Integer.parseInt(txtCantidadDisponible.getText());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
                 precioUnitario = 0;
+                cantidadDisponible = 0;
             }
             
-            if (validarCamposProductos()){
-                ProductosDao productosDao = new ProductosDao();
-                boolean resultado = productosDao.actualizarProducto(idProducto, nombreProducto, descripcion, precioUnitario);
-                
-                if (resultado) {
-                    verTablaProductos();
+           ProductosDao productosDao = new ProductosDao();
+           boolean resultadoProductos = productosDao.actualizarProducto(idProducto, nombreProducto, descripcion, precioUnitario);
+
+                if (resultadoProductos) {
+                    int idProveedor = Integer.parseInt(cbxProveedores.getSelectedItem().toString().split("-")[0].trim());
+                    ProveedorProductoDao proveedorProdDao= new ProveedorProductoDao();
+
+                    int idProveedorProducto = proveedorProdDao.obtenerIdProveedorProducto(idProveedor, idProducto);
+
+                    Date FechaRegistro = jdFechaRegistroP.getDate();
+
+                    boolean resultadoProveedorProd = proveedorProdDao.actualizarProveedorProducto(idProveedorProducto, idProveedor, idProducto, cantidadDisponible, FechaRegistro);
+
+                    if (resultadoProveedorProd) {
+                        verTablaProductos();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se pudo actualizar el Producto.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo actualizar el Producto.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }   
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione un producto para actualizar.", "Error", JOptionPane.WARNING_MESSAGE);
-        }
-        limpiar.limpiarCampos(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto);
+            }
+        limpiar.limpiarCampos(cbxProveedores, txtNombreProducto, txaDescripcionProducto, txtPrecioProducto, txtCantidadDisponible, jdFechaRegistroP);
     }//GEN-LAST:event_btnActualizarProductosActionPerformed
 
     private void btnEliminarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductosActionPerformed
@@ -2264,7 +2341,7 @@ public class Inicio extends javax.swing.JFrame {
 
                 if (resultado) {
                     verTablaProductos();
-                    limpiar.limpiarCampos(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto);
+                    limpiar.limpiarCampos(cbxProveedores, txtNombreProducto, txaDescripcionProducto, txtPrecioProducto, txtCantidadDisponible, jdFechaRegistroP);
                 }else {
                     JOptionPane.showMessageDialog(this, "No se pudo eliminar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -2449,8 +2526,11 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     private void verTablaProductos() {
-        String sql = "SELECT * FROM Productos";
-        String[] columnas = {"idProducto", "NombreProducto", "Descripcion", "PrecioUnitario"};
+        String sql = "SELECT p.idProducto, p.NombreProducto, p.Descripcion, p.PrecioUnitario, " +
+                     "pp.idProveedor, pp.PrecioTotal, pp.CantidadDisponible, pp.FechaRegistro " +
+                     "FROM Productos p " +
+                     "INNER JOIN ProveedorProducto pp ON p.idProducto= pp.idProducto";
+        String[] columnas = {"idProducto","idProveedor", "NombreProducto", "Descripcion", "PrecioUnitario","CantidadDisponible" , "PrecioTotal", "FechaRegistro"};
         visualizarTab.cargarDatos(jTable7, sql, columnas);
     }
     
@@ -2461,6 +2541,8 @@ public class Inicio extends javax.swing.JFrame {
         ComboBoxUtils.llenarComboBox(cbxDentistasCitas, "SELECT idDentista, Nombre FROM Dentistas", "idDentista", "Nombre");
         ComboBoxUtils.llenarComboBox(cbxDentistasTratamientos, "SELECT idDentista, Nombre FROM Dentistas", "idDentista", "Nombre");
         ComboBoxUtils.llenarComboBox(cbxTratamientoPagos, "SELECT idTratamiento, Nombre FROM Tratamientos", "idTratamiento", "Nombre");
+        ComboBoxUtils.llenarComboBox(cbxProveedores, "SELECT idProveedor, Nombre FROM Proveedores", "idProveedor", "Nombre");
+
     }
 
     private int obtenerIdPacienteSeleccionado() {
@@ -2549,6 +2631,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxPacientesCitas;
     private javax.swing.JComboBox<String> cbxPacientesHistorial;
     private javax.swing.JComboBox<String> cbxPacientesTratamientos;
+    private javax.swing.JComboBox<String> cbxProveedores;
     private javax.swing.JComboBox<String> cbxTratamientoPagos;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -2579,13 +2662,16 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
@@ -2632,6 +2718,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTable jTable9;
     private com.toedter.calendar.JDateChooser jdFechaCita;
     private com.toedter.calendar.JDateChooser jdFechaPago;
+    private com.toedter.calendar.JDateChooser jdFechaRegistroP;
     private com.toedter.calendar.JDateChooser jdFechaRegistroPaciente;
     private com.toedter.calendar.JDateChooser jdNacimientoPaciente;
     private com.toedter.calendar.JDateChooser jpFechaFinTrat;
@@ -2648,6 +2735,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTextField txtApellidoPatPaciente;
     private javax.swing.JTextArea txtAreaDescripcion;
     private javax.swing.JTextArea txtAreaNotas;
+    private javax.swing.JTextField txtCantidadDisponible;
     private javax.swing.JTextField txtCorreoDentista;
     private javax.swing.JTextField txtCorreoPaciente;
     private javax.swing.JTextField txtCorreoProveedor;
