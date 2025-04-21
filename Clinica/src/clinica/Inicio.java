@@ -2477,13 +2477,15 @@ public class Inicio extends javax.swing.JFrame {
                 String notas = txtAreaNotas.getText();
                 
                 CitasDao citasDao = new CitasDao();
-                boolean resultado = citasDao.insertarCita(idPaciente, idDentista, fecha, hora, motivo, notas);
-                if (resultado) {
+                boolean resultado = citasDao.registrarCitaYActualizarHistorial(idPaciente, idDentista, fecha, hora, motivo, notas);
+                
+                if ("OK".equals(resultado)) {
                     verTablaCitas();  
                     llenarComboBox(); 
                     limpiar.limpiarCampos(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas);
+                    JOptionPane.showMessageDialog(this, "Cita registrada y historial actualizado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, resultado, "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
     }//GEN-LAST:event_btnRegistrarCitasActionPerformed
