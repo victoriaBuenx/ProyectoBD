@@ -324,6 +324,7 @@ public class Inicio extends javax.swing.JFrame {
         jTable6 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Clinica Dental");
         setForeground(java.awt.Color.white);
         setPreferredSize(new java.awt.Dimension(1380, 750));
 
