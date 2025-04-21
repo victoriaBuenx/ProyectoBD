@@ -43,24 +43,17 @@ public class PacientesDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Paciente registrado con éxito.");
+                JOptionPane.showMessageDialog(null, "Paciente registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 cbxPacientes.llenarComboBox();
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar el paciente.");
+                JOptionPane.showMessageDialog(null, "No se pudo registrar el paciente.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al insertar paciente: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (ps != null) ps.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
-            }
         }
     }
     
@@ -84,10 +77,10 @@ public class PacientesDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Paciente actualizado con éxito.");
+                JOptionPane.showMessageDialog(null, "Paciente actualizado con éxito." , "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar el paciente.");
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el paciente.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException e) {
@@ -108,10 +101,10 @@ public class PacientesDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Paciente eliminado con éxito.");
+                JOptionPane.showMessageDialog(null, "Paciente eliminado con éxito." ,"Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo eliminar el paciente.");
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar el paciente.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException e) {

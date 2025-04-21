@@ -34,10 +34,10 @@ public class ProveedoresDao {
             int filasAfectadas = ps.executeUpdate();
             
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Proveedor registrado con éxito.");
+                JOptionPane.showMessageDialog(null, "Proveedor registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar el proveedor.");
+                JOptionPane.showMessageDialog(null, "No se pudo registrar el proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             } 
         } catch (SQLException ex) {
@@ -62,10 +62,10 @@ public class ProveedoresDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Proveedor actualizado con éxito.");
+                JOptionPane.showMessageDialog(null, "Proveedor actualizado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar el proveedor.");
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException ex) {
@@ -74,7 +74,7 @@ public class ProveedoresDao {
         }
     }
      
-     public boolean eliminarProveedor(int idProveedor) {
+    public boolean eliminarProveedor(int idProveedor) {
         String sql = "DELETE FROM Proveedores WHERE idProveedor = ?";
 
         try (Connection con = new Conexion().conexion();
@@ -85,16 +85,15 @@ public class ProveedoresDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Proveedor eliminado con éxito.");
+                JOptionPane.showMessageDialog(null, "Proveedor eliminado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo eliminar el proveedor.");
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar el proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al eliminar proveedor: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-    }
-     
+    }  
 }

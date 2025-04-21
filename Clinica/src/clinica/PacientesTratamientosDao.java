@@ -36,7 +36,6 @@ public class PacientesTratamientosDao {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "PacienteTratamiento registrado con éxito.");
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo registrar el PacienteTratamiento.");
