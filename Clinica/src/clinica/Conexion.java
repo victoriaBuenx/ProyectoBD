@@ -16,7 +16,7 @@ public class Conexion {
     public Connection conexion() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/clinicadental", "root" , "mamapapa41");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/clinicadental", "root" , "myg0903.");
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, "Error: No se encontró el driver JDBC.");
             e.printStackTrace();

@@ -2486,7 +2486,7 @@ public class Inicio extends javax.swing.JFrame {
                     limpiar.limpiarCampos(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas);
                     JOptionPane.showMessageDialog(this, "Cita registrada y historial actualizado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, resultado, "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "El paciente no tiene historial médico. No se puede actualizar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
     }//GEN-LAST:event_btnRegistrarCitasActionPerformed
