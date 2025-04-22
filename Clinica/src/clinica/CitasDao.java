@@ -140,7 +140,7 @@ public class CitasDao {
             rs = psVerificarHistorial.executeQuery();
 
             if (!rs.next()) {
-                JOptionPane.showMessageDialog(null, "El paciente no tiene historial médico. No se puede registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
+                //JOptionPane.showMessageDialog(null, "El paciente no tiene historial médico. No se puede registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
 
@@ -172,7 +172,6 @@ public class CitasDao {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            JOptionPane.showMessageDialog(null, "El paciente no tiene historial médico. No se registro la cita ", "Error SQL", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return false;
         } finally {
