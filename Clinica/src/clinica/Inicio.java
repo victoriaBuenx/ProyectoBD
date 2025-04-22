@@ -2478,13 +2478,15 @@ public class Inicio extends javax.swing.JFrame {
                 String notas = txtAreaNotas.getText();
                 
                 CitasDao citasDao = new CitasDao();
-                boolean resultado = citasDao.insertarCita(idPaciente, idDentista, fecha, hora, motivo, notas);
-                if (resultado) {
+                boolean resultado = citasDao.registrarCitaYActualizarHistorial(idPaciente, idDentista, fecha, hora, motivo, notas);
+                
+                if ("OK".equals(resultado)) {
                     verTablaCitas();  
                     llenarComboBox(); 
                     limpiar.limpiarCampos(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas);
+                    JOptionPane.showMessageDialog(this, "Cita registrada y historial actualizado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, resultado, "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
     }//GEN-LAST:event_btnRegistrarCitasActionPerformed
@@ -2606,40 +2608,40 @@ public class Inicio extends javax.swing.JFrame {
     private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
         // TODO add your handling code here:
          if (validarCamposProductos()) {
-                String nombreProducto = txtNombreProducto.getText();
-                String descripcion = txaDescripcionProducto.getText();
-                int precioUnitario;
-                int cantidadDisponible;
-                Date FechaRegistro = jdFechaRegistroP.getDate();
+            String nombreProducto = txtNombreProducto.getText();
+            String descripcion = txaDescripcionProducto.getText();
+            int precioUnitario = 0;
+            int cantidadDisponible = 0;
+            Date fechaRegistro = jdFechaRegistroP.getDate();
 
-                try {
-                    precioUnitario = Integer.parseInt(txtPrecioProducto.getText());
-                    cantidadDisponible = Integer.parseInt(txtCantidadDisponible.getValue().toString());
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
-                    precioUnitario = 0;
-                    cantidadDisponible = 0;
-                }
-
-                ProductosDao productosDao = new ProductosDao();
-                int idProducto = productosDao.insertarProductos(nombreProducto, descripcion, precioUnitario);
-
-                if (idProducto != -1) {  
-                    int idProveedor = Integer.parseInt(cbxProveedores.getSelectedItem().toString().split("-")[0].trim());
-                    ProveedorProductoDao proveedorProvDao = new ProveedorProductoDao ();
-                    boolean resultado = proveedorProvDao.insertarProveedorProducto(idProveedor, idProducto, cantidadDisponible, FechaRegistro);
-
-                    if (resultado) {
-                        verTablaProductos();
-                        llenarComboBox();
-                        limpiar.limpiarCampos(cbxProveedores, txtNombreProducto, txaDescripcionProducto, txtPrecioProducto, txtCantidadDisponible, jdFechaRegistroP);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo registrar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo registrar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+            try {
+                precioUnitario = Integer.parseInt(txtPrecioProducto.getText());
+                cantidadDisponible = Integer.parseInt(txtCantidadDisponible.getValue().toString());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un monto válido", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
+
+            int idProveedor = Integer.parseInt(cbxProveedores.getSelectedItem().toString().split("-")[0].trim());
+
+            ProductosDao productosDao = new ProductosDao();
+            boolean resultado = productosDao.registrarProductoConProveedor(
+                nombreProducto,
+                descripcion,
+                precioUnitario,
+                idProveedor,
+                cantidadDisponible,
+                fechaRegistro
+            );
+
+            if (resultado) {
+                verTablaProductos();
+                llenarComboBox();
+                limpiar.limpiarCampos(cbxProveedores, txtNombreProducto, txaDescripcionProducto, txtPrecioProducto, txtCantidadDisponible, jdFechaRegistroP);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo registrar el producto y proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnRegistrarProductoActionPerformed
 
     private void btnVisualizarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarCitasActionPerformed
@@ -2652,28 +2654,38 @@ public class Inicio extends javax.swing.JFrame {
     private void btnActualizarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCitasActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable3.getSelectedRow();
-            if (filaSeleccionada != -1) {
-
-            int idCita = (int)jTable3.getValueAt(filaSeleccionada, 0); 
-            int idPaciente = Integer.parseInt(cbxPacientesCitas.getSelectedItem().toString().split("-")[0].trim());  
+    
+        if (filaSeleccionada != -1) {
+            // Obtener datos de la fila seleccionada
+            int idCita = (int) jTable3.getValueAt(filaSeleccionada, 0);
+            int idPaciente = Integer.parseInt(cbxPacientesCitas.getSelectedItem().toString().split("-")[0].trim());
             int idDentista = Integer.parseInt(cbxDentistasCitas.getSelectedItem().toString().split("-")[0].trim());
             Date fecha = jdFechaCita.getDate();
             String hora = txtHoraCita.getText();
             String motivo = txtMotivoCita.getText();
             String notas = txtAreaNotas.getText();
-            
-            if(validarCamposCitas()){
+
+            // Verificar si los campos son válidos
+            if (validarCamposCitas()) {
                 CitasDao citasDao = new CitasDao();
-                boolean resultado = citasDao.actualizarCita(idCita, idPaciente, idDentista, fecha, hora, motivo, notas);
-               
+
+                // Ejecutar la transacción de actualización
+                boolean resultado = citasDao.actualizarCitaYHistorial(idCita, idPaciente, idDentista, fecha, hora, motivo, notas);
+
                 if (resultado) {
                     verTablaCitas();
+                    llenarComboBox();
+
+                    limpiar.limpiarCampos(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas);
+
+                    JOptionPane.showMessageDialog(this, "Cita y historial actualizados con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo actualizar la cita ni el historial.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        }else {
-            JOptionPane.showMessageDialog(this, "Por favor selecciona una cita de la tabla." , "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona una cita de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-        limpiar.limpiarCampos(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita, txtAreaNotas);
     }//GEN-LAST:event_btnActualizarCitasActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
@@ -3122,45 +3134,44 @@ public class Inicio extends javax.swing.JFrame {
     private void btnActualizarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarProductosActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable7.getSelectedRow();
-        if (filaSeleccionada != -1) {
+        if (filaSeleccionada != -1 && validarCamposProductos()) {
             int idProducto = (int) jTable7.getValueAt(filaSeleccionada, 0);
             String nombreProducto = txtNombreProducto.getText();
             String descripcion = txaDescripcionProducto.getText();
-            int precioUnitario;
-            int cantidadDisponible;
+            Date fechaRegistro = jdFechaRegistroP.getDate();
+
+            int precioUnitario = 0;
+            int cantidadDisponible = 0;
 
             try {
                 precioUnitario = Integer.parseInt(txtPrecioProducto.getText());
                 cantidadDisponible = Integer.parseInt(txtCantidadDisponible.getValue().toString());
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Ingrese un monto valido", "Error", JOptionPane.ERROR_MESSAGE);
-                precioUnitario = 0;
-                cantidadDisponible = 0;
+                JOptionPane.showMessageDialog(null, "Ingrese un monto válido", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
-            
-           ProductosDao productosDao = new ProductosDao();
-           boolean resultadoProductos = productosDao.actualizarProducto(idProducto, nombreProducto, descripcion, precioUnitario);
 
-                if (resultadoProductos) {
-                    int idProveedor = Integer.parseInt(cbxProveedores.getSelectedItem().toString().split("-")[0].trim());
-                    ProveedorProductoDao proveedorProdDao= new ProveedorProductoDao();
+            int idProveedor = Integer.parseInt(cbxProveedores.getSelectedItem().toString().split("-")[0].trim());
 
-                    int idProveedorProducto = proveedorProdDao.obtenerIdProveedorProducto(idProveedor, idProducto);
+            ProductosDao productosDao = new ProductosDao();
+            boolean resultado = productosDao.actualizarProductoConProveedor(
+                idProducto,
+                nombreProducto,
+                descripcion,
+                precioUnitario,
+                idProveedor,
+                cantidadDisponible,
+                fechaRegistro
+            );
 
-                    Date FechaRegistro = jdFechaRegistroP.getDate();
-
-                    boolean resultadoProveedorProd = proveedorProdDao.actualizarProveedorProducto(idProveedorProducto, idProveedor, idProducto, cantidadDisponible, FechaRegistro);
-
-                    if (resultadoProveedorProd) {
-                        verTablaProductos();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo actualizar el Producto.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo actualizar el Producto.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+            if (resultado) {
+                verTablaProductos();
+                llenarComboBox();
+                limpiar.limpiarCampos(cbxProveedores, txtNombreProducto, txaDescripcionProducto, txtPrecioProducto, txtCantidadDisponible, jdFechaRegistroP);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar el producto y proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        limpiar.limpiarCampos(cbxProveedores, txtNombreProducto, txaDescripcionProducto, txtPrecioProducto, txtCantidadDisponible, jdFechaRegistroP);
+        }
     }//GEN-LAST:event_btnActualizarProductosActionPerformed
 
     private void btnEliminarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductosActionPerformed
@@ -3188,6 +3199,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnVisualizarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarProductosActionPerformed
         // TODO add your handling code here:
+        llenarComboBox();
         verTablaProductos();
         JOptionPane.showMessageDialog(this, "Datos de productos actualizados.", "Información", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnVisualizarProductosActionPerformed

@@ -55,47 +55,40 @@ public class ProveedorProductoDao {
         }
     }
     
-    public boolean actualizarProveedorProducto(int idProveedorProducto, int idProveedor, int idProducto, int CantidadDisponible, Date FechaRegistro) {
-        String sql = "UPDATE ProveedorProducto SET idProveedor = ?, idProducto = ?, CantidadDisponible = ?, FechaRegistro = ? WHERE idProveedorProducto = ?";
+    public boolean actualizarProveedorProducto(int idProveedorProducto, int idProveedor, int idProducto, int cantidadDisponible, Date fechaRegistro, int precioTotal) {
+        Connection con = null;
+        PreparedStatement ps = null;
 
-        try (Connection con = new Conexion().conexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+        try {
+            Conexion conexion = new Conexion();
+            con = conexion.conexion();
+
+            String sql = "UPDATE proveedorproducto SET idProveedor = ?, idProducto = ?, PrecioTotal = ?, CantidadDisponible = ?, FechaRegistro = ? WHERE idProveedorProducto = ?";
+            ps = con.prepareStatement(sql);
 
             ps.setInt(1, idProveedor);
             ps.setInt(2, idProducto);
-            ps.setInt(3, CantidadDisponible);
-            ps.setDate(4, new java.sql.Date(FechaRegistro.getTime()));
-            ps.setInt(5, idProveedorProducto);
+            ps.setInt(3, precioTotal); // Nuevo campo incluido correctamente
+            ps.setInt(4, cantidadDisponible);
+            ps.setDate(5, new java.sql.Date(fechaRegistro.getTime()));
+            ps.setInt(6, idProveedorProducto);
 
             int filasAfectadas = ps.executeUpdate();
-
             return filasAfectadas > 0;
+
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar ProveedorProducto: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
             return false;
+        } finally {
+            try {
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
     
-    public int obtenerIdProveedorProducto(int idProveedor, int idProducto) {
-        String sql = "SELECT idProveedorProducto FROM ProveedorProducto WHERE idProveedor = ? AND idProducto = ?";
-
-        try (Connection con = new Conexion().conexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setInt(1, idProveedor);
-            ps.setInt(2, idProducto);
-
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt("idProveedorProducto");
-                }
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al obtener idProveedorProducto: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-        }
-
-        return -1; // Retorna -1 si no se encuentra el idPacienteTratamiento
-    }
     
     public boolean eliminarProveedorProducto(int idProveedorProducto) {
         String sql = "DELETE FROM Pacientes WHERE idProveedor = ?";
@@ -120,5 +113,109 @@ public class ProveedorProductoDao {
             return false;
         }
     }
+    
+    public int obtenerIdProveedorProducto(int idProveedor, int idProducto) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            Conexion conexion = new Conexion();
+            con = conexion.conexion();
+
+            String sql = "SELECT idProveedorProducto FROM proveedorproducto WHERE idProveedor = ? AND idProducto = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idProveedor);
+            ps.setInt(2, idProducto);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("idProveedorProducto");
+            } else {
+                return -1; // No encontrado
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public boolean actualizarProductoConProveedor(int idProducto, String nombreProducto, String descripcion, int precioUnitario, 
+            int idProveedorProducto, int idProveedor, int cantidadDisponible, Date fechaRegistro) {
+        
+        Connection con = null;
+        PreparedStatement psActualizarProducto = null;
+        PreparedStatement psActualizarProveedorProducto = null;
+
+        try {
+            Conexion conexion = new Conexion();
+            con = conexion.conexion();
+            con.setAutoCommit(false); // Iniciar la transacción
+
+            // Actualizar producto
+            String sqlProducto = "UPDATE productos SET NombreProducto = ?, Descripcion = ?, PrecioUnitario = ? WHERE idProducto = ?";
+            psActualizarProducto = con.prepareStatement(sqlProducto);
+            psActualizarProducto.setString(1, nombreProducto);
+            psActualizarProducto.setString(2, descripcion);
+            psActualizarProducto.setInt(3, precioUnitario);
+            psActualizarProducto.setInt(4, idProducto);
+
+            int filasProducto = psActualizarProducto.executeUpdate();
+            if (filasProducto == 0) {
+                con.rollback();
+                return false;
+            }
+
+            // Calcular nuevo precio total
+            int precioTotal = precioUnitario * cantidadDisponible;
+
+            // Actualizar proveedorproducto
+            String sqlProveedorProducto = "UPDATE proveedorproducto SET idProveedor = ?, idProducto = ?, PrecioTotal = ?, CantidadDisponible = ?, FechaRegistro = ? WHERE idProveedorProducto = ?";
+            psActualizarProveedorProducto = con.prepareStatement(sqlProveedorProducto);
+            psActualizarProveedorProducto.setInt(1, idProveedor);
+            psActualizarProveedorProducto.setInt(2, idProducto);
+            psActualizarProveedorProducto.setInt(3, precioTotal);
+            psActualizarProveedorProducto.setInt(4, cantidadDisponible);
+            psActualizarProveedorProducto.setDate(5, new java.sql.Date(fechaRegistro.getTime()));
+            psActualizarProveedorProducto.setInt(6, idProveedorProducto);
+
+            int filasProveedorProducto = psActualizarProveedorProducto.executeUpdate();
+            if (filasProveedorProducto == 0) {
+                con.rollback();
+                return false;
+            }
+
+            con.commit(); // Confirmar los cambios
+            return true;
+
+        } catch (SQLException e) {
+            try {
+                if (con != null) con.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (psActualizarProducto != null) psActualizarProducto.close();
+                if (psActualizarProveedorProducto != null) psActualizarProveedorProducto.close();
+                if (con != null) con.setAutoCommit(true);
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     
 }

@@ -117,4 +117,149 @@ public class CitasDao {
             return false;
         }
     }  
+    
+    public boolean registrarCitaYActualizarHistorial(int idPaciente, int idDentista, Date fecha, String hora, String motivo, String notas) {
+        Connection con = null;
+        PreparedStatement psCita = null;
+        PreparedStatement psHistorial = null;
+        PreparedStatement psVerificarHistorial = null;
+        ResultSet rs = null;
+
+        String sqlCita = "INSERT INTO Citas (idPaciente, idDentista, Fecha, Hora, Motivo, Notas) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlVerificarHistorial = "SELECT idHistorialMedico FROM HistorialMedico WHERE idPaciente = ?";
+        String sqlActualizarHistorial = "UPDATE HistorialMedico SET UltimaActualizacion = ?, Observaciones = CONCAT(Observaciones, '\n[Cita el ', ?, '] Motivo: ', ?) WHERE idPaciente = ?";
+
+        try {
+            Conexion conexion = new Conexion();
+            con = conexion.conexion();
+            con.setAutoCommit(false);
+
+            // Verificar que el paciente tenga historial
+            psVerificarHistorial = con.prepareStatement(sqlVerificarHistorial);
+            psVerificarHistorial.setInt(1, idPaciente);
+            rs = psVerificarHistorial.executeQuery();
+
+            if (!rs.next()) {
+                JOptionPane.showMessageDialog(null, "El paciente no tiene historial médico. No se puede registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            // Insertar la cita
+            psCita = con.prepareStatement(sqlCita);
+            psCita.setInt(1, idPaciente);
+            psCita.setInt(2, idDentista);
+            psCita.setDate(3, new java.sql.Date(fecha.getTime()));
+            psCita.setString(4, hora);
+            psCita.setString(5, motivo);
+            psCita.setString(6, notas);
+            psCita.executeUpdate();
+
+            // Actualizar historial
+            psHistorial = con.prepareStatement(sqlActualizarHistorial);
+            psHistorial.setDate(1, new java.sql.Date(fecha.getTime()));
+            psHistorial.setDate(2, new java.sql.Date(fecha.getTime())); // para mostrar el día de la cita
+            psHistorial.setString(3, motivo);
+            psHistorial.setInt(4, idPaciente);
+            psHistorial.executeUpdate();
+
+            con.commit();
+            JOptionPane.showMessageDialog(null, "Cita registrada y historial actualizado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+
+        } catch (SQLException e) {
+            try {
+                if (con != null) con.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(null, "El paciente no tiene historial médico. No se registro la cita ", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (psVerificarHistorial != null) psVerificarHistorial.close();
+                if (psCita != null) psCita.close();
+                if (psHistorial != null) psHistorial.close();
+                if (con != null) con.setAutoCommit(true);
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar recursos: " + e.getMessage());
+            }
+        }
+    }
+    
+    public boolean actualizarCitaYHistorial(int idCita, int idPaciente, int idDentista, Date fecha, String hora, String motivo, String notas) {
+        Connection con = null;
+        PreparedStatement psActualizarCita = null;
+        PreparedStatement psActualizarHistorial = null;
+        PreparedStatement psVerificarHistorial = null;
+        ResultSet rs = null;
+
+        String sqlActualizarCita = "UPDATE Citas SET idPaciente = ?, idDentista = ?, Fecha = ?, Hora = ?, Motivo = ?, Notas = ? WHERE idCita = ?";
+        String sqlVerificarHistorial = "SELECT idHistorialMedico FROM HistorialMedico WHERE idPaciente = ?";
+        String sqlActualizarHistorial = "UPDATE HistorialMedico SET UltimaActualizacion = ?, Observaciones = CONCAT(Observaciones, '\n[Actualización el ', ?, '] Motivo: ', ?) WHERE idPaciente = ?";
+
+        try {
+            Conexion conexion = new Conexion();
+            con = conexion.conexion();
+            con.setAutoCommit(false); // Inicia la transacción
+
+            // Verificar historial
+            psVerificarHistorial = con.prepareStatement(sqlVerificarHistorial);
+            psVerificarHistorial.setInt(1, idPaciente);
+            rs = psVerificarHistorial.executeQuery();
+
+            if (!rs.next()) {
+                JOptionPane.showMessageDialog(null, "El paciente no tiene historial médico. No se puede actualizar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            // Actualizar cita
+            psActualizarCita = con.prepareStatement(sqlActualizarCita);
+            psActualizarCita.setInt(1, idPaciente);
+            psActualizarCita.setInt(2, idDentista);
+            psActualizarCita.setDate(3, new java.sql.Date(fecha.getTime()));
+            psActualizarCita.setString(4, hora);
+            psActualizarCita.setString(5, motivo);
+            psActualizarCita.setString(6, notas);
+            psActualizarCita.setInt(7, idCita);
+            psActualizarCita.executeUpdate();
+
+            // Actualizar historial
+            psActualizarHistorial = con.prepareStatement(sqlActualizarHistorial);
+            psActualizarHistorial.setDate(1, new java.sql.Date(fecha.getTime()));
+            psActualizarHistorial.setDate(2, new java.sql.Date(fecha.getTime()));
+            psActualizarHistorial.setString(3, motivo);
+            psActualizarHistorial.setInt(4, idPaciente);
+            psActualizarHistorial.executeUpdate();
+
+            con.commit();
+            return true;
+
+        } catch (SQLException e) {
+            try {
+                if (con != null) con.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (psVerificarHistorial != null) psVerificarHistorial.close();
+                if (psActualizarCita != null) psActualizarCita.close();
+                if (psActualizarHistorial != null) psActualizarHistorial.close();
+                if (con != null) con.setAutoCommit(true);
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+    
 }
