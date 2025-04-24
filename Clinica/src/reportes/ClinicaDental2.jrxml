@@ -6,16 +6,17 @@
 		<query language="sql"><![CDATA[]]></query>
 	</dataset>
 	<query language="sql"><![CDATA[SELECT CONCAT( Nombre,' ',ApellidoPaterno,' ',ApellidoMaterno) AS Nombre,
-	`FechaNacimiento`,
+	`Especialidad`,
 	`Telefono`,
-	`Correo`
-FROM clinicadental.pacientes]]></query>
+	`Correo`,
+	`HorarioAtencion`
+FROM clinicadental.dentistas]]></query>
 	<field name="Nombre" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="Nombre"/>
 		<property name="com.jaspersoft.studio.field.label" value="Nombre"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pacientes"/>
 	</field>
-	<field name="FechaNacimiento" class="java.lang.String">
+	<field name="Especialidad" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="FechaNacimiento"/>
 		<property name="com.jaspersoft.studio.field.label" value="FechaNacimiento"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pacientes"/>
@@ -30,20 +31,22 @@ FROM clinicadental.pacientes]]></query>
 		<property name="com.jaspersoft.studio.field.label" value="Correo"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pacientes"/>
 	</field>
+	<field name="HorarioAtencion" class="java.lang.String"/>
 	<background height="106"/>
 	<title height="115">
 		<element kind="frame" uuid="15f1f5eb-a446-40ff-b3e5-d473282f8a56" mode="Opaque" x="-20" y="-20" width="595" height="135" backcolor="#328AE1">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<element kind="staticText" uuid="bddd71ef-4b1a-4a75-937d-dd34b739d462" x="180" y="10" width="234" height="46" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="25.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
 				<text><![CDATA[Clinica Dental]]></text>
 			</element>
-			<element kind="staticText" uuid="690eb564-bb04-471f-964f-c4435a2781e4" x="207" y="55" width="180" height="25" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="12.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
-				<text><![CDATA[LISTADO DE PACIENTES]]></text>
+			<element kind="staticText" uuid="690eb564-bb04-471f-964f-c4435a2781e4" x="200" y="60" width="180" height="25" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="12.0" bold="false" hTextAlign="Center">
+				<text><![CDATA[LISTADO DE DENTISTAS]]></text>
 			</element>
-			<element kind="staticText" uuid="2167f1ad-c2e4-43a4-b007-4a823b26cfeb" x="33" y="80" width="529" height="45" forecolor="#FFFFFF" fontName="Poppins" fontSize="10.0" hTextAlign="Justified">
-				<text><![CDATA[Este reporte muestra el listado completo de pacientes registrados en el sistema de gestión clínica. Su propósito es facilitar el acceso rápido y organizado a los datos personales de los pacientes, permitiendo una mejor atención médica.]]></text>
+			<element kind="staticText" uuid="2167f1ad-c2e4-43a4-b007-4a823b26cfeb" x="23" y="85" width="549" height="50" forecolor="#FFFFFF" fontName="Poppins" fontSize="10.0" hTextAlign="Justified">
+				<text><![CDATA[Este reporte presenta el listado actualizado de los dentistas activos registrados en el sistema de la clínica dental. Su objetivo es proporcionar una visión clara y ordenada del personal odontológico disponible para la atención de pacientes.
+
+]]></text>
 			</element>
-			<element kind="image" uuid="21bebe3e-125a-43c8-b9be-9a9e322797ba" x="160" y="10" width="80" height="46" usingCache="false">
+			<element kind="image" uuid="21bebe3e-125a-43c8-b9be-9a9e322797ba" x="160" y="10" width="89" height="45" usingCache="false">
 				<expression><![CDATA["C:/Users/victo/OneDrive/Desktop/combination-letter-s-tooth-symbol-600nw-1495549139-removebg-preview.png"]]></expression>
 			</element>
 		</element>
@@ -53,37 +56,44 @@ FROM clinicadental.pacientes]]></query>
 		<element kind="line" uuid="b9d37668-a598-431c-af93-3325796ea608" x="-20" y="37" width="595" height="1" forecolor="#666666">
 			<property name="com.jaspersoft.studio.unit.y" value="px"/>
 		</element>
-		<element kind="staticText" uuid="257a951f-2094-4321-a416-47fe3bfcdbd3" x="0" y="10" width="50" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+		<element kind="staticText" uuid="257a951f-2094-4321-a416-47fe3bfcdbd3" x="0" y="10" width="170" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<text><![CDATA[Nombre]]></text>
 		</element>
-		<element kind="staticText" uuid="3e728a74-5dcf-4ca4-9fdd-6bb18ab58c81" x="170" y="10" width="100" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
-			<text><![CDATA[Fecha Nacimiento]]></text>
-		</element>
-		<element kind="staticText" uuid="fca80bf7-f4ae-427d-b544-4d880e66c2a2" x="280" y="10" width="80" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+		<element kind="staticText" uuid="fca80bf7-f4ae-427d-b544-4d880e66c2a2" x="270" y="10" width="50" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
 			<text><![CDATA[Telefono]]></text>
 		</element>
-		<element kind="staticText" uuid="8435cb83-c225-4118-89b4-398f33bb51dd" x="380" y="10" width="45" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+		<element kind="staticText" uuid="8435cb83-c225-4118-89b4-398f33bb51dd" x="350" y="11" width="45" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
 			<text><![CDATA[Correo]]></text>
+		</element>
+		<element kind="staticText" uuid="3e728a74-5dcf-4ca4-9fdd-6bb18ab58c81" x="180" y="10" width="70" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Especialidad]]></text>
+		</element>
+		<element kind="staticText" uuid="43f6157a-d125-482b-83cc-d268fd77c602" x="490" y="10" width="45" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Horario]]></text>
 		</element>
 	</columnHeader>
 	<detail>
 		<band height="47">
 			<element kind="frame" uuid="8850128d-c412-42ef-b884-1cb464d63135" x="-20" y="0" width="595" height="39">
-				<element kind="textField" uuid="71e67fd8-c437-44a8-b3e9-6e3237f3b77a" x="20" y="10" width="160" height="20" fontName="Poppins" textAdjust="StretchHeight" vTextAlign="Middle">
+				<element kind="textField" uuid="71e67fd8-c437-44a8-b3e9-6e3237f3b77a" x="20" y="10" width="170" height="20" fontName="Poppins" textAdjust="StretchHeight" vTextAlign="Middle">
 					<expression><![CDATA[$F{Nombre}]]></expression>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd8c9b9c-be58-460c-88ec-242e36e823a0"/>
 				</element>
-				<element kind="textField" uuid="ac021891-8282-4d6f-a133-7332d7f4eabf" x="190" y="10" width="100" height="20" fontName="Poppins" textAdjust="StretchHeight" vTextAlign="Middle">
-					<expression><![CDATA[$F{FechaNacimiento}]]></expression>
+				<element kind="textField" uuid="ac021891-8282-4d6f-a133-7332d7f4eabf" x="200" y="10" width="80" height="20" fontName="Poppins" textAdjust="StretchHeight" vTextAlign="Middle">
+					<expression><![CDATA[$F{Especialidad}]]></expression>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="faf242b5-2188-49de-83a3-1cf659ef11c9"/>
 				</element>
-				<element kind="textField" uuid="15eb28d8-8990-45d7-ac76-73d870dad0d9" x="300" y="10" width="86" height="20" fontName="Poppins" textAdjust="StretchHeight" vTextAlign="Middle">
+				<element kind="textField" uuid="15eb28d8-8990-45d7-ac76-73d870dad0d9" x="290" y="10" width="70" height="20" fontName="Poppins" textAdjust="StretchHeight" vTextAlign="Middle">
 					<expression><![CDATA[$F{Telefono}]]></expression>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ca6b7865-3d6f-48d3-9ee4-e96797fa7e07"/>
 				</element>
-				<element kind="textField" uuid="54ce67ac-ce09-46b5-955a-8862d919eeab" x="400" y="10" width="180" height="20" fontName="Poppins" textAdjust="StretchHeight" vTextAlign="Middle">
+				<element kind="textField" uuid="54ce67ac-ce09-46b5-955a-8862d919eeab" x="370" y="10" width="130" height="20" fontName="Poppins" textAdjust="StretchHeight" vTextAlign="Middle">
 					<expression><![CDATA[$F{Correo}]]></expression>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5bf7e32b-43fa-4c78-9601-adc9cf787432"/>
+				</element>
+				<element kind="textField" uuid="98bcb30a-9a85-4bff-974b-9c1782b4b2cb" x="510" y="11" width="70" height="20" fontName="Poppins">
+					<expression><![CDATA[$F{HorarioAtencion}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="125ff1e7-7c1e-4878-917f-dd4a78c2783c"/>
 				</element>
 				<box>
 					<pen lineColor="#FFFFFF"/>
@@ -95,7 +105,7 @@ FROM clinicadental.pacientes]]></query>
 			</element>
 		</band>
 	</detail>
-	<columnFooter height="31"/>
+	<columnFooter height="111"/>
 	<pageFooter height="17"/>
 	<summary/>
 </jasperReport>

@@ -1,0 +1,133 @@
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
+<jasperReport name="ClinicaDental" language="java" columnCount="1" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8263b428-e795-4c52-a8c6-754a2e3998d9">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BDClinica"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<dataset name="Dataset1" uuid="759e7af3-1af5-4d35-a00a-86b8de915441">
+		<query language="sql"><![CDATA[]]></query>
+	</dataset>
+	<query language="sql"><![CDATA[SELECT 
+    p.NombreProducto,
+    p.Descripcion,
+    p.PrecioUnitario,
+    pp.CantidadDisponible,
+    pp.PrecioTotal,
+    pp.FechaRegistro,
+    pr.Nombre AS Proveedor
+FROM productos p
+INNER JOIN proveedorproducto pp ON p.idProducto = pp.idProducto
+INNER JOIN proveedores pr ON pr.idProveedor = pp.idProveedor
+ORDER BY p.NombreProducto ASC
+]]></query>
+	<field name="NombreProducto" class="java.lang.String"/>
+	<field name="PrecioUnitario" class="java.lang.Integer"/>
+	<field name="CantidadDisponible" class="java.lang.Integer"/>
+	<field name="PrecioTotal" class="java.lang.Integer"/>
+	<field name="Descripcion" class="java.lang.String"/>
+	<field name="FechaRegistro" class="java.lang.String"/>
+	<field name="Proveedor" class="java.lang.String"/>
+	<background height="106"/>
+	<title height="115">
+		<element kind="frame" uuid="15f1f5eb-a446-40ff-b3e5-d473282f8a56" mode="Opaque" x="-20" y="-20" width="843" height="135" backcolor="#328AE1">
+			<element kind="staticText" uuid="bddd71ef-4b1a-4a75-937d-dd34b739d462" x="310" y="9" width="234" height="46" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="25.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Clinica Dental]]></text>
+			</element>
+			<element kind="staticText" uuid="690eb564-bb04-471f-964f-c4435a2781e4" x="190" y="60" width="450" height="25" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="12.0" bold="false" hTextAlign="Center">
+				<text><![CDATA[LISTADO DE PRODUCTOS EN INVENTARIO]]></text>
+			</element>
+			<element kind="staticText" uuid="2167f1ad-c2e4-43a4-b007-4a823b26cfeb" x="23" y="85" width="797" height="50" forecolor="#FFFFFF" fontName="Poppins" fontSize="10.0" hTextAlign="Justified">
+				<text><![CDATA[Este reporte muestra los productos disponibles en el inventario, incluyendo su descripción, precio unitario, cantidad actual, proveedor y la fecha de registro.]]></text>
+			</element>
+			<element kind="image" uuid="21bebe3e-125a-43c8-b9be-9a9e322797ba" x="290" y="10" width="89" height="45" usingCache="false">
+				<expression><![CDATA["C:/Users/victo/OneDrive/Desktop/combination-letter-s-tooth-symbol-600nw-1495549139-removebg-preview.png"]]></expression>
+			</element>
+		</element>
+	</title>
+	<pageHeader height="13"/>
+	<columnHeader height="47">
+		<element kind="line" uuid="b9d37668-a598-431c-af93-3325796ea608" x="-20" y="38" width="841" height="1" forecolor="#666666">
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+		</element>
+		<element kind="staticText" uuid="257a951f-2094-4321-a416-47fe3bfcdbd3" x="0" y="10" width="90" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Producto]]></text>
+		</element>
+		<element kind="staticText" uuid="fca80bf7-f4ae-427d-b544-4d880e66c2a2" x="270" y="11" width="98" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Precio Unitario]]></text>
+		</element>
+		<element kind="staticText" uuid="8435cb83-c225-4118-89b4-398f33bb51dd" x="380" y="11" width="58" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Cantidad ]]></text>
+		</element>
+		<element kind="staticText" uuid="3e728a74-5dcf-4ca4-9fdd-6bb18ab58c81" x="100" y="10" width="140" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Descripción]]></text>
+		</element>
+		<element kind="staticText" uuid="efd39898-54c8-43e8-8e9f-20470320ef4f" x="450" y="10" width="70" height="20" fontName="Poppins Medium" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Total]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db14ddbd-8b99-4f53-890e-8c850c1bb71a"/>
+		</element>
+		<element kind="staticText" uuid="43f6157a-d125-482b-83cc-d268fd77c602" x="530" y="10" width="120" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Fecha de Registro]]></text>
+		</element>
+		<element kind="staticText" uuid="5c9319ba-3fcc-4a3b-ab5d-d2e5850cb7e1" x="660" y="10" width="120" height="20" fontName="Poppins Medium" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Proveedor]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="46">
+			<element kind="frame" uuid="8850128d-c412-42ef-b884-1cb464d63135" x="-20" y="-4" width="842" height="50">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<element kind="textField" uuid="5e137048-0a96-4b32-8bb6-a6ac8bfafe9f" x="20" y="10" width="90" height="28" fontName="Poppins" fontSize="10.0" textAdjust="StretchHeight" vTextAlign="Middle">
+					<expression><![CDATA[$F{NombreProducto}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd68f9c1-c72a-4f1b-8d21-5f2236af7913"/>
+				</element>
+				<element kind="textField" uuid="99d3b0b9-82fa-4572-978c-c005613cc9e9" x="290" y="10" width="98" height="28" fontName="Poppins" vTextAlign="Middle">
+					<expression><![CDATA[$F{PrecioUnitario}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="13643e32-c0c6-4c6d-8173-a0f8b279898b"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="textField" uuid="a9007469-ccd8-4cb2-b520-21fd1923fd81" x="120" y="10" width="150" height="28" fontName="Poppins" textAdjust="StretchHeight" vTextAlign="Middle">
+					<expression><![CDATA[$F{Descripcion}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c6c2add-4e2c-48b9-869d-b7ac8237e5ce"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="textField" uuid="e50b736e-56a3-493a-8791-47cfcc1586c2" x="550" y="10" width="120" height="28" fontName="Poppins" vTextAlign="Middle">
+					<expression><![CDATA[$F{FechaRegistro}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e84b5567-f101-48b9-b362-7d80198755e7"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="textField" uuid="43e19f27-e355-4d96-9e96-19d96a4d0ac6" x="400" y="10" width="58" height="28" fontName="Poppins" textAdjust="StretchHeight" removeLineWhenBlank="true" vTextAlign="Middle">
+					<expression><![CDATA[$F{CantidadDisponible}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7915708a-5ea3-4dc7-be49-d09557a45172"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="textField" uuid="38483ebf-65b7-4c5d-92b5-527f82b0e6b2" x="470" y="10" width="70" height="28" fontName="Poppins" textAdjust="StretchHeight" vTextAlign="Middle">
+					<expression><![CDATA[$F{PrecioTotal}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9e708967-2976-4bef-a82d-6665209a8284"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="textField" uuid="87a73ae1-451d-4b63-a7cf-864021278a1d" x="680" y="10" width="140" height="28" fontName="Poppins" vTextAlign="Middle">
+					<expression><![CDATA[$F{Proveedor}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db14ddbd-8b99-4f53-890e-8c850c1bb71a"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#D6D2D2"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="111"/>
+	<pageFooter height="17"/>
+	<summary/>
+</jasperReport>
