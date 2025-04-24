@@ -18,18 +18,17 @@ import net.sf.jasperreports.engine.util.JRLoader;
  */
 public class ReporteClinica {
 
-    public void generarReporte() {
+    public void generarReporte(String nombreReporte, Map<String, Object> parametros) {
         try {
             JasperReport report = (JasperReport) JRLoader.loadObject(
-                getClass().getResource("/reportes/ClinicaDental.jasper")
+                getClass().getResource("/reportes/" + nombreReporte + ".jasper")
             );
 
             Conexion conexionBD = new Conexion();
-            Connection con = conexionBD.conexion(); 
+            Connection con = conexionBD.conexion();
 
             if (con != null) {
-                JasperPrint jprint = JasperFillManager.fillReport(report, null, con);
-
+                JasperPrint jprint = JasperFillManager.fillReport(report, parametros, con);
                 JasperViewer view = new JasperViewer(jprint, false);
                 view.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
                 view.setVisible(true);

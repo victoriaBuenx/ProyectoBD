@@ -44,7 +44,6 @@ public class Login extends javax.swing.JFrame {
         txtNombreUsuario = new javax.swing.JTextField();
         contraseña = new javax.swing.JPasswordField();
         btnIniciarSesion = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -89,9 +88,6 @@ public class Login extends javax.swing.JFrame {
                 btnIniciarSesionActionPerformed(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Poppins SemiBold", 0, 10)); // NOI18N
-        jLabel1.setText("¿Olvidaste tu contraseña?");
 
         jLabel3.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         jLabel3.setText("Clínica Dental");
@@ -139,8 +135,7 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1)
+                                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel9)
                             .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -167,11 +162,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(36, 36, 36)
                 .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123))
+                .addGap(139, 139, 139))
         );
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/clinica dental.png"))); // NOI18N
@@ -288,7 +281,6 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JPasswordField contraseña;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
