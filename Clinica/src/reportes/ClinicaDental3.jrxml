@@ -1,0 +1,175 @@
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
+<jasperReport name="ClinicaDental" language="java" columnCount="1" pageWidth="595" pageHeight="842" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8263b428-e795-4c52-a8c6-754a2e3998d9">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BDClinica"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<dataset name="Dataset1" uuid="759e7af3-1af5-4d35-a00a-86b8de915441">
+		<query language="sql"><![CDATA[]]></query>
+	</dataset>
+	<parameter name="idPaciente" class="java.lang.Integer"/>
+	<query language="sql"><![CDATA[SELECT h.idPaciente,
+	CONCAT(p.Nombre, ' ', p.ApellidoPaterno, ' ', p.ApellidoMaterno) AS paciente,
+	p.FechaNacimiento,
+	h.Alergias,
+	h.Enfermedades,
+	h.Medicacion,
+	h.Observaciones,
+	h.UltimaActualizacion
+FROM historialmedico h
+	INNER JOIN pacientes p ON p.idPaciente = h.idPaciente
+WHERE p.idPaciente = $P{idPaciente}
+]]></query>
+	<field name="Paciente" class="java.lang.String"/>
+	<field name="Alergias" class="java.lang.String"/>
+	<field name="Enfermedades" class="java.lang.String"/>
+	<field name="Medicacion" class="java.lang.String"/>
+	<field name="Observaciones" class="java.lang.String"/>
+	<field name="UltimaActualizacion" class="java.lang.String"/>
+	<field name="FechaNacimiento" class="java.lang.String"/>
+	<background height="106"/>
+	<title height="115">
+		<element kind="frame" uuid="15f1f5eb-a446-40ff-b3e5-d473282f8a56" mode="Opaque" x="-20" y="-20" width="595" height="135" backcolor="#328AE1">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<element kind="staticText" uuid="bddd71ef-4b1a-4a75-937d-dd34b739d462" x="190" y="9" width="234" height="46" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="25.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Clinica Dental]]></text>
+			</element>
+			<element kind="staticText" uuid="690eb564-bb04-471f-964f-c4435a2781e4" x="189" y="50" width="220" height="25" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="12.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[HISTORIAL MÉDICO DEL PACIENTE]]></text>
+			</element>
+			<element kind="staticText" uuid="2167f1ad-c2e4-43a4-b007-4a823b26cfeb" x="33" y="90" width="529" height="29" forecolor="#328AE1" markup="rtf" fontSize="10.0" hTextAlign="Justified">
+				<text><![CDATA[Este reporte muestra el listado completo de pacientes registrados en el sistema de gestión clínica. Su propósito es facilitar el acceso rápido y organizado a los datos personales de los pacientes, permitiendo una mejor atención médica.]]></text>
+			</element>
+			<element kind="image" uuid="21bebe3e-125a-43c8-b9be-9a9e322797ba" x="175" y="10" width="89" height="45" usingCache="false">
+				<expression><![CDATA["C:/Users/victo/OneDrive/Desktop/combination-letter-s-tooth-symbol-600nw-1495549139-removebg-preview.png"]]></expression>
+			</element>
+			<element kind="staticText" uuid="41744c40-7d18-4073-bf76-98c8dc0883eb" x="29" y="80" width="536" height="46" forecolor="#FFFFFF" fontName="Poppins" fontSize="10.0" hTextAlign="Justified">
+				<text><![CDATA[El presente reporte muestra el historial médico del paciente, incluyendo información relevante sobre alergias, enfermedades previas, medicación, observaciones y la fecha de la última actualización. Este documento permite llevar un seguimiento clínico preciso y actualizado del estado de salud del paciente.]]></text>
+			</element>
+		</element>
+	</title>
+	<pageHeader height="13"/>
+	<columnHeader height="125">
+		<element kind="staticText" uuid="879c8b36-6cab-4bba-a863-9b1d25bf447f" x="0" y="20" width="150" height="31" fontName="Poppins SemiBold" fontSize="12.0" bold="false" vTextAlign="Middle">
+			<text><![CDATA[Nombre completo:]]></text>
+		</element>
+		<element kind="rectangle" uuid="49263df7-033a-41c9-a45c-c2f78b1c4753" x="155" y="20" width="400" height="31" forecolor="#EDEBEB" radius="7"/>
+		<element kind="textField" uuid="c9984d02-9037-4686-970f-a955ea87da4b" x="160" y="20" width="300" height="30" fontName="Poppins" fontSize="12.0" vTextAlign="Middle">
+			<expression><![CDATA[$F{Paciente}]]></expression>
+		</element>
+		<element kind="staticText" uuid="3c61d0ed-756a-4b26-b858-b17b3177da47" x="0" y="67" width="150" height="31" fontName="Poppins SemiBold" fontSize="12.0" bold="false" vTextAlign="Middle">
+			<text><![CDATA[Fecha de Nacimiento:]]></text>
+		</element>
+		<element kind="rectangle" uuid="b56d3ab9-4195-41e5-a8cf-c97c87164601" x="155" y="67" width="400" height="31" forecolor="#EDEBEB" radius="7"/>
+		<element kind="textField" uuid="8dbcdb34-2054-4e84-874a-b7cecc384544" x="160" y="67" width="300" height="30" fontName="Poppins" fontSize="12.0" vTextAlign="Middle">
+			<expression><![CDATA[$F{FechaNacimiento}]]></expression>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="480">
+			<element kind="frame" uuid="8f307426-e74f-4743-ae4a-10d392d2e881" x="-20" y="-21" width="595" height="486" printWhenDetailOverflows="true">
+				<element kind="rectangle" uuid="75fc9509-3583-42f3-a304-45c23d7445be" x="19" y="410" width="561" height="76" forecolor="#D9D9D9" radius="7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="rectangle" uuid="41bb0dec-6be3-450f-b2ae-91accd02ec02" x="19" y="410" width="561" height="25" forecolor="#328AE1" backcolor="#328AE1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="rectangle" uuid="5ad95aa9-1db6-4f9b-885f-c6ad1d4662cc" x="20" y="310" width="561" height="76" forecolor="#D9D9D9" radius="7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="rectangle" uuid="88050880-3492-47ec-8fa7-d68a8d454e3f" x="20" y="310" width="561" height="25" forecolor="#328AE1" backcolor="#328AE1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="rectangle" uuid="63c5ca5f-524f-4af4-80eb-771148ab2fb4" x="20" y="210" width="561" height="76" forecolor="#D9D9D9" radius="7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="rectangle" uuid="774eaf17-3728-47ff-902c-e9edeb76000c" x="20" y="210" width="561" height="25" forecolor="#328AE1" backcolor="#328AE1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="rectangle" uuid="4c6faaca-bd2c-4281-a913-28de8b7900e6" x="19" y="110" width="561" height="76" forecolor="#D9D9D9" radius="7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="rectangle" uuid="04000533-971a-432b-bda4-3a944be88cd8" x="19" y="110" width="561" height="25" forecolor="#328AE1" backcolor="#328AE1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="rectangle" uuid="5d94622e-984d-4ed7-8c7d-d9a95c34415a" x="19" y="14" width="561" height="76" radius="7">
+					<pen lineWidth="1.0" lineColor="#F2F2F2"/>
+				</element>
+				<element kind="staticText" uuid="46888078-04c6-4578-bb4a-64d3e075e120" x="33" y="210" width="100" height="25" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="12.0" vTextAlign="Middle">
+					<text><![CDATA[Medicacion:]]></text>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e33d1b0b-19df-4d84-b200-4f47f671293b"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</element>
+				<element kind="line" uuid="b5eb37f8-25f4-41de-8e92-b333ea95f931" x="130" y="-107" width="300" height="1" forecolor="#FFFFFF">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="textField" uuid="c76797c3-fe99-40ad-a61d-a85cb8021f45" x="33" y="50" width="532" height="30" fontName="Poppins" fontSize="12.0" vTextAlign="Middle">
+					<expression><![CDATA[$F{Alergias}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="818926bb-36d3-4393-b35d-1b7c2b3f6193"/>
+				</element>
+				<element kind="textField" uuid="24e09722-d613-49d7-bc1e-b6472269304b" x="33" y="145" width="531" height="30" fontName="Poppins" fontSize="12.0" vTextAlign="Middle">
+					<expression><![CDATA[$F{Enfermedades}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="03fd17ff-1b1d-470e-99d8-b6d83fece291"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="staticText" uuid="24c8bf8b-5898-4e0d-bd54-67dccade6314" x="33" y="110" width="110" height="25" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="12.0" vTextAlign="Middle">
+					<text><![CDATA[Enfermedades]]></text>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="03fd17ff-1b1d-470e-99d8-b6d83fece291"/>
+				</element>
+				<element kind="textField" uuid="2deadcd7-338a-4bc0-bc8f-9e910c964f08" x="33" y="245" width="532" height="30" fontName="Poppins" fontSize="12.0" vTextAlign="Middle">
+					<expression><![CDATA[$F{Medicacion}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e33d1b0b-19df-4d84-b200-4f47f671293b"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</element>
+				<element kind="textField" uuid="21e611c5-e748-4834-9cc6-46ef7090325a" x="33" y="335" width="529" height="51" fontName="Poppins" fontSize="12.0" vTextAlign="Middle">
+					<expression><![CDATA[$F{Observaciones}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cf25802e-6baf-4478-b7ec-6e1e9705447d"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="staticText" uuid="b056b706-518a-4791-bd52-49b11de44ac2" x="33" y="310" width="110" height="25" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="12.0" vTextAlign="Middle">
+					<text><![CDATA[Observaciones:]]></text>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cf25802e-6baf-4478-b7ec-6e1e9705447d"/>
+				</element>
+				<element kind="textField" uuid="8c16d8c8-763f-4de3-8f2a-22a5e4b70afc" x="33" y="445" width="529" height="30" fontName="Poppins" fontSize="12.0" vTextAlign="Middle">
+					<expression><![CDATA[$F{UltimaActualizacion}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0c360c5b-09ff-4d0c-a0b2-9ebfb428b773"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="staticText" uuid="1ef1fb68-97f2-4e99-91eb-c52a0f5d94d5" x="33" y="410" width="164" height="25" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="12.0" vTextAlign="Middle">
+					<text><![CDATA[Ultima Actualizacion:]]></text>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0c360c5b-09ff-4d0c-a0b2-9ebfb428b773"/>
+				</element>
+				<element kind="rectangle" uuid="0f028c2a-82f9-4b4b-b0e3-47accb5463c0" x="19" y="14" width="560" height="25" backcolor="#328AE1" radius="0">
+					<pen lineColor="#328AE1"/>
+				</element>
+				<element kind="staticText" uuid="8b789824-65a1-4905-aaf4-382ce8070101" x="33" y="14" width="100" height="24" forecolor="#FFFFFF" fontName="Poppins SemiBold" fontSize="12.0" bold="false" vTextAlign="Middle">
+					<text><![CDATA[Alergias]]></text>
+				</element>
+				<element kind="line" uuid="ab81cbe5-323a-4948-a529-5a089f0fa3ac" x="130" y="-40" width="300" height="1" forecolor="#FFFFFF">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+		</band>
+	</detail>
+	<columnFooter/>
+	<pageFooter/>
+	<summary/>
+</jasperReport>
