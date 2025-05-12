@@ -267,7 +267,7 @@ public class CitasDao {
                      "c.Fecha, c.Hora, c.Motivo, c.Notas " +
                      "FROM Citas c " +
                      "JOIN Pacientes p ON c.idPaciente = p.idPaciente " +
-                     "JOIN Dentistas d ON c.idDentista = d.idDentista" +
+                     "JOIN Dentistas d ON c.idDentista = d.idDentista " +
                      "WHERE CONCAT(c.idCita, ' ', p.Nombre, ' ', d.Nombre, ' ', c.Fecha, ' ', c.Hora, ' ', c.Motivo, ' ', c.Notas) LIKE ?";
 
         try (Connection con = new Conexion().conexion();
@@ -278,7 +278,7 @@ public class CitasDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "id", "Paciente", "Dentista", "Fecha", "Hora", "Motivo", "Notas"
+                "ID", "Paciente", "Dentista", "Fecha", "Hora", "Motivo", "Notas"
             });
 
             while (rs.next()) {
@@ -295,9 +295,8 @@ public class CitasDao {
 
             tabla.setModel(modelo);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar citas: ", "Error SQL", JOptionPane.ERROR_MESSAGE);
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al buscar citas: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
-
 }

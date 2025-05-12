@@ -147,9 +147,9 @@ public class Inicio extends javax.swing.JFrame {
         jdNacimientoPaciente = new com.toedter.calendar.JDateChooser();
         panelRound4 = new proyecto_residencias.Componentes.PanelRound();
         BusquedaPacientes = new javax.swing.JTextField();
+        BuscarPacientes = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        BuscarPacientes = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnRegistrarDentistas = new javax.swing.JButton();
         btnActualizarDentistas = new javax.swing.JButton();
@@ -216,9 +216,9 @@ public class Inicio extends javax.swing.JFrame {
         btnEliminarCitas = new javax.swing.JButton();
         panelRound8 = new proyecto_residencias.Componentes.PanelRound();
         BusquedaCitas = new javax.swing.JTextField();
+        BuscarCitas = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        BuscarCitas = new javax.swing.JButton();
         panelRound9 = new proyecto_residencias.Componentes.PanelRound();
         jLabel24 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -586,6 +586,13 @@ public class Inicio extends javax.swing.JFrame {
         BusquedaPacientes.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         BusquedaPacientes.setToolTipText("");
 
+        BuscarPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        BuscarPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarPacientesActionPerformed(evt);
+            }
+        });
+
         jTable1.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -599,32 +606,20 @@ public class Inicio extends javax.swing.JFrame {
             }
         ));
         jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
-
-        BuscarPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
-        BuscarPacientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarPacientesActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelRound4Layout = new javax.swing.GroupLayout(panelRound4);
         panelRound4.setLayout(panelRound4Layout);
         panelRound4Layout.setHorizontalGroup(
             panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(25, 25, 25)
                 .addGroup(panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelRound4Layout.createSequentialGroup()
                         .addComponent(BusquedaPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BuscarPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BuscarPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         panelRound4Layout.setVerticalGroup(
@@ -634,9 +629,9 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BusquedaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(BuscarPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanel2.add(panelRound4);
@@ -1235,6 +1230,13 @@ public class Inicio extends javax.swing.JFrame {
         BusquedaCitas.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         BusquedaCitas.setToolTipText("");
 
+        BuscarCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        BuscarCitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarCitasActionPerformed(evt);
+            }
+        });
+
         jTable3.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1255,30 +1257,19 @@ public class Inicio extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable3.setMinimumSize(new java.awt.Dimension(600, 80));
         jTable3.setPreferredSize(new java.awt.Dimension(600, 80));
-        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable3MouseClicked(evt);
-            }
-        });
         jScrollPane3.setViewportView(jTable3);
-
-        BuscarCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
-        BuscarCitas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarCitasActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelRound8Layout = new javax.swing.GroupLayout(panelRound8);
         panelRound8.setLayout(panelRound8Layout);
         panelRound8Layout.setHorizontalGroup(
             panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound8Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addGroup(panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound8Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound8Layout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addGroup(panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelRound8Layout.createSequentialGroup()
                         .addComponent(BusquedaCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BuscarCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -2634,21 +2625,6 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnActualizarCitasActionPerformed
 
-    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
-        // TODO add your handling code here:
-        int filaSeleccionada = jTable3.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            cbxPacientesCitas.setSelectedItem(jTable3.getValueAt(filaSeleccionada, 1).toString());
-            cbxDentistasCitas.setSelectedItem(jTable3.getValueAt(filaSeleccionada, 2).toString());
-            jdFechaCita.setDate((Date) jTable3.getValueAt(filaSeleccionada, 3));
-            txtHoraCita.setText(jTable3.getValueAt(filaSeleccionada, 4).toString());
-            txtMotivoCita.setText(jTable3.getValueAt(filaSeleccionada, 5).toString());
-
-            Object notas = jTable3.getValueAt(filaSeleccionada, 6);
-            txtAreaNotas.setText(notas == null ? "" : notas.toString()); 
-        }
-    }//GEN-LAST:event_jTable3MouseClicked
-
     private void btnEliminarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCitasActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable3.getSelectedRow();
@@ -3216,22 +3192,6 @@ public class Inicio extends javax.swing.JFrame {
     private void txtApellidoPatPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoPatPacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoPatPacienteActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        int filaSeleccionada = jTable1.getSelectedRow();
-    
-        if (filaSeleccionada != -1) {
-            txtNombrePaciente.setText(jTable1.getValueAt(filaSeleccionada, 1).toString());
-            txtApellidoPatPaciente.setText(jTable1.getValueAt(filaSeleccionada, 2).toString());
-            txtApellidoMatPaciente.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
-            jdNacimientoPaciente.setDate((Date) jTable1.getValueAt(filaSeleccionada, 4));
-            txtTelefonoPaciente.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
-            txtCorreoPaciente.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
-            jdFechaRegistroPaciente.setDate((Date) jTable1.getValueAt(filaSeleccionada, 7));
-            
-        }
-    }//GEN-LAST:event_jTable1MouseClicked
 
     private void txtApellidoMatDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMatDentistaActionPerformed
         // TODO add your handling code here:

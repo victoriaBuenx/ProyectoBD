@@ -131,10 +131,10 @@ public class PagosDao {
     
     public void buscarPagos(String textoBusqueda, JTable tabla) {
         String sql = "SELECT p.idPago, " +
-                     "CONCAT(t.idTratamiento, ' - ', t.Nombre) AS Tratamiento," +
+                     "CONCAT(t.idTratamiento, ' - ', t.Nombre) AS Tratamiento, " +
                      "p.MetodoPago, p.FechaPago, p.ModalidadPago, p.MontoPagado " +
                      "FROM Pagos p " +
-                     "JOIN Tratamientos t ON p.idTratamiento = t.idTratamiento" +
+                     "JOIN Tratamientos t ON p.idTratamiento = t.idTratamiento " +
                      "WHERE CONCAT(p.idPago, ' ', t.Nombre, ' ', p.MetodoPago, ' ', p.FechaPago, ' ', p.ModalidadPago, ' ', p.MontoPagado) LIKE ?";
 
         try (Connection con = new Conexion().conexion();
@@ -145,7 +145,7 @@ public class PagosDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "id", "Tratamiento", "MetodoPago", "FechaPago", "ModalidadPago", "MontoPagado"
+                "ID Pago", "Tratamiento", "Método de Pago", "Fecha de Pago", "Modalidad", "Monto Pagado"
             });
 
             while (rs.next()) {
@@ -161,8 +161,8 @@ public class PagosDao {
 
             tabla.setModel(modelo);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar pagos", "Error SQL", JOptionPane.ERROR_MESSAGE);
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al buscar pagos: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
-    }   
+    } 
 }

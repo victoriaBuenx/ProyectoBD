@@ -116,7 +116,7 @@ public class TratamientosDao {
                      "FROM Tratamientos t " +
                      "INNER JOIN PacientesTratamientos pt ON t.idTratamiento = pt.idTratamiento " +
                      "INNER JOIN Pacientes p ON pt.idPaciente = p.idPaciente " +
-                     "INNER JOIN Dentistas d ON t.idDentista = d.idDentista"+
+                     "INNER JOIN Dentistas d ON t.idDentista = d.idDentista " +
                      "WHERE CONCAT(t.idTratamiento, ' ', d.Nombre, ' ', t.Nombre, ' ', t.Descripcion, ' ', t.MontoTotal, ' ', p.Nombre, ' ', pt.FechaInicio, ' ', pt.FechaFin) LIKE ?";
 
         try (Connection con = new Conexion().conexion();
@@ -127,7 +127,7 @@ public class TratamientosDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "id", "Dentista", "Paciente", "Tratamiento", "Descripcion",  "FechaInicio", "FechaFin", "MontoTotal"
+                "idTratamiento", "Dentista", "Paciente", "Tratamiento", "Descripcion",  "FechaInicio", "FechaFin", "MontoTotal"
             });
 
             while (rs.next()) {
@@ -145,8 +145,8 @@ public class TratamientosDao {
 
             tabla.setModel(modelo);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar tratamientos", "Error SQL", JOptionPane.ERROR_MESSAGE);
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al buscar tratamientos: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
 }
