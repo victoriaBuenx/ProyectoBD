@@ -110,7 +110,7 @@ public class ProveedoresDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "ID", "Nombre", "Telefono", "", "Correo", "Empresa", "Direccion"
+                "id", "Nombre", "Telefono", "Correo", "Empresa", "Direccion"
             });
 
             while (rs.next()) {

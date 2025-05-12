@@ -127,19 +127,19 @@ public class TratamientosDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "ID Tratamiento", "Dentista", "Nombre Tratamiento", "Descripción", "Monto Total", "Paciente", "Fecha Inicio", "Fecha Fin"
+                "id", "Dentista", "Paciente", "Tratamiento", "Descripcion",  "FechaInicio", "FechaFin", "MontoTotal"
             });
 
             while (rs.next()) {
                 modelo.addRow(new Object[]{
                     rs.getInt("idTratamiento"),
                     rs.getString("Dentista"),
+                    rs.getString("Paciente"),
                     rs.getString("Tratamiento"),
                     rs.getString("Descripcion"),
-                    rs.getDouble("MontoTotal"),
-                    rs.getString("Paciente"),
                     rs.getDate("FechaInicio"),
-                    rs.getDate("FechaFin")
+                    rs.getDate("FechaFin"),
+                    rs.getDouble("MontoTotal")
                 });
             }
 

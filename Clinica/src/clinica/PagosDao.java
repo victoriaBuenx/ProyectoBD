@@ -125,7 +125,7 @@ public class PagosDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "ID Pago", "Tratamiento", "Método de Pago", "Fecha de Pago", "Modalidad", "Monto Pagado"
+                "id", "Tratamiento", "MetodoPago", "FechaPago", "ModalidadPago", "MontoPagado"
             });
 
             while (rs.next()) {
