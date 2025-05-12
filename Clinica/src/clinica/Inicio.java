@@ -127,7 +127,6 @@ public class Inicio extends javax.swing.JFrame {
         btnRegistrarPacientes = new javax.swing.JButton();
         btnActualizarPacientes = new javax.swing.JButton();
         btnEliminarPacientes = new javax.swing.JButton();
-        btnVisualizarPacientes = new javax.swing.JButton();
         panelRound2 = new proyecto_residencias.Componentes.PanelRound();
         jLabel70 = new javax.swing.JLabel();
         btnReportePacientes = new javax.swing.JButton();
@@ -158,7 +157,6 @@ public class Inicio extends javax.swing.JFrame {
         btnRegistrarDentistas = new javax.swing.JButton();
         btnActualizarDentistas = new javax.swing.JButton();
         btnEliminarDentistas = new javax.swing.JButton();
-        btnVisualizarDentistas = new javax.swing.JButton();
         panelRound5 = new proyecto_residencias.Componentes.PanelRound();
         BusquedaDentistas = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -323,7 +321,6 @@ public class Inicio extends javax.swing.JFrame {
         btnRegistrarProveedor = new javax.swing.JButton();
         btnActualizarProveedores = new javax.swing.JButton();
         btnEliminarProveedores = new javax.swing.JButton();
-        btnVisualizarProveedores = new javax.swing.JButton();
         panelRound18 = new proyecto_residencias.Componentes.PanelRound();
         jLabel66 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
@@ -390,16 +387,6 @@ public class Inicio extends javax.swing.JFrame {
         jPanel2.add(btnEliminarPacientes);
         btnEliminarPacientes.setBounds(282, 592, 90, 40);
 
-        btnVisualizarPacientes.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        btnVisualizarPacientes.setText("Visualizar");
-        btnVisualizarPacientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisualizarPacientesActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnVisualizarPacientes);
-        btnVisualizarPacientes.setBounds(384, 592, 100, 40);
-
         javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
         panelRound2.setLayout(panelRound2Layout);
         panelRound2Layout.setHorizontalGroup(
@@ -420,7 +407,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel70.setToolTipText("Genera el reporte de todos los pacientes registrados");
         jLabel70.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel2.add(jLabel70);
-        jLabel70.setBounds(570, 600, 30, 20);
+        jLabel70.setBounds(455, 595, 30, 20);
 
         btnReportePacientes.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnReportePacientes.setText("Reporte");
@@ -430,7 +417,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnReportePacientes);
-        btnReportePacientes.setBounds(496, 592, 110, 40);
+        btnReportePacientes.setBounds(380, 592, 110, 40);
 
         panelRound3.setBackground(new java.awt.Color(255, 255, 255));
         panelRound3.setRoundBottomLeft(30);
@@ -695,16 +682,6 @@ public class Inicio extends javax.swing.JFrame {
         jPanel3.add(btnEliminarDentistas);
         btnEliminarDentistas.setBounds(282, 592, 90, 40);
 
-        btnVisualizarDentistas.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        btnVisualizarDentistas.setText("Visualizar");
-        btnVisualizarDentistas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisualizarDentistasActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnVisualizarDentistas);
-        btnVisualizarDentistas.setBounds(384, 592, 100, 40);
-
         panelRound5.setBackground(new java.awt.Color(255, 255, 255));
         panelRound5.setRoundBottomLeft(30);
         panelRound5.setRoundBottomRight(30);
@@ -934,7 +911,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel71.setToolTipText("Genera el reporte de todos los dentistas registrados");
         jLabel71.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel3.add(jLabel71);
-        jLabel71.setBounds(570, 600, 30, 20);
+        jLabel71.setBounds(455, 595, 30, 20);
 
         btnReporteDentistas.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnReporteDentistas.setText("Reporte");
@@ -944,7 +921,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnReporteDentistas);
-        btnReporteDentistas.setBounds(496, 592, 110, 40);
+        btnReporteDentistas.setBounds(382, 592, 110, 40);
 
         jTabbedPane2.addTab("Dentistas", jPanel3);
 
@@ -2207,16 +2184,6 @@ public class Inicio extends javax.swing.JFrame {
         jPanel9.add(btnEliminarProveedores);
         btnEliminarProveedores.setBounds(282, 604, 90, 40);
 
-        btnVisualizarProveedores.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        btnVisualizarProveedores.setText("Vizualizar");
-        btnVisualizarProveedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisualizarProveedoresActionPerformed(evt);
-            }
-        });
-        jPanel9.add(btnVisualizarProveedores);
-        btnVisualizarProveedores.setBounds(384, 604, 100, 40);
-
         panelRound18.setBackground(new java.awt.Color(255, 255, 255));
         panelRound18.setRoundBottomLeft(30);
         panelRound18.setRoundBottomRight(30);
@@ -2887,12 +2854,6 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarTratamientoActionPerformed
 
-    private void btnVisualizarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarPacientesActionPerformed
-        // TODO add your handling code here:
-        verTablaPacientes();  
-        JOptionPane.showMessageDialog(this, "Datos de pacientes actualizados.", "Información", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_btnVisualizarPacientesActionPerformed
-
     private void btnActualizarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPacientesActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable1.getSelectedRow();
@@ -3015,13 +2976,6 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor seleccione un dentista de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarDentistasActionPerformed
-
-    private void btnVisualizarDentistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarDentistasActionPerformed
-        // TODO add your handling code here:
-        verTablaDentistas();
-        JOptionPane.showMessageDialog(this, "Datos de dentistas actualizados.", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-    }//GEN-LAST:event_btnVisualizarDentistasActionPerformed
 
     private void jTable6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable6MouseClicked
         // TODO add your handling code here:
@@ -3252,12 +3206,6 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor seleccione un proveedor de la tabla.", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarProveedoresActionPerformed
-
-    private void btnVisualizarProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarProveedoresActionPerformed
-        // TODO add your handling code here:
-        verTablaProveedores(); 
-        JOptionPane.showMessageDialog(this, "Datos de proveedores actualizados.", "Información", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_btnVisualizarProveedoresActionPerformed
 
     private void btnReportePacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportePacientesActionPerformed
         // TODO add your handling code here:
@@ -3605,12 +3553,9 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btnReportePacientes;
     private javax.swing.JButton btnReporteTratamientos;
     private javax.swing.JButton btnVisualizarCitas;
-    private javax.swing.JButton btnVisualizarDentistas;
     private javax.swing.JButton btnVisualizarHistorial;
-    private javax.swing.JButton btnVisualizarPacientes;
     private javax.swing.JButton btnVisualizarPagos;
     private javax.swing.JButton btnVisualizarProductos;
-    private javax.swing.JButton btnVisualizarProveedores;
     private javax.swing.JButton btnVisualizarTratamiento;
     private javax.swing.JComboBox<String> cbxDentistasCitas;
     private javax.swing.JComboBox<String> cbxDentistasTratamientos;

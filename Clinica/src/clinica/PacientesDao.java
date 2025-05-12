@@ -127,7 +127,7 @@ public class PacientesDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "ID", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha Nac.", "Teléfono", "Correo", "Fecha Registro"
+                "id", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha Nac.", "Teléfono", "Correo", "Fecha Registro"
             });
 
             while (rs.next()) {

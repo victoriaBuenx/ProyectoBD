@@ -271,7 +271,7 @@ public class ProductosDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "ID Producto", "Proveedor", "Nombre Producto", "Descripción", "Precio Unitario", "Cantidad Disponible", "Precio Total", "Fecha Registro"
+                "id", "Proveedor", "NombreProducto", "Descripcion", "PrecioUnitario", "CantidadDisponible", "PrecioTotal", "FechaRegistro"
             });
 
             while (rs.next()) {
