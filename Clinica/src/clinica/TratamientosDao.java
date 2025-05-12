@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -103,5 +105,48 @@ public class TratamientosDao {
             e.printStackTrace();
             return false;
         }
-    } 
+    }
+    
+    public void buscarTratamientos(String textoBusqueda, JTable tabla) {
+        String sql = "SELECT t.idTratamiento, " +
+                     "d.Nombre AS Dentista, " +
+                     "t.Nombre AS Tratamiento, t.Descripcion, t.MontoTotal, " +
+                     "p.Nombre AS Paciente, " +
+                     "pt.FechaInicio, pt.FechaFin " +
+                     "FROM Tratamientos t " +
+                     "INNER JOIN PacientesTratamientos pt ON t.idTratamiento = pt.idTratamiento " +
+                     "INNER JOIN Pacientes p ON pt.idPaciente = p.idPaciente " +
+                     "INNER JOIN Dentistas d ON t.idDentista = d.idDentista " +
+                     "WHERE CONCAT(t.idTratamiento, ' ', d.Nombre, ' ', t.Nombre, ' ', t.Descripcion, ' ', t.MontoTotal, ' ', p.Nombre, ' ', pt.FechaInicio, ' ', pt.FechaFin) LIKE ?";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + textoBusqueda + "%");
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(new Object[]{
+                "ID Tratamiento", "Dentista", "Nombre Tratamiento", "Descripción", "Monto Total", "Paciente", "Fecha Inicio", "Fecha Fin"
+            });
+
+            while (rs.next()) {
+                modelo.addRow(new Object[]{
+                    rs.getInt("idTratamiento"),
+                    rs.getString("Dentista"),
+                    rs.getString("Tratamiento"),
+                    rs.getString("Descripcion"),
+                    rs.getDouble("MontoTotal"),
+                    rs.getString("Paciente"),
+                    rs.getDate("FechaInicio"),
+                    rs.getDate("FechaFin")
+                });
+            }
+
+            tabla.setModel(modelo);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar tratamientos: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
 }

@@ -9,6 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 /**
  *
@@ -105,7 +108,41 @@ public class PagosDao {
             return false;
         }
     }
-
-
     
+    public void buscarPagos(String textoBusqueda, JTable tabla) {
+        String sql = "SELECT p.idPago, " +
+                     "t.Nombre AS Tratamiento, " +
+                     "p.MetodoPago, p.FechaPago, p.ModalidadPago, p.MontoPagado " +
+                     "FROM Pagos p " +
+                     "JOIN Tratamientos t ON p.idTratamiento = t.idTratamiento " +
+                     "WHERE CONCAT(p.idPago, ' ', t.Nombre, ' ', p.MetodoPago, ' ', p.FechaPago, ' ', p.ModalidadPago, ' ', p.MontoPagado) LIKE ?";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + textoBusqueda + "%");
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(new Object[]{
+                "ID Pago", "Tratamiento", "Método de Pago", "Fecha de Pago", "Modalidad", "Monto Pagado"
+            });
+
+            while (rs.next()) {
+                modelo.addRow(new Object[]{
+                    rs.getInt("idPago"),
+                    rs.getString("Tratamiento"),
+                    rs.getString("MetodoPago"),
+                    rs.getDate("FechaPago"),
+                    rs.getString("ModalidadPago"),
+                    rs.getDouble("MontoPagado")
+                });
+            }
+
+            tabla.setModel(modelo);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar pagos: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }   
 }

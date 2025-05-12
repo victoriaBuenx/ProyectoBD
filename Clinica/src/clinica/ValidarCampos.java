@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -39,7 +40,24 @@ public class ValidarCampos {
 
     public boolean validarNumero(JTextField campo, String mensaje) {
         try {
-            Long.parseLong(campo.getText().trim());
+            long numero = Long.parseLong(campo.getText().trim());
+            if (numero < 0) {
+                throw new NumberFormatException();
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+    
+    public boolean validarNumero(JSpinner spinner, String mensaje) {
+        try {
+            Object value = spinner.getValue();
+            long numero = Long.parseLong(value.toString().trim());
+            if (numero < 0) {
+                throw new NumberFormatException(); 
+            }
             return true;
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);

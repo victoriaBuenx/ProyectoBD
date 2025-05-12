@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -250,9 +252,45 @@ public class ProductosDao {
             }
         }
     }
-
-
-
-
     
+    public void buscarProductos(String textoBusqueda, JTable tabla) {
+        String sql = "SELECT p.idProducto, " +
+                     "pr.Nombre AS Proveedor, " +
+                     "p.NombreProducto, p.Descripcion, p.PrecioUnitario, " +
+                     "pp.CantidadDisponible, pp.PrecioTotal, pp.FechaRegistro " +
+                     "FROM Productos p " +
+                     "INNER JOIN ProveedorProducto pp ON p.idProducto = pp.idProducto " +
+                     "INNER JOIN Proveedores pr ON pp.idProveedor = pr.idProveedor " +
+                     "WHERE CONCAT(p.idProducto, ' ', pr.Nombre, ' ', p.NombreProducto, ' ', p.Descripcion, ' ', p.PrecioUnitario, ' ', pp.CantidadDisponible, ' ', pp.PrecioTotal, ' ', pp.FechaRegistro) LIKE ?";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + textoBusqueda + "%");
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(new Object[]{
+                "ID Producto", "Proveedor", "Nombre Producto", "Descripción", "Precio Unitario", "Cantidad Disponible", "Precio Total", "Fecha Registro"
+            });
+
+            while (rs.next()) {
+                modelo.addRow(new Object[]{
+                    rs.getInt("idProducto"),
+                    rs.getString("Proveedor"),
+                    rs.getString("NombreProducto"),
+                    rs.getString("Descripcion"),
+                    rs.getDouble("PrecioUnitario"),
+                    rs.getInt("CantidadDisponible"),
+                    rs.getDouble("PrecioTotal"),
+                    rs.getDate("FechaRegistro")
+                });
+            }
+
+            tabla.setModel(modelo);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar productos: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }   
 }
