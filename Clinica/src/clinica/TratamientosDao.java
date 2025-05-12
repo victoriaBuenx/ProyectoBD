@@ -46,8 +46,8 @@ public class TratamientosDao {
                 }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar tratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al insertar tratamiento", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
         }
             return idTratamientoGenerado;
         }
@@ -74,7 +74,7 @@ public class TratamientosDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar tratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al actualizar tratamiento", "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -101,22 +101,22 @@ public class TratamientosDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar tratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al eliminar tratamiento", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
             return false;
         }
     }
     
     public void buscarTratamientos(String textoBusqueda, JTable tabla) {
         String sql = "SELECT t.idTratamiento, " +
-                     "d.Nombre AS Dentista, " +
+                     "CONCAT(d.idDentista, ' - ', d.Nombre) AS Dentista, " +
                      "t.Nombre AS Tratamiento, t.Descripcion, t.MontoTotal, " +
-                     "p.Nombre AS Paciente, " +
+                     "CONCAT(p.idPaciente, ' - ', p.Nombre) AS Paciente, " +
                      "pt.FechaInicio, pt.FechaFin " +
                      "FROM Tratamientos t " +
                      "INNER JOIN PacientesTratamientos pt ON t.idTratamiento = pt.idTratamiento " +
                      "INNER JOIN Pacientes p ON pt.idPaciente = p.idPaciente " +
-                     "INNER JOIN Dentistas d ON t.idDentista = d.idDentista " +
+                     "INNER JOIN Dentistas d ON t.idDentista = d.idDentista"+
                      "WHERE CONCAT(t.idTratamiento, ' ', d.Nombre, ' ', t.Nombre, ' ', t.Descripcion, ' ', t.MontoTotal, ' ', p.Nombre, ' ', pt.FechaInicio, ' ', pt.FechaFin) LIKE ?";
 
         try (Connection con = new Conexion().conexion();
@@ -145,8 +145,8 @@ public class TratamientosDao {
 
             tabla.setModel(modelo);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar tratamientos: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al buscar tratamientos", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
         }
     }
 }

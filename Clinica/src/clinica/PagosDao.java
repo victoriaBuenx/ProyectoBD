@@ -4,9 +4,6 @@
  */
 package clinica;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -20,25 +17,47 @@ import java.sql.*;
 public class PagosDao {
     
     public boolean insertarPagos(int idTratamiento, String metodoPago, Date fechaPago, String modalidadPago, int montoPagado) {
-        String sql = "INSERT INTO Pagos (idTratamiento, MetodoPago, FechaPago, ModalidadPago, MontoPagado) " +
-                     "VALUES (?, ?, ?, ?, ?)";
-
-        PreparedStatement ps = null;
+        String sqlPago = "SELECT t.MontoTotal, IFNULL(SUM(p.MontoPagado), 0) AS TotalPagado " +
+                         "FROM Tratamientos t " +
+                         "LEFT JOIN Pagos p ON t.idTratamiento = p.idTratamiento " +
+                         "WHERE t.idTratamiento = ? " +
+                         "GROUP BY t.idTratamiento";
+        
+        String sqlInsertPago = "INSERT INTO Pagos (idTratamiento, MetodoPago, FechaPago, ModalidadPago, MontoPagado) " +
+                               "VALUES (?, ?, ?, ?, ?)";
+    
+        PreparedStatement psSelect = null;
+        PreparedStatement psInsert = null;
         Connection con = null;  
-
+    
         try {
             Conexion conexion = new Conexion();  
             con = conexion.conexion();  
-
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, idTratamiento);
-            ps.setString(2, metodoPago);
-            ps.setDate(3, new java.sql.Date(fechaPago.getTime())); 
-            ps.setString(4, modalidadPago);
-            ps.setInt(5, montoPagado);
-
-            int filasAfectadas = ps.executeUpdate();
-
+    
+            // Verificar el monto total y el monto ya pagado
+            psSelect = con.prepareStatement(sqlPago);
+            psSelect.setInt(1, idTratamiento);
+            ResultSet rs = psSelect.executeQuery();
+    
+            if (rs.next()) {
+                double montoTotal = rs.getDouble("MontoTotal");
+                double totalPagado = rs.getDouble("TotalPagado");
+    
+                if ((totalPagado + montoPagado) > montoTotal) {
+                    JOptionPane.showMessageDialog(null, "El pago excede el monto total del tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+            }
+    
+            psInsert = con.prepareStatement(sqlInsertPago);
+            psInsert.setInt(1, idTratamiento);
+            psInsert.setString(2, metodoPago);
+            psInsert.setDate(3, new java.sql.Date(fechaPago.getTime())); 
+            psInsert.setString(4, modalidadPago);
+            psInsert.setInt(5, montoPagado);
+    
+            int filasAfectadas = psInsert.executeUpdate();
+    
             if (filasAfectadas > 0) {
                 JOptionPane.showMessageDialog(null, "Pago registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 return true;
@@ -47,12 +66,13 @@ public class PagosDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar pago: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al insertar pago", "Error SQL", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return false;
         } finally {
             try {
-                if (ps != null) ps.close();
+                if (psSelect != null) psSelect.close();
+                if (psInsert != null) psInsert.close();
                 if (con != null) con.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al cerrar los recursos: " + e.getMessage());
@@ -82,7 +102,7 @@ public class PagosDao {
                 return false;
             }     
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar pago: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al actualizar pago", "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -104,17 +124,17 @@ public class PagosDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar pago: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al eliminar pago", "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
     
     public void buscarPagos(String textoBusqueda, JTable tabla) {
         String sql = "SELECT p.idPago, " +
-                     "t.Nombre AS Tratamiento, " +
+                     "CONCAT(t.idTratamiento, ' - ', t.Nombre) AS Tratamiento," +
                      "p.MetodoPago, p.FechaPago, p.ModalidadPago, p.MontoPagado " +
                      "FROM Pagos p " +
-                     "JOIN Tratamientos t ON p.idTratamiento = t.idTratamiento " +
+                     "JOIN Tratamientos t ON p.idTratamiento = t.idTratamiento" +
                      "WHERE CONCAT(p.idPago, ' ', t.Nombre, ' ', p.MetodoPago, ' ', p.FechaPago, ' ', p.ModalidadPago, ' ', p.MontoPagado) LIKE ?";
 
         try (Connection con = new Conexion().conexion();
@@ -141,8 +161,8 @@ public class PagosDao {
 
             tabla.setModel(modelo);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar pagos: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al buscar pagos", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
         }
     }   
 }

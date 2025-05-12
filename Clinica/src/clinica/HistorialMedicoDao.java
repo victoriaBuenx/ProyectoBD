@@ -53,7 +53,7 @@ public class HistorialMedicoDao {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al insertar historial médico: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al insertar historial médico", "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -91,7 +91,7 @@ public class HistorialMedicoDao {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar historial médico: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al actualizar historial médico", "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -115,17 +115,17 @@ public class HistorialMedicoDao {
             } 
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar historial médico: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al eliminar historial médico", "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
     
     public void buscarHistorial(String textoBusqueda, JTable tabla) {
         String sql = "SELECT hm.idHistorialMedico, " +
-                     "p.Nombre AS Nombre, " +
+                     "CONCAT(p.idPaciente, ' - ', p.Nombre) AS Nombre," +
                      "hm.Alergias, hm.Enfermedades, hm.Medicacion, hm.Observaciones, hm.UltimaActualizacion " +
                      "FROM HistorialMedico hm " +
-                     "JOIN Pacientes p ON hm.idPaciente = p.idPaciente " +
+                     "JOIN Pacientes p ON hm.idPaciente = p.idPaciente" +
                      "WHERE CONCAT(hm.idHistorialMedico, ' ', p.Nombre, ' ', hm.Alergias, ' ', hm.Enfermedades, ' ', hm.Medicacion, ' ', hm.Observaciones, ' ', hm.UltimaActualizacion) LIKE ?";
 
         try (Connection con = new Conexion().conexion();
@@ -153,8 +153,8 @@ public class HistorialMedicoDao {
 
             tabla.setModel(modelo);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar historial médico: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al buscar historial médico", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
         }
     }
 }
