@@ -122,10 +122,10 @@ public class HistorialMedicoDao {
     
     public void buscarHistorial(String textoBusqueda, JTable tabla) {
         String sql = "SELECT hm.idHistorialMedico, " +
-                     "CONCAT(p.idPaciente, ' - ', p.Nombre) AS Nombre," +
+                     "CONCAT(p.idPaciente, ' - ', p.Nombre) AS Nombre, " +
                      "hm.Alergias, hm.Enfermedades, hm.Medicacion, hm.Observaciones, hm.UltimaActualizacion " +
                      "FROM HistorialMedico hm " +
-                     "JOIN Pacientes p ON hm.idPaciente = p.idPaciente" +
+                     "JOIN Pacientes p ON hm.idPaciente = p.idPaciente " +
                      "WHERE CONCAT(hm.idHistorialMedico, ' ', p.Nombre, ' ', hm.Alergias, ' ', hm.Enfermedades, ' ', hm.Medicacion, ' ', hm.Observaciones, ' ', hm.UltimaActualizacion) LIKE ?";
 
         try (Connection con = new Conexion().conexion();
@@ -136,7 +136,7 @@ public class HistorialMedicoDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "id", "Nombre", "Alergias", "Enfermedades", "Medicacion", "Observaciones", "UltimaActualizacion"
+                "ID", "Nombre", "Alergias", "Enfermedades", "Medicación", "Observaciones", "Última Actualización"
             });
 
             while (rs.next()) {
@@ -153,8 +153,8 @@ public class HistorialMedicoDao {
 
             tabla.setModel(modelo);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar historial médico", "Error SQL", JOptionPane.ERROR_MESSAGE);
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al buscar historial médico: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
 }
