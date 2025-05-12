@@ -12,7 +12,7 @@ import java.sql.*;
  * @author victo
  */
 public class ComboBoxUtils {
-    public static void llenarComboBox(JComboBox<String> comboBox, String sql, String idColumn, String nameColumn) {
+    public static void llenarComboBox(JComboBox<String> comboBox, String sql, String nameColumn) {
         comboBox.removeAllItems();
 
         try (Connection con = new Conexion().conexion();
@@ -20,7 +20,7 @@ public class ComboBoxUtils {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                comboBox.addItem(rs.getInt(idColumn) + " - " + rs.getString(nameColumn));
+                comboBox.addItem(rs.getString(nameColumn));
             }
 
         } catch (SQLException ex) {

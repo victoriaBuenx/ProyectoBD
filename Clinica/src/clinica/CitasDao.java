@@ -13,6 +13,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author victo
@@ -257,8 +259,45 @@ public class CitasDao {
             }
         }
     }
-
-
-
     
+    public void buscarCitas(String textoBusqueda, JTable tabla) {
+        String sql = "SELECT c.idCita, " +
+                     "p.Nombre AS Paciente, " +
+                     "d.Nombre AS Dentista, " +
+                     "c.Fecha, c.Hora, c.Motivo, c.Notas " +
+                     "FROM Citas c " +
+                     "JOIN Pacientes p ON c.idPaciente = p.idPaciente " +
+                     "JOIN Dentistas d ON c.idDentista = d.idDentista " +
+                     "WHERE CONCAT(c.idCita, ' ', p.Nombre, ' ', d.Nombre, ' ', c.Fecha, ' ', c.Hora, ' ', c.Motivo, ' ', c.Notas) LIKE ?";
+
+        try (Connection con = new Conexion().conexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + textoBusqueda + "%");
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(new Object[]{
+                "ID", "Paciente", "Dentista", "Fecha", "Hora", "Motivo", "Notas"
+            });
+
+            while (rs.next()) {
+                modelo.addRow(new Object[]{
+                    rs.getInt("idCita"),
+                    rs.getString("Paciente"),
+                    rs.getString("Dentista"),
+                    rs.getDate("Fecha"),
+                    rs.getString("Hora"),
+                    rs.getString("Motivo"),
+                    rs.getString("Notas")
+                });
+            }
+
+            tabla.setModel(modelo);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar citas: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+
 }

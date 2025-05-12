@@ -13,6 +13,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author victo
@@ -95,5 +97,37 @@ public class ProveedoresDao {
             JOptionPane.showMessageDialog(null, "Error al eliminar proveedor: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-    }  
+    } 
+    
+    public void buscarProveedores(String textoBusqueda, JTable tabla) {
+    String sql = "SELECT * FROM Proveedores WHERE CONCAT(idProveedor, ' ', Nombre, ' ', Telefono, ' ', Correo, ' ', Empresa, ' ', Direccion) LIKE ?";
+
+    try (Connection con = new Conexion().conexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + textoBusqueda + "%");
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(new Object[]{
+                "ID", "Nombre", "Telefono", "", "Correo", "Empresa", "Direccion"
+            });
+
+            while (rs.next()) {
+                modelo.addRow(new Object[]{
+                    rs.getInt("idProveedor"),
+                    rs.getString("Nombre"),
+                    rs.getString("Telefono"),
+                    rs.getString("Correo"),
+                    rs.getString("Empresa"),
+                    rs.getString("Direccion")
+                });
+            }
+
+            tabla.setModel(modelo);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar proveedores: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
 }

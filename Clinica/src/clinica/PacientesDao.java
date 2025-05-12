@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author victo
@@ -112,5 +114,41 @@ public class PacientesDao {
             e.printStackTrace();
             return false;
         }
-    }  
+    } 
+    
+    public void buscarPacientes(String textoBusqueda, JTable tabla) {
+    String sql = "SELECT * FROM Pacientes WHERE CONCAT(idPaciente, ' ', Nombre, ' ', ApellidoPaterno, ' ', ApellidoMaterno, ' ', FechaNacimiento, ' ', Telefono, ' ', Correo, ' ', FechaRegistro) LIKE ?";
+
+    try (Connection con = new Conexion().conexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + textoBusqueda + "%");
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(new Object[]{
+                "ID", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha Nac.", "Teléfono", "Correo", "Fecha Registro"
+            });
+
+            while (rs.next()) {
+                modelo.addRow(new Object[]{
+                    rs.getInt("idPaciente"),
+                    rs.getString("Nombre"),
+                    rs.getString("ApellidoPaterno"),
+                    rs.getString("ApellidoMaterno"),
+                    rs.getDate("FechaNacimiento"),
+                    rs.getString("Telefono"),
+                    rs.getString("Correo"),
+                    rs.getDate("FechaRegistro")
+                });
+            }
+
+            tabla.setModel(modelo);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar pacientes: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+
 }
+

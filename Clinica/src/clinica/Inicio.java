@@ -79,11 +79,13 @@ public class Inicio extends javax.swing.JFrame {
         for (JTable tabla : tablas) {
             tabla.setBackground(Color.white);
             tabla.setShowHorizontalLines(true);
+            tabla.setShowVerticalLines(true);
             tabla.setRowHeight(30);
             JTableHeader header = tabla.getTableHeader();
             header.setForeground(Color.black);
             header.setPreferredSize(new Dimension(header.getWidth(), (35)));
             header.setFont(new Font("Poppins", Font.PLAIN, 12));
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(25);
         }
     }
     private void personalizarRenderizado(JTable... tablas) {
@@ -100,7 +102,7 @@ public class Inicio extends javax.swing.JFrame {
                     c.setForeground(Color.BLACK);
                 }
     
-                setBorder(BorderFactory.createEmptyBorder()); // Quita el borde negro
+                setBorder(BorderFactory.createEmptyBorder()); 
                 return c;
             }
         };
@@ -151,17 +153,17 @@ public class Inicio extends javax.swing.JFrame {
         BusquedaPacientes = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel12 = new javax.swing.JLabel();
+        BuscarPacientes = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnRegistrarDentistas = new javax.swing.JButton();
         btnActualizarDentistas = new javax.swing.JButton();
         btnEliminarDentistas = new javax.swing.JButton();
         btnVisualizarDentistas = new javax.swing.JButton();
         panelRound5 = new proyecto_residencias.Componentes.PanelRound();
-        BusquedaPacientes1 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
+        BusquedaDentistas = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTable9 = new javax.swing.JTable();
+        BuscarDentistas = new javax.swing.JButton();
         panelRound6 = new proyecto_residencias.Componentes.PanelRound();
         jLabel11 = new javax.swing.JLabel();
         txtNombreDentista = new javax.swing.JTextField();
@@ -188,10 +190,10 @@ public class Inicio extends javax.swing.JFrame {
         btnActualizarCitas = new javax.swing.JButton();
         btnEliminarCitas = new javax.swing.JButton();
         panelRound8 = new proyecto_residencias.Componentes.PanelRound();
-        BusquedaPacientes2 = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
+        BusquedaCitas = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        BuscarCitas = new javax.swing.JButton();
         panelRound9 = new proyecto_residencias.Componentes.PanelRound();
         jLabel24 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -215,10 +217,10 @@ public class Inicio extends javax.swing.JFrame {
         btnActualizarHistorial = new javax.swing.JButton();
         btnEliminarHistorial = new javax.swing.JButton();
         panelRound10 = new proyecto_residencias.Componentes.PanelRound();
-        BusquedaPacientes3 = new javax.swing.JTextField();
-        jLabel28 = new javax.swing.JLabel();
+        BusquedaHistorial = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
+        BuscarHistorial = new javax.swing.JButton();
         panelRound11 = new proyecto_residencias.Componentes.PanelRound();
         jLabel25 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -257,10 +259,10 @@ public class Inicio extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         txtMontoPagado = new javax.swing.JTextField();
         panelRound17 = new proyecto_residencias.Componentes.PanelRound();
-        BusquedaPacientes6 = new javax.swing.JTextField();
-        jLabel65 = new javax.swing.JLabel();
+        BusquedaPagos = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
+        BuscarPagos = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         btnRegistrarTratamiento = new javax.swing.JButton();
         btnVisualizarTratamiento = new javax.swing.JButton();
@@ -284,10 +286,10 @@ public class Inicio extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         jpFechaFinTrat = new com.toedter.calendar.JDateChooser();
         panelRound13 = new proyecto_residencias.Componentes.PanelRound();
-        BusquedaPacientes4 = new javax.swing.JTextField();
-        jLabel45 = new javax.swing.JLabel();
+        BusquedaTratamientos = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
+        BuscarTratamientos = new javax.swing.JButton();
         jLabel68 = new javax.swing.JLabel();
         btnReporteTratamientos = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
@@ -311,10 +313,10 @@ public class Inicio extends javax.swing.JFrame {
         jLabel44 = new javax.swing.JLabel();
         jdFechaRegistroP = new com.toedter.calendar.JDateChooser();
         panelRound15 = new proyecto_residencias.Componentes.PanelRound();
-        BusquedaPacientes5 = new javax.swing.JTextField();
-        jLabel56 = new javax.swing.JLabel();
+        BusquedaProductos = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable7 = new javax.swing.JTable();
+        BuscarProductos = new javax.swing.JButton();
         jLabel74 = new javax.swing.JLabel();
         btnReporteAlmacen = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
@@ -335,10 +337,10 @@ public class Inicio extends javax.swing.JFrame {
         jLabel52 = new javax.swing.JLabel();
         txtDireccionProveedor = new javax.swing.JTextField();
         panelRound19 = new proyecto_residencias.Componentes.PanelRound();
-        BusquedaPacientes7 = new javax.swing.JTextField();
-        jLabel67 = new javax.swing.JLabel();
+        BusquedaProveedores = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable8 = new javax.swing.JTable();
+        BuscarProveedores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clinica Dental");
@@ -620,22 +622,25 @@ public class Inicio extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
-        jLabel12.setAlignmentY(1.0F);
+        BuscarPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        BuscarPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarPacientesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound4Layout = new javax.swing.GroupLayout(panelRound4);
         panelRound4.setLayout(panelRound4Layout);
         panelRound4Layout.setHorizontalGroup(
             panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BusquedaPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
-                .addGap(35, 35, 35))
             .addGroup(panelRound4Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelRound4Layout.createSequentialGroup()
+                        .addComponent(BusquedaPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BuscarPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         panelRound4Layout.setVerticalGroup(
@@ -644,14 +649,14 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BusquedaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BuscarPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.add(panelRound4);
-        panelRound4.setBounds(710, 45, 600, 509);
+        panelRound4.setBounds(710, 45, 600, 540);
 
         jTabbedPane2.addTab("Pacientes", jPanel2);
 
@@ -706,11 +711,8 @@ public class Inicio extends javax.swing.JFrame {
         panelRound5.setRoundTopLeft(30);
         panelRound5.setRoundTopRight(30);
 
-        BusquedaPacientes1.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        BusquedaPacientes1.setToolTipText("");
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
-        jLabel13.setAlignmentY(1.0F);
+        BusquedaDentistas.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        BusquedaDentistas.setToolTipText("");
 
         jTable9.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable9.setModel(new javax.swing.table.DefaultTableModel(
@@ -731,34 +733,43 @@ public class Inicio extends javax.swing.JFrame {
         });
         jScrollPane9.setViewportView(jTable9);
 
+        BuscarDentistas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        BuscarDentistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarDentistasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRound5Layout = new javax.swing.GroupLayout(panelRound5);
         panelRound5.setLayout(panelRound5Layout);
         panelRound5Layout.setHorizontalGroup(
             panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound5Layout.createSequentialGroup()
+            .addGroup(panelRound5Layout.createSequentialGroup()
                 .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelRound5Layout.createSequentialGroup()
-                        .addComponent(BusquedaPacientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound5Layout.createSequentialGroup()
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound5Layout.createSequentialGroup()
+                        .addComponent(BusquedaDentistas, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel13)))
-                .addGap(30, 30, 30))
+                        .addComponent(BuscarDentistas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
         );
         panelRound5Layout.setVerticalGroup(
             panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound5Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BusquedaPacientes1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BusquedaDentistas, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(BuscarDentistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jPanel3.add(panelRound5);
-        panelRound5.setBounds(710, 45, 600, 509);
+        panelRound5.setBounds(710, 45, 600, 540);
 
         panelRound6.setBackground(new java.awt.Color(255, 255, 255));
         panelRound6.setRoundBottomLeft(30);
@@ -988,11 +999,8 @@ public class Inicio extends javax.swing.JFrame {
         panelRound8.setRoundTopLeft(30);
         panelRound8.setRoundTopRight(30);
 
-        BusquedaPacientes2.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        BusquedaPacientes2.setToolTipText("");
-
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
-        jLabel21.setAlignmentY(1.0F);
+        BusquedaCitas.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        BusquedaCitas.setToolTipText("");
 
         jTable3.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -1022,18 +1030,25 @@ public class Inicio extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable3);
 
+        BuscarCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        BuscarCitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarCitasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRound8Layout = new javax.swing.GroupLayout(panelRound8);
         panelRound8.setLayout(panelRound8Layout);
         panelRound8Layout.setHorizontalGroup(
             panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound8Layout.createSequentialGroup()
+            .addGroup(panelRound8Layout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
-                .addGroup(panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelRound8Layout.createSequentialGroup()
-                        .addComponent(BusquedaPacientes2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound8Layout.createSequentialGroup()
+                        .addComponent(BusquedaCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel21)))
+                        .addComponent(BuscarCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
         );
         panelRound8Layout.setVerticalGroup(
@@ -1041,15 +1056,15 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound8Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BusquedaPacientes2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BusquedaCitas, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(BuscarCitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jPanel4.add(panelRound8);
-        panelRound8.setBounds(710, 45, 600, 509);
+        panelRound8.setBounds(710, 45, 600, 540);
 
         panelRound9.setBackground(new java.awt.Color(255, 255, 255));
         panelRound9.setRoundBottomLeft(30);
@@ -1233,11 +1248,8 @@ public class Inicio extends javax.swing.JFrame {
         panelRound10.setRoundTopLeft(30);
         panelRound10.setRoundTopRight(30);
 
-        BusquedaPacientes3.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        BusquedaPacientes3.setToolTipText("");
-
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
-        jLabel28.setAlignmentY(1.0F);
+        BusquedaHistorial.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        BusquedaHistorial.setToolTipText("");
 
         jTable4.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
@@ -1258,18 +1270,25 @@ public class Inicio extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jTable4);
 
+        BuscarHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        BuscarHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarHistorialActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRound10Layout = new javax.swing.GroupLayout(panelRound10);
         panelRound10.setLayout(panelRound10Layout);
         panelRound10Layout.setHorizontalGroup(
             panelRound10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound10Layout.createSequentialGroup()
+            .addGroup(panelRound10Layout.createSequentialGroup()
                 .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(panelRound10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelRound10Layout.createSequentialGroup()
-                        .addComponent(BusquedaPacientes3, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BusquedaHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel28)))
+                        .addComponent(BuscarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
         panelRound10Layout.setVerticalGroup(
@@ -1277,8 +1296,8 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound10Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(panelRound10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BusquedaPacientes3, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BusquedaHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(BuscarHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -1569,11 +1588,8 @@ public class Inicio extends javax.swing.JFrame {
         panelRound17.setRoundTopLeft(30);
         panelRound17.setRoundTopRight(30);
 
-        BusquedaPacientes6.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        BusquedaPacientes6.setToolTipText("");
-
-        jLabel65.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
-        jLabel65.setAlignmentY(1.0F);
+        BusquedaPagos.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        BusquedaPagos.setToolTipText("");
 
         jTable6.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
@@ -1594,6 +1610,13 @@ public class Inicio extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(jTable6);
 
+        BuscarPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        BuscarPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarPagosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRound17Layout = new javax.swing.GroupLayout(panelRound17);
         panelRound17.setLayout(panelRound17Layout);
         panelRound17Layout.setHorizontalGroup(
@@ -1603,9 +1626,9 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(panelRound17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelRound17Layout.createSequentialGroup()
-                        .addComponent(BusquedaPacientes6, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BusquedaPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel65)))
+                        .addComponent(BuscarPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
         );
         panelRound17Layout.setVerticalGroup(
@@ -1613,8 +1636,8 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound17Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(panelRound17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BusquedaPacientes6, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel65, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BusquedaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(BuscarPagos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -1836,11 +1859,8 @@ public class Inicio extends javax.swing.JFrame {
         panelRound13.setRoundTopLeft(30);
         panelRound13.setRoundTopRight(30);
 
-        BusquedaPacientes4.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        BusquedaPacientes4.setToolTipText("");
-
-        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
-        jLabel45.setAlignmentY(1.0F);
+        BusquedaTratamientos.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        BusquedaTratamientos.setToolTipText("");
 
         jTable5.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
@@ -1861,18 +1881,25 @@ public class Inicio extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(jTable5);
 
+        BuscarTratamientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        BuscarTratamientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarTratamientosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRound13Layout = new javax.swing.GroupLayout(panelRound13);
         panelRound13.setLayout(panelRound13Layout);
         panelRound13Layout.setHorizontalGroup(
             panelRound13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound13Layout.createSequentialGroup()
+            .addGroup(panelRound13Layout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
                 .addGroup(panelRound13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelRound13Layout.createSequentialGroup()
-                        .addComponent(BusquedaPacientes4, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BusquedaTratamientos, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel45)))
+                        .addComponent(BuscarTratamientos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
         );
         panelRound13Layout.setVerticalGroup(
@@ -1880,11 +1907,11 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound13Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(panelRound13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BusquedaPacientes4, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BusquedaTratamientos, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(BuscarTratamientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jPanel6.add(panelRound13);
@@ -2067,11 +2094,8 @@ public class Inicio extends javax.swing.JFrame {
         panelRound15.setRoundTopLeft(30);
         panelRound15.setRoundTopRight(30);
 
-        BusquedaPacientes5.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        BusquedaPacientes5.setToolTipText("");
-
-        jLabel56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
-        jLabel56.setAlignmentY(1.0F);
+        BusquedaProductos.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        BusquedaProductos.setToolTipText("");
 
         jTable7.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable7.setModel(new javax.swing.table.DefaultTableModel(
@@ -2092,18 +2116,25 @@ public class Inicio extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(jTable7);
 
+        BuscarProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        BuscarProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarProductosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRound15Layout = new javax.swing.GroupLayout(panelRound15);
         panelRound15.setLayout(panelRound15Layout);
         panelRound15Layout.setHorizontalGroup(
             panelRound15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound15Layout.createSequentialGroup()
+            .addGroup(panelRound15Layout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
                 .addGroup(panelRound15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelRound15Layout.createSequentialGroup()
-                        .addComponent(BusquedaPacientes5, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BusquedaProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel56)))
+                        .addComponent(BuscarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
         );
         panelRound15Layout.setVerticalGroup(
@@ -2111,8 +2142,8 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound15Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(panelRound15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BusquedaPacientes5, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BusquedaProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(BuscarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -2142,6 +2173,7 @@ public class Inicio extends javax.swing.JFrame {
         jTabbedPane2.addTab("Productos", jPanel8);
 
         jPanel9.setBackground(new java.awt.Color(242, 243, 245));
+        jPanel9.setLayout(null);
 
         btnRegistrarProveedor.setBackground(new java.awt.Color(50, 138, 225));
         btnRegistrarProveedor.setFont(new java.awt.Font("Poppins SemiBold", 0, 12)); // NOI18N
@@ -2152,6 +2184,8 @@ public class Inicio extends javax.swing.JFrame {
                 btnRegistrarProveedorActionPerformed(evt);
             }
         });
+        jPanel9.add(btnRegistrarProveedor);
+        btnRegistrarProveedor.setBounds(60, 604, 98, 40);
 
         btnActualizarProveedores.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnActualizarProveedores.setText("Actualizar");
@@ -2160,6 +2194,8 @@ public class Inicio extends javax.swing.JFrame {
                 btnActualizarProveedoresActionPerformed(evt);
             }
         });
+        jPanel9.add(btnActualizarProveedores);
+        btnActualizarProveedores.setBounds(170, 604, 100, 40);
 
         btnEliminarProveedores.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnEliminarProveedores.setText("Eliminar");
@@ -2168,6 +2204,8 @@ public class Inicio extends javax.swing.JFrame {
                 btnEliminarProveedoresActionPerformed(evt);
             }
         });
+        jPanel9.add(btnEliminarProveedores);
+        btnEliminarProveedores.setBounds(282, 604, 90, 40);
 
         btnVisualizarProveedores.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnVisualizarProveedores.setText("Vizualizar");
@@ -2176,6 +2214,8 @@ public class Inicio extends javax.swing.JFrame {
                 btnVisualizarProveedoresActionPerformed(evt);
             }
         });
+        jPanel9.add(btnVisualizarProveedores);
+        btnVisualizarProveedores.setBounds(384, 604, 100, 40);
 
         panelRound18.setBackground(new java.awt.Color(255, 255, 255));
         panelRound18.setRoundBottomLeft(30);
@@ -2260,6 +2300,9 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel9.add(panelRound18);
+        panelRound18.setBounds(60, 45, 574, 541);
+
         panelRound19.setBackground(new java.awt.Color(255, 255, 255));
         panelRound19.setPreferredSize(new java.awt.Dimension(600, 541));
         panelRound19.setRoundBottomLeft(30);
@@ -2267,11 +2310,8 @@ public class Inicio extends javax.swing.JFrame {
         panelRound19.setRoundTopLeft(30);
         panelRound19.setRoundTopRight(30);
 
-        BusquedaPacientes7.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        BusquedaPacientes7.setToolTipText("");
-
-        jLabel67.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
-        jLabel67.setAlignmentY(1.0F);
+        BusquedaProveedores.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        BusquedaProveedores.setToolTipText("");
 
         jTable8.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable8.setModel(new javax.swing.table.DefaultTableModel(
@@ -2292,6 +2332,13 @@ public class Inicio extends javax.swing.JFrame {
         });
         jScrollPane8.setViewportView(jTable8);
 
+        BuscarProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        BuscarProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarProveedoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRound19Layout = new javax.swing.GroupLayout(panelRound19);
         panelRound19.setLayout(panelRound19Layout);
         panelRound19Layout.setHorizontalGroup(
@@ -2299,11 +2346,11 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound19Layout.createSequentialGroup()
                 .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(panelRound19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelRound19Layout.createSequentialGroup()
-                        .addComponent(BusquedaPacientes7, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BusquedaProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel67)))
+                        .addComponent(BuscarProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
         panelRound19Layout.setVerticalGroup(
@@ -2311,49 +2358,15 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound19Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(panelRound19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BusquedaPacientes7, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel67, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BusquedaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(BuscarProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(panelRound18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
-                        .addComponent(panelRound19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(btnRegistrarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnActualizarProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminarProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnVisualizarProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(250, Short.MAX_VALUE))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelRound19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelRound18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizarProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVisualizarProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(106, Short.MAX_VALUE))
-        );
+        jPanel9.add(panelRound19);
+        panelRound19.setBounds(710, 45, 600, 541);
 
         jTabbedPane2.addTab("Proveedores", jPanel9);
 
@@ -3315,6 +3328,55 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor, selecciona un paciente en la tabla.");
         }
     }//GEN-LAST:event_btnReporteHistorialActionPerformed
+
+    private void BuscarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPacientesActionPerformed
+        // TODO add your handling code here:
+        PacientesDao dao = new PacientesDao();
+        dao.buscarPacientes(BusquedaPacientes.getText().trim(), jTable1);
+
+    }//GEN-LAST:event_BuscarPacientesActionPerformed
+
+    private void BuscarDentistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarDentistasActionPerformed
+        // TODO add your handling code here:
+        DentistasDao dao = new DentistasDao();
+        dao.buscarDentistas(BusquedaDentistas.getText().trim(), jTable9);
+    }//GEN-LAST:event_BuscarDentistasActionPerformed
+
+    private void BuscarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarCitasActionPerformed
+        // TODO add your handling code here:
+        CitasDao dao = new CitasDao();
+        dao.buscarCitas(BusquedaCitas.getText().trim(), jTable3);
+    }//GEN-LAST:event_BuscarCitasActionPerformed
+
+    private void BuscarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarHistorialActionPerformed
+        // TODO add your handling code here:
+        HistorialMedicoDao dao = new HistorialMedicoDao();
+        dao.buscarHistorial(BusquedaHistorial.getText().trim(), jTable4);
+    }//GEN-LAST:event_BuscarHistorialActionPerformed
+
+    private void BuscarPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPagosActionPerformed
+        // TODO add your handling code here:
+        PagosDao dao = new PagosDao();
+        dao.buscarPagos(BusquedaPagos.getText().trim(), jTable6);
+    }//GEN-LAST:event_BuscarPagosActionPerformed
+
+    private void BuscarTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarTratamientosActionPerformed
+        // TODO add your handling code here:
+        TratamientosDao dao = new TratamientosDao();
+        dao.buscarTratamientos(BusquedaTratamientos.getText().trim(), jTable5);
+    }//GEN-LAST:event_BuscarTratamientosActionPerformed
+
+    private void BuscarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarProductosActionPerformed
+        // TODO add your handling code here:
+        ProductosDao dao = new ProductosDao();
+        dao.buscarProductos(BusquedaProductos.getText().trim(), jTable7);
+    }//GEN-LAST:event_BuscarProductosActionPerformed
+
+    private void BuscarProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarProveedoresActionPerformed
+        // TODO add your handling code here:
+        ProveedoresDao dao = new ProveedoresDao();
+        dao.buscarProveedores(BusquedaProveedores.getText().trim(), jTable8);
+    }//GEN-LAST:event_BuscarProveedoresActionPerformed
     
     private boolean validarCamposPacientes() {
         return validarCamp.validarCamposVacios(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, 
@@ -3355,7 +3417,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private boolean validarCamposProductos() {
         return validarCamp.validarCamposVacios(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto) &&
-               validarCamp.validarNumero(txtPrecioProducto, "El precio del producto debe ser un número válido y mayor a 0.");
+               validarCamp.validarNumero(txtPrecioProducto, "El precio del producto debe ser un número válido y mayor a 0.") &&
+               validarCamp.validarNumero(txtCantidadDisponible, "La cantidad disponible debe ser un número válido y mayor a 0");
     }
     
     private void verTablaPacientes() {
@@ -3372,8 +3435,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void verTablaCitas() {
         String sql = "SELECT c.idCita, " +
-                     "CONCAT(p.idPaciente, ' - ', p.Nombre) AS Paciente, " +
-                     "CONCAT(d.idDentista, ' - ', d.Nombre) AS Dentista, " +
+                     "p.Nombre AS Paciente, " +
+                     "d.Nombre AS Dentista, " +
                      "c.Fecha, c.Hora, c.Motivo, c.Notas " +
                      "FROM Citas c " +
                      "JOIN Pacientes p ON c.idPaciente = p.idPaciente " +
@@ -3385,7 +3448,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void verTablaHistorialMedico() {
         String sql = "SELECT hm.idHistorialMedico, " +
-                     "CONCAT(p.idPaciente, ' - ', p.Nombre) AS Nombre, " +
+                     "p.Nombre AS Nombre, " +
                      "hm.Alergias, hm.Enfermedades, hm.Medicacion, hm.Observaciones, hm.UltimaActualizacion " +
                      "FROM HistorialMedico hm " +
                      "JOIN Pacientes p ON hm.idPaciente = p.idPaciente";
@@ -3402,9 +3465,9 @@ public class Inicio extends javax.swing.JFrame {
 
     private void verTablaTratamientos() {
         String sql = "SELECT t.idTratamiento, " +
-                     "CONCAT(d.idDentista, ' - ', d.Nombre) AS Dentista, " +
+                     "d.Nombre AS Dentista, " +
                      "t.Nombre AS Tratamiento, t.Descripcion, t.MontoTotal, " +
-                     "CONCAT(p.idPaciente, ' - ', p.Nombre) AS Paciente, " +
+                     "p.Nombre AS Paciente, " +
                      "pt.FechaInicio, pt.FechaFin " +
                      "FROM Tratamientos t " +
                      "INNER JOIN PacientesTratamientos pt ON t.idTratamiento = pt.idTratamiento " +
@@ -3417,7 +3480,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void verTablaPagos() {
         String sql = "SELECT p.idPago, " +
-                     "CONCAT(t.idTratamiento, ' - ', t.Nombre) AS Tratamiento, " +
+                     "t.Nombre AS Tratamiento, " +
                      "p.MetodoPago, p.FechaPago, p.ModalidadPago, p.MontoPagado " +
                      "FROM Pagos p " +
                      "JOIN Tratamientos t ON p.idTratamiento = t.idTratamiento";
@@ -3428,7 +3491,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void verTablaProductos() {
         String sql = "SELECT p.idProducto, " +
-                     "CONCAT(pr.idProveedor, ' - ', pr.Nombre) AS Proveedor, " +
+                     "pr.Nombre AS Proveedor, " +
                      "p.NombreProducto, p.Descripcion, p.PrecioUnitario, " +
                      "pp.CantidadDisponible, pp.PrecioTotal, pp.FechaRegistro " +
                      "FROM Productos p " +
@@ -3440,13 +3503,13 @@ public class Inicio extends javax.swing.JFrame {
     }
     
     public void llenarComboBox() {
-        ComboBoxUtils.llenarComboBox(cbxPacientesCitas, "SELECT idPaciente, Nombre FROM Pacientes", "idPaciente", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxPacientesHistorial, "SELECT idPaciente, Nombre FROM Pacientes", "idPaciente", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxPacientesTratamientos, "SELECT idPaciente, Nombre FROM Pacientes", "idPaciente", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxDentistasCitas, "SELECT idDentista, Nombre FROM Dentistas", "idDentista", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxDentistasTratamientos, "SELECT idDentista, Nombre FROM Dentistas", "idDentista", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxTratamientoPagos, "SELECT idTratamiento, Nombre FROM Tratamientos", "idTratamiento", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxProveedores, "SELECT idProveedor, Nombre FROM Proveedores", "idProveedor", "Nombre");
+        ComboBoxUtils.llenarComboBox(cbxPacientesCitas, "SELECT Nombre FROM Pacientes", "Nombre");
+        ComboBoxUtils.llenarComboBox(cbxPacientesHistorial, "SELECT Nombre FROM Pacientes", "Nombre");
+        ComboBoxUtils.llenarComboBox(cbxPacientesTratamientos, "SELECT Nombre FROM Pacientes", "Nombre");
+        ComboBoxUtils.llenarComboBox(cbxDentistasCitas, "SELECT Nombre FROM Dentistas", "Nombre");
+        ComboBoxUtils.llenarComboBox(cbxDentistasTratamientos, "SELECT Nombre FROM Dentistas", "Nombre");
+        ComboBoxUtils.llenarComboBox(cbxTratamientoPagos, "SELECT Nombre FROM Tratamientos", "Nombre");
+        ComboBoxUtils.llenarComboBox(cbxProveedores, "SELECT Nombre FROM Proveedores", "Nombre");
 
     }
 
@@ -3495,14 +3558,22 @@ public class Inicio extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BuscarCitas;
+    private javax.swing.JButton BuscarDentistas;
+    private javax.swing.JButton BuscarHistorial;
+    private javax.swing.JButton BuscarPacientes;
+    private javax.swing.JButton BuscarPagos;
+    private javax.swing.JButton BuscarProductos;
+    private javax.swing.JButton BuscarProveedores;
+    private javax.swing.JButton BuscarTratamientos;
+    private javax.swing.JTextField BusquedaCitas;
+    private javax.swing.JTextField BusquedaDentistas;
+    private javax.swing.JTextField BusquedaHistorial;
     private javax.swing.JTextField BusquedaPacientes;
-    private javax.swing.JTextField BusquedaPacientes1;
-    private javax.swing.JTextField BusquedaPacientes2;
-    private javax.swing.JTextField BusquedaPacientes3;
-    private javax.swing.JTextField BusquedaPacientes4;
-    private javax.swing.JTextField BusquedaPacientes5;
-    private javax.swing.JTextField BusquedaPacientes6;
-    private javax.swing.JTextField BusquedaPacientes7;
+    private javax.swing.JTextField BusquedaPagos;
+    private javax.swing.JTextField BusquedaProductos;
+    private javax.swing.JTextField BusquedaProveedores;
+    private javax.swing.JTextField BusquedaTratamientos;
     private javax.swing.JButton btnActualizarCitas;
     private javax.swing.JButton btnActualizarDentistas;
     private javax.swing.JButton btnActualizarHistorial;
@@ -3555,8 +3626,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -3565,14 +3634,12 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -3591,7 +3658,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
@@ -3603,7 +3669,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
@@ -3613,9 +3678,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
