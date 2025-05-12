@@ -43,7 +43,7 @@ public class ProveedoresDao {
                 return false;
             } 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al insertar proveedor: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al insertar proveedor", "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -71,7 +71,7 @@ public class ProveedoresDao {
                 return false;
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar proveedor: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al actualizar proveedor", "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -94,7 +94,7 @@ public class ProveedoresDao {
                 return false;
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar proveedor: " + ex.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al eliminar proveedor", "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     } 
@@ -126,8 +126,8 @@ public class ProveedoresDao {
 
             tabla.setModel(modelo);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar proveedores: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al buscar proveedores", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
         }
     }
 }

@@ -42,8 +42,8 @@ public class PacientesTratamientosDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar pacienteTratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al insertar pacienteTratamiento", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
             return false;
         } finally {
             try {
@@ -71,7 +71,7 @@ public class PacientesTratamientosDao {
 
             return filasAfectadas > 0;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar PacienteTratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al actualizar PacienteTratamiento", "Error SQL", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -91,7 +91,7 @@ public class PacientesTratamientosDao {
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al obtener idPacienteTratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al obtener idPacienteTratamiento", "Error SQL", JOptionPane.ERROR_MESSAGE);
         }
 
         return -1; // Retorna -1 si no se encuentra el idPacienteTratamiento
@@ -115,8 +115,8 @@ public class PacientesTratamientosDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar pacienteTratamiento: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al eliminar pacienteTratamiento", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
             return false;
         }
     }

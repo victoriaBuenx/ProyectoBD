@@ -77,8 +77,8 @@ public class ProductosDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar el producto: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al actualizar el producto", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
             return false;
         }
     }
@@ -106,8 +106,8 @@ public class ProductosDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar el producto: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al eliminar el producto", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
             return false;
         } 
     }   
@@ -255,12 +255,12 @@ public class ProductosDao {
     
     public void buscarProductos(String textoBusqueda, JTable tabla) {
         String sql = "SELECT p.idProducto, " +
-                     "pr.Nombre AS Proveedor, " +
+                     "CONCAT(pr.idProveedor, ' - ', pr.Nombre) AS Proveedor," +
                      "p.NombreProducto, p.Descripcion, p.PrecioUnitario, " +
                      "pp.CantidadDisponible, pp.PrecioTotal, pp.FechaRegistro " +
                      "FROM Productos p " +
                      "INNER JOIN ProveedorProducto pp ON p.idProducto = pp.idProducto " +
-                     "INNER JOIN Proveedores pr ON pp.idProveedor = pr.idProveedor " +
+                     "INNER JOIN Proveedores pr ON pp.idProveedor = pr.idProveedor" +
                      "WHERE CONCAT(p.idProducto, ' ', pr.Nombre, ' ', p.NombreProducto, ' ', p.Descripcion, ' ', p.PrecioUnitario, ' ', pp.CantidadDisponible, ' ', pp.PrecioTotal, ' ', pp.FechaRegistro) LIKE ?";
 
         try (Connection con = new Conexion().conexion();
@@ -289,8 +289,8 @@ public class ProductosDao {
 
             tabla.setModel(modelo);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar productos: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al buscar productos", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
         }
     }   
 }

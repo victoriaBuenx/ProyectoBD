@@ -42,8 +42,8 @@ public class ProveedorProductoDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar proveedorProducto: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al insertar proveedorProducto", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
             return false;
         } finally {
             try {
@@ -108,8 +108,8 @@ public class ProveedorProductoDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar proveedorProducto: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al eliminar proveedorProducto", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
             return false;
         }
     }

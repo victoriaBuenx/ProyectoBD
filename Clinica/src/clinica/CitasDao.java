@@ -49,8 +49,8 @@ public class CitasDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar cita: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al insertar cita", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
             return false;
         } finally {
             try {
@@ -86,8 +86,8 @@ public class CitasDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar la cita: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al actualizar la cita", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
             return false;
         }
     }
@@ -114,8 +114,8 @@ public class CitasDao {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar cita: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al eliminar cita", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
             return false;
         }
     }  
@@ -262,12 +262,12 @@ public class CitasDao {
     
     public void buscarCitas(String textoBusqueda, JTable tabla) {
         String sql = "SELECT c.idCita, " +
-                     "p.Nombre AS Paciente, " +
-                     "d.Nombre AS Dentista, " +
+                     "CONCAT(p.idPaciente, ' - ', p.Nombre) AS Paciente, " +
+                     "CONCAT(d.idDentista, ' - ', d.Nombre) AS Dentista, " +
                      "c.Fecha, c.Hora, c.Motivo, c.Notas " +
                      "FROM Citas c " +
                      "JOIN Pacientes p ON c.idPaciente = p.idPaciente " +
-                     "JOIN Dentistas d ON c.idDentista = d.idDentista " +
+                     "JOIN Dentistas d ON c.idDentista = d.idDentista" +
                      "WHERE CONCAT(c.idCita, ' ', p.Nombre, ' ', d.Nombre, ' ', c.Fecha, ' ', c.Hora, ' ', c.Motivo, ' ', c.Notas) LIKE ?";
 
         try (Connection con = new Conexion().conexion();
@@ -295,8 +295,8 @@ public class CitasDao {
 
             tabla.setModel(modelo);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar citas: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al buscar citas: ", "Error SQL", JOptionPane.ERROR_MESSAGE);
+            //e.printStackTrace();
         }
     }
 

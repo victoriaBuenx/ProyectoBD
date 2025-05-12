@@ -241,6 +241,7 @@ public class Login extends javax.swing.JFrame {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error de conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     /**
