@@ -9,6 +9,8 @@ import java.awt.Component;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -102,11 +104,21 @@ public class ValidarCampos {
         }
         if (fechaSeleccionada.before(quitarHora(fechaActual))) {
             JOptionPane.showMessageDialog(null, "No se permiten fechas pasadas.", "Error", JOptionPane.ERROR_MESSAGE);
+
+    public boolean validarCorreo(JTextField campo) {
+        String correo = campo.getText().trim();
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(correo);
+
+        if (!matcher.matches()) {
+            JOptionPane.showMessageDialog(null, "Correo electrónico no válido.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
         return true;
     }
+
 
     private static Date quitarHora(Date fecha) {
         java.util.Calendar cal = java.util.Calendar.getInstance();
@@ -117,5 +129,6 @@ public class ValidarCampos {
         cal.set(java.util.Calendar.MILLISECOND, 0);
         return cal.getTime();
     }
+
 }
 
