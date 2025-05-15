@@ -278,7 +278,7 @@ public class CitasDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "ID", "Paciente", "Dentista", "Fecha", "Hora", "Motivo", "Notas"
+                "id", "Paciente", "Dentista", "Fecha", "Hora", "Motivo", "Notas"
             });
 
             while (rs.next()) {
