@@ -12,7 +12,8 @@ import java.sql.*;
  * @author victo
  */
 public class ComboBoxUtils {
-    public static void llenarComboBox(JComboBox<String> comboBox, String sql, String idColumn, String nameColumn) {
+    
+    public void llenarComboBox(JComboBox<String> comboBox, String sql, String idColumn, String nameColumn) {
         comboBox.removeAllItems();
 
         try (Connection con = new Conexion().conexion();

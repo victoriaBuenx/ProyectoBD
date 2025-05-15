@@ -6,6 +6,7 @@ package clinica;
 
 import com.formdev.flatlaf.IntelliJTheme;
 import clinica.Conexion;
+import clinica.ComboBoxUtils;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,6 +15,8 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.util.Arrays;
 import java.util.List;
+import componentes.PanelRound;
+
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -47,6 +50,7 @@ public class Inicio extends javax.swing.JFrame {
     ValidarCampos validarCamp= new ValidarCampos();
     LimpiarCampos limpiar= new LimpiarCampos();
     ReporteClinica reporte= new ReporteClinica();
+    ComboBoxUtils comboBox= new ComboBoxUtils();
 
     public Inicio() {
         IntelliJTheme.setup(getClass().getResourceAsStream("/componentes/LightFlatTheme.theme.json"));
@@ -124,10 +128,9 @@ public class Inicio extends javax.swing.JFrame {
         btnRegistrarPacientes = new javax.swing.JButton();
         btnActualizarPacientes = new javax.swing.JButton();
         btnEliminarPacientes = new javax.swing.JButton();
-        panelRound2 = new proyecto_residencias.Componentes.PanelRound();
         jLabel70 = new javax.swing.JLabel();
         btnReportePacientes = new javax.swing.JButton();
-        panelRound3 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound3 = new componentes.PanelRound();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtTelefonoPaciente = new javax.swing.JTextField();
@@ -135,7 +138,7 @@ public class Inicio extends javax.swing.JFrame {
         txtCorreoPaciente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jdFechaRegistroPaciente = new com.toedter.calendar.JDateChooser();
-        panelRound1 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound1 = new componentes.PanelRound();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtNombrePaciente = new javax.swing.JTextField();
@@ -145,7 +148,7 @@ public class Inicio extends javax.swing.JFrame {
         txtApellidoMatPaciente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jdNacimientoPaciente = new com.toedter.calendar.JDateChooser();
-        panelRound4 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound4 = new componentes.PanelRound();
         BusquedaPacientes = new javax.swing.JTextField();
         BuscarPacientes = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -154,12 +157,12 @@ public class Inicio extends javax.swing.JFrame {
         btnRegistrarDentistas = new javax.swing.JButton();
         btnActualizarDentistas = new javax.swing.JButton();
         btnEliminarDentistas = new javax.swing.JButton();
-        panelRound5 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound5 = new componentes.PanelRound();
         BusquedaDentistas = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTable9 = new javax.swing.JTable();
         BuscarDentistas = new javax.swing.JButton();
-        panelRound6 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound6 = new componentes.PanelRound();
         jLabel11 = new javax.swing.JLabel();
         txtNombreDentista = new javax.swing.JTextField();
         jLabel60 = new javax.swing.JLabel();
@@ -167,7 +170,7 @@ public class Inicio extends javax.swing.JFrame {
         txtApellidoPartDentista = new javax.swing.JTextField();
         jLabel57 = new javax.swing.JLabel();
         txtApellidoMatDentista = new javax.swing.JTextField();
-        panelRound7 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound7 = new componentes.PanelRound();
         jLabel14 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
         txtTelefonoDentistas = new javax.swing.JTextField();
@@ -184,12 +187,12 @@ public class Inicio extends javax.swing.JFrame {
         btnVisualizarHistorial = new javax.swing.JButton();
         btnActualizarHistorial = new javax.swing.JButton();
         btnEliminarHistorial = new javax.swing.JButton();
-        panelRound10 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound10 = new componentes.PanelRound();
         BusquedaHistorial = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
         BuscarHistorial = new javax.swing.JButton();
-        panelRound11 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound11 = new componentes.PanelRound();
         jLabel25 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         cbxPacientesHistorial = new javax.swing.JComboBox<>();
@@ -214,12 +217,12 @@ public class Inicio extends javax.swing.JFrame {
         btnVisualizarCitas = new javax.swing.JButton();
         btnActualizarCitas = new javax.swing.JButton();
         btnEliminarCitas = new javax.swing.JButton();
-        panelRound8 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound8 = new componentes.PanelRound();
         BusquedaCitas = new javax.swing.JTextField();
         BuscarCitas = new javax.swing.JButton();
         jScrollPane16 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        panelRound9 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound9 = new componentes.PanelRound();
         jLabel24 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         cbxPacientesCitas = new javax.swing.JComboBox<>();
@@ -241,7 +244,7 @@ public class Inicio extends javax.swing.JFrame {
         btnVisualizarTratamiento = new javax.swing.JButton();
         btnActualizarTratamiento = new javax.swing.JButton();
         btnEliminarTratamiento = new javax.swing.JButton();
-        panelRound12 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound12 = new componentes.PanelRound();
         jLabel42 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         cbxDentistasTratamientos = new javax.swing.JComboBox<>();
@@ -258,7 +261,7 @@ public class Inicio extends javax.swing.JFrame {
         jpFechaInicioTrat = new com.toedter.calendar.JDateChooser();
         jLabel40 = new javax.swing.JLabel();
         jpFechaFinTrat = new com.toedter.calendar.JDateChooser();
-        panelRound13 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound13 = new componentes.PanelRound();
         BusquedaTratamientos = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
@@ -270,7 +273,7 @@ public class Inicio extends javax.swing.JFrame {
         btnActualizarPagos = new javax.swing.JButton();
         btnEliminarPagos = new javax.swing.JButton();
         btnVisualizarPagos = new javax.swing.JButton();
-        panelRound16 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound16 = new componentes.PanelRound();
         jLabel64 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         cbxTratamientoPagos = new javax.swing.JComboBox<>();
@@ -282,7 +285,7 @@ public class Inicio extends javax.swing.JFrame {
         cbxModalidadPago = new javax.swing.JComboBox<>();
         jLabel37 = new javax.swing.JLabel();
         txtMontoPagado = new javax.swing.JTextField();
-        panelRound17 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound17 = new componentes.PanelRound();
         BusquedaPagos = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
@@ -291,7 +294,7 @@ public class Inicio extends javax.swing.JFrame {
         btnRegistrarProveedor = new javax.swing.JButton();
         btnActualizarProveedores = new javax.swing.JButton();
         btnEliminarProveedores = new javax.swing.JButton();
-        panelRound18 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound18 = new componentes.PanelRound();
         jLabel66 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         txtNombreProovedor = new javax.swing.JTextField();
@@ -303,7 +306,7 @@ public class Inicio extends javax.swing.JFrame {
         txtEmpresaProveedor = new javax.swing.JTextField();
         jLabel52 = new javax.swing.JLabel();
         txtDireccionProveedor = new javax.swing.JTextField();
-        panelRound19 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound19 = new componentes.PanelRound();
         BusquedaProveedores = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable8 = new javax.swing.JTable();
@@ -313,7 +316,7 @@ public class Inicio extends javax.swing.JFrame {
         btnActualizarProductos = new javax.swing.JButton();
         btnEliminarProductos = new javax.swing.JButton();
         btnVisualizarProductos = new javax.swing.JButton();
-        panelRound14 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound14 = new componentes.PanelRound();
         jLabel47 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
         cbxProveedores = new javax.swing.JComboBox<>();
@@ -328,7 +331,7 @@ public class Inicio extends javax.swing.JFrame {
         txtCantidadDisponible = new javax.swing.JSpinner();
         jLabel44 = new javax.swing.JLabel();
         jdFechaRegistroP = new com.toedter.calendar.JDateChooser();
-        panelRound15 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound15 = new componentes.PanelRound();
         BusquedaProductos = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable7 = new javax.swing.JTable();
@@ -383,20 +386,6 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel2.add(btnEliminarPacientes);
         btnEliminarPacientes.setBounds(282, 592, 90, 40);
-
-        javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
-        panelRound2.setLayout(panelRound2Layout);
-        panelRound2Layout.setHorizontalGroup(
-            panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        panelRound2Layout.setVerticalGroup(
-            panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(panelRound2);
-        panelRound2.setBounds(649, 650, 100, 100);
 
         jLabel70.setFont(new java.awt.Font("Poppins Medium", 0, 10)); // NOI18N
         jLabel70.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -3315,6 +3304,7 @@ public class Inicio extends javax.swing.JFrame {
         return validarCamp.validarCamposVacios(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, 
                                    txtTelefonoPaciente, txtCorreoPaciente, jdNacimientoPaciente, jdFechaRegistroPaciente) &&
                validarCamp.validarNumero(txtTelefonoPaciente, "El teléfono debe ser un número válido.")&&
+               validarCamp.validarFecha(jdFechaRegistroPaciente) &&
                validarCamp.validarCorreo(txtCorreoPaciente);
     }
 
@@ -3334,7 +3324,8 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     private boolean validarCamposHistorialMedico() {
-        return validarCamp.validarCamposVacios(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, jpUltimaActHistorial);
+        return validarCamp.validarCamposVacios(cbxPacientesHistorial, txAreaAlergias, txAreaEnfermedades, txAreaMedicacion, jpUltimaActHistorial) &&
+               validarCamp.validarFecha(jpUltimaActHistorial);
     }
 
     private boolean validarCamposProveedores() {
@@ -3343,17 +3334,21 @@ public class Inicio extends javax.swing.JFrame {
 
     private boolean validarCamposTratamientos() {
         return validarCamp.validarCamposVacios(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal) &&
+               validarCamp.validarFecha(jpFechaInicioTrat) &&
+               validarCamp.validarFecha(jpFechaFinTrat) &&
                validarCamp.validarNumero(txtMontoTotal, "El monto total debe ser un número válido y mayor a 0.");
     }
 
     private boolean validarCamposPagos() {
         return validarCamp.validarCamposVacios(cbxTratamientoPagos, cbxMetodoPago, jdFechaPago, cbxModalidadPago, txtMontoPagado) &&
+               validarCamp.validarFecha(jdFechaPago) &&
                validarCamp.validarNumero(txtMontoPagado, "El monto pagado debe ser un número válido y mayor a 0.");
     }
 
     private boolean validarCamposProductos() {
         return validarCamp.validarCamposVacios(txtNombreProducto, txaDescripcionProducto, txtPrecioProducto) &&
                validarCamp.validarNumero(txtPrecioProducto, "El precio del producto debe ser un número válido y mayor a 0.") &&
+               validarCamp.validarFecha(jdFechaRegistroP) &&
                validarCamp.validarNumero(txtCantidadDisponible, "La cantidad disponible debe ser un número válido y mayor a 0");
     }
     
@@ -3439,13 +3434,13 @@ public class Inicio extends javax.swing.JFrame {
     }
     
     public void llenarComboBox() {
-        ComboBoxUtils.llenarComboBox(cbxPacientesCitas, "SELECT idPaciente, Nombre FROM Pacientes", "idPaciente", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxPacientesHistorial, "SELECT idPaciente, Nombre FROM Pacientes", "idPaciente", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxPacientesTratamientos, "SELECT idPaciente, Nombre FROM Pacientes", "idPaciente", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxDentistasCitas, "SELECT idDentista, Nombre FROM Dentistas", "idDentista", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxDentistasTratamientos,"SELECT idDentista, Nombre FROM Dentistas", "idDentista", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxTratamientoPagos, "SELECT idTratamiento, Nombre FROM Tratamientos", "idTratamiento","Nombre");
-        ComboBoxUtils.llenarComboBox(cbxProveedores, "SELECT idProveedor, Nombre FROM Proveedores", "idProveedor", "Nombre");
+        comboBox.llenarComboBox(cbxPacientesCitas, "SELECT idPaciente, Nombre FROM Pacientes", "idPaciente", "Nombre");
+        comboBox.llenarComboBox(cbxPacientesHistorial, "SELECT idPaciente, Nombre FROM Pacientes", "idPaciente", "Nombre");
+        comboBox.llenarComboBox(cbxPacientesTratamientos, "SELECT idPaciente, Nombre FROM Pacientes", "idPaciente", "Nombre");
+        comboBox.llenarComboBox(cbxDentistasCitas, "SELECT idDentista, Nombre FROM Dentistas", "idDentista", "Nombre");
+        comboBox.llenarComboBox(cbxDentistasTratamientos,"SELECT idDentista, Nombre FROM Dentistas", "idDentista", "Nombre");
+        comboBox.llenarComboBox(cbxTratamientoPagos, "SELECT idTratamiento, Nombre FROM Tratamientos", "idTratamiento","Nombre");
+        comboBox.llenarComboBox(cbxProveedores, "SELECT idProveedor, Nombre FROM Proveedores", "idProveedor", "Nombre");
 
     }
 
@@ -3662,25 +3657,24 @@ public class Inicio extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jpFechaFinTrat;
     private com.toedter.calendar.JDateChooser jpFechaInicioTrat;
     private com.toedter.calendar.JDateChooser jpUltimaActHistorial;
-    private proyecto_residencias.Componentes.PanelRound panelRound1;
-    private proyecto_residencias.Componentes.PanelRound panelRound10;
-    private proyecto_residencias.Componentes.PanelRound panelRound11;
-    private proyecto_residencias.Componentes.PanelRound panelRound12;
-    private proyecto_residencias.Componentes.PanelRound panelRound13;
-    private proyecto_residencias.Componentes.PanelRound panelRound14;
-    private proyecto_residencias.Componentes.PanelRound panelRound15;
-    private proyecto_residencias.Componentes.PanelRound panelRound16;
-    private proyecto_residencias.Componentes.PanelRound panelRound17;
-    private proyecto_residencias.Componentes.PanelRound panelRound18;
-    private proyecto_residencias.Componentes.PanelRound panelRound19;
-    private proyecto_residencias.Componentes.PanelRound panelRound2;
-    private proyecto_residencias.Componentes.PanelRound panelRound3;
-    private proyecto_residencias.Componentes.PanelRound panelRound4;
-    private proyecto_residencias.Componentes.PanelRound panelRound5;
-    private proyecto_residencias.Componentes.PanelRound panelRound6;
-    private proyecto_residencias.Componentes.PanelRound panelRound7;
-    private proyecto_residencias.Componentes.PanelRound panelRound8;
-    private proyecto_residencias.Componentes.PanelRound panelRound9;
+    private componentes.PanelRound panelRound1;
+    private componentes.PanelRound panelRound10;
+    private componentes.PanelRound panelRound11;
+    private componentes.PanelRound panelRound12;
+    private componentes.PanelRound panelRound13;
+    private componentes.PanelRound panelRound14;
+    private componentes.PanelRound panelRound15;
+    private componentes.PanelRound panelRound16;
+    private componentes.PanelRound panelRound17;
+    private componentes.PanelRound panelRound18;
+    private componentes.PanelRound panelRound19;
+    private componentes.PanelRound panelRound3;
+    private componentes.PanelRound panelRound4;
+    private componentes.PanelRound panelRound5;
+    private componentes.PanelRound panelRound6;
+    private componentes.PanelRound panelRound7;
+    private componentes.PanelRound panelRound8;
+    private componentes.PanelRound panelRound9;
     private javax.swing.JTextArea txAreaAlergias;
     private javax.swing.JTextArea txAreaEnfermedades;
     private javax.swing.JTextArea txAreaMedicacion;

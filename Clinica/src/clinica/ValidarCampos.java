@@ -6,6 +6,8 @@ package clinica;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.Component;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -69,20 +71,42 @@ public class ValidarCampos {
     }
 
     public boolean validarFormatoHora(JTextField campo, String mensaje) {
-        if (!campo.getText().matches("^(\\d{2}:\\d{2})$")) {
-            JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        String texto = campo.getText().trim();
+        if (!texto.matches("^([01]\\d|2[0-3]):[0-5]\\d$")) {
+            JOptionPane.showMessageDialog(null, mensaje + " (Formato válido: HH:mm en 24 horas)", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+
         return true;
     }
     public boolean validarFormatoHoraA(JTextField campo, String mensaje) {
-        if (!campo.getText().matches("^(\\d{2}:\\d{2})-(\\d{2}:\\d{2})$")) {
-            JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        String texto = campo.getText().trim();
+
+        if (!texto.matches("^(\\d{2}):(\\d{2})-(\\d{2}):(\\d{2})$")) {
+            JOptionPane.showMessageDialog(null, mensaje + " (Formato incorrecto. Usa HH:mm-HH:mm)", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        return true;
-    }
 
+        try {
+            String[] partes = texto.split("-");
+            SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
+            formatoHora.setLenient(false); 
+
+            Date horaInicio = formatoHora.parse(partes[0]);
+            Date horaFin = formatoHora.parse(partes[1]);
+
+            if (!horaInicio.before(horaFin)) {
+                JOptionPane.showMessageDialog(null, "La hora de inicio debe ser menor que la hora de fin", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            return true;
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(null, "Error al analizar la hora: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+    
     public boolean validarEspecialidad(JComboBox <String> comboBox) {
         List<String> especialidadesValidas = Arrays.asList("Odontopedriata", "Ortodoncista", "Periodoncista", 
                                                             "Endodoncista", "Patologo", "Prostodoncista", "Cirujano");
@@ -104,6 +128,11 @@ public class ValidarCampos {
         }
         if (fechaSeleccionada.before(quitarHora(fechaActual))) {
             JOptionPane.showMessageDialog(null, "No se permiten fechas pasadas.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        return true;
+    }
 
     public boolean validarCorreo(JTextField campo) {
         String correo = campo.getText().trim();
@@ -118,7 +147,6 @@ public class ValidarCampos {
 
         return true;
     }
-
 
     private static Date quitarHora(Date fecha) {
         java.util.Calendar cal = java.util.Calendar.getInstance();

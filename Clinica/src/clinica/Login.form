@@ -44,6 +44,9 @@
           <Color blue="bc" green="6b" red="14" type="rgb"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new componentes.PanelRound()"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -75,6 +78,9 @@
             <Property name="roundBottomLeft" type="int" value="60"/>
             <Property name="roundTopLeft" type="int" value="60"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new componentes.PanelRound()"/>
+          </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">

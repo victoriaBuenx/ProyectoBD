@@ -39,8 +39,8 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelRound1 = new proyecto_residencias.Componentes.PanelRound();
-        panelRound2 = new proyecto_residencias.Componentes.PanelRound();
+        panelRound1 = new componentes.PanelRound();
+        panelRound2 = new componentes.PanelRound();
         txtNombreUsuario = new javax.swing.JTextField();
         contraseña = new javax.swing.JPasswordField();
         btnIniciarSesion = new javax.swing.JButton();
@@ -290,8 +290,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private proyecto_residencias.Componentes.PanelRound panelRound1;
-    private proyecto_residencias.Componentes.PanelRound panelRound2;
+    private componentes.PanelRound panelRound1;
+    private componentes.PanelRound panelRound2;
     private javax.swing.JTextField txtNombreUsuario;
     // End of variables declaration//GEN-END:variables
 }

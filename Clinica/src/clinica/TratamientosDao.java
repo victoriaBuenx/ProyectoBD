@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.SQLException;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import javax.swing.JTable;

@@ -1,4 +1,4 @@
-package proyecto_residencias.Componentes;
+package componentes;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
