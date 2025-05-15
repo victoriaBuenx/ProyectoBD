@@ -134,19 +134,8 @@ public class CitasDao {
         try {
             Conexion conexion = new Conexion();
             con = conexion.conexion();
-            con.setAutoCommit(false);
+            con.setAutoCommit(false); 
 
-            // Verificar que el paciente tenga historial
-            psVerificarHistorial = con.prepareStatement(sqlVerificarHistorial);
-            psVerificarHistorial.setInt(1, idPaciente);
-            rs = psVerificarHistorial.executeQuery();
-
-            if (!rs.next()) {
-                //JOptionPane.showMessageDialog(null, "El paciente no tiene historial médico. No se puede registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-
-            // Insertar la cita
             psCita = con.prepareStatement(sqlCita);
             psCita.setInt(1, idPaciente);
             psCita.setInt(2, idDentista);
@@ -156,16 +145,21 @@ public class CitasDao {
             psCita.setString(6, notas);
             psCita.executeUpdate();
 
-            // Actualizar historial
-            psHistorial = con.prepareStatement(sqlActualizarHistorial);
-            psHistorial.setDate(1, new java.sql.Date(fecha.getTime()));
-            psHistorial.setDate(2, new java.sql.Date(fecha.getTime())); // para mostrar el día de la cita
-            psHistorial.setString(3, motivo);
-            psHistorial.setInt(4, idPaciente);
-            psHistorial.executeUpdate();
+            psVerificarHistorial = con.prepareStatement(sqlVerificarHistorial);
+            psVerificarHistorial.setInt(1, idPaciente);
+            rs = psVerificarHistorial.executeQuery();
+
+            if (rs.next()) {
+                psHistorial = con.prepareStatement(sqlActualizarHistorial);
+                psHistorial.setDate(1, new java.sql.Date(fecha.getTime())); 
+                psHistorial.setDate(2, new java.sql.Date(fecha.getTime()));
+                psHistorial.setString(3, motivo);
+                psHistorial.setInt(4, idPaciente);
+                psHistorial.executeUpdate();
+            }
 
             con.commit();
-            JOptionPane.showMessageDialog(null, "Cita registrada y historial actualizado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cita registrada correctamente" + (rs.next() ? " y historial actualizado." : "."), "Éxito", JOptionPane.INFORMATION_MESSAGE);
             return true;
 
         } catch (SQLException e) {
@@ -204,19 +198,12 @@ public class CitasDao {
         try {
             Conexion conexion = new Conexion();
             con = conexion.conexion();
-            con.setAutoCommit(false); // Inicia la transacción
+            con.setAutoCommit(false);
 
-            // Verificar historial
             psVerificarHistorial = con.prepareStatement(sqlVerificarHistorial);
             psVerificarHistorial.setInt(1, idPaciente);
             rs = psVerificarHistorial.executeQuery();
 
-            if (!rs.next()) {
-                JOptionPane.showMessageDialog(null, "El paciente no tiene historial médico. No se puede actualizar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-
-            // Actualizar cita
             psActualizarCita = con.prepareStatement(sqlActualizarCita);
             psActualizarCita.setInt(1, idPaciente);
             psActualizarCita.setInt(2, idDentista);
@@ -227,7 +214,6 @@ public class CitasDao {
             psActualizarCita.setInt(7, idCita);
             psActualizarCita.executeUpdate();
 
-            // Actualizar historial
             psActualizarHistorial = con.prepareStatement(sqlActualizarHistorial);
             psActualizarHistorial.setDate(1, new java.sql.Date(fecha.getTime()));
             psActualizarHistorial.setDate(2, new java.sql.Date(fecha.getTime()));

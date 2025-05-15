@@ -2706,7 +2706,6 @@ public class Inicio extends javax.swing.JFrame {
         int filaSeleccionada = jTable4.getSelectedRow();
         if (filaSeleccionada != -1) {
             idHistorialMedicoSeleccionado = (int) jTable4.getValueAt(filaSeleccionada, 0);
-
             cbxPacientesHistorial.setSelectedItem(jTable4.getValueAt(filaSeleccionada, 1).toString());
             txAreaAlergias.setText(jTable4.getValueAt(filaSeleccionada, 2).toString());
             txAreaEnfermedades.setText(jTable4.getValueAt(filaSeleccionada, 3).toString());
