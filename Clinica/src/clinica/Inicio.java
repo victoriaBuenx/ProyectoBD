@@ -217,7 +217,7 @@ public class Inicio extends javax.swing.JFrame {
         panelRound8 = new proyecto_residencias.Componentes.PanelRound();
         BusquedaCitas = new javax.swing.JTextField();
         BuscarCitas = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane16 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         panelRound9 = new proyecto_residencias.Componentes.PanelRound();
         jLabel24 = new javax.swing.JLabel();
@@ -606,6 +606,11 @@ public class Inicio extends javax.swing.JFrame {
             }
         ));
         jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout panelRound4Layout = new javax.swing.GroupLayout(panelRound4);
@@ -1248,27 +1253,22 @@ public class Inicio extends javax.swing.JFrame {
             new String [] {
                 "id", "Paciente", "Dentista", "Fecha", "Hora", "Motivo", "Notas"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        ));
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
             }
         });
-        jTable3.setMinimumSize(new java.awt.Dimension(600, 80));
-        jTable3.setPreferredSize(new java.awt.Dimension(600, 80));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane16.setViewportView(jTable3);
 
         javax.swing.GroupLayout panelRound8Layout = new javax.swing.GroupLayout(panelRound8);
         panelRound8.setLayout(panelRound8Layout);
         panelRound8Layout.setHorizontalGroup(
             panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound8Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelRound8Layout.createSequentialGroup()
                         .addComponent(BusquedaCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1283,7 +1283,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(BusquedaCitas, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(BuscarCitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -2832,7 +2832,6 @@ public class Inicio extends javax.swing.JFrame {
         int filaSeleccionada = jTable1.getSelectedRow();
         if (filaSeleccionada != -1) {
             int idPaciente = (int) jTable1.getValueAt(filaSeleccionada, 0); 
-
             String nombre = txtNombrePaciente.getText();
             String apellidoPaterno = txtApellidoPatPaciente.getText();
             String apellidoMaterno = txtApellidoMatPaciente.getText();
@@ -3282,11 +3281,41 @@ public class Inicio extends javax.swing.JFrame {
         ProveedoresDao dao = new ProveedoresDao();
         dao.buscarProveedores(BusquedaProveedores.getText().trim(), jTable8);
     }//GEN-LAST:event_BuscarProveedoresActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable1.getSelectedRow();
+    
+        if (filaSeleccionada != -1) {
+            txtNombrePaciente.setText(jTable1.getValueAt(filaSeleccionada, 1).toString());
+            txtApellidoPatPaciente.setText(jTable1.getValueAt(filaSeleccionada, 2).toString());
+            txtApellidoMatPaciente.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
+            jdNacimientoPaciente.setDate((Date) jTable1.getValueAt(filaSeleccionada, 4));
+            txtTelefonoPaciente.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
+            txtCorreoPaciente.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
+            jdFechaRegistroPaciente.setDate( (Date) jTable1.getValueAt(filaSeleccionada, 7));
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable3.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int idCitas = Integer.parseInt(jTable3.getValueAt(filaSeleccionada, 0).toString());
+            cbxPacientesCitas.setSelectedItem(jTable3.getValueAt(filaSeleccionada, 1).toString());
+            cbxDentistasCitas.setSelectedItem(jTable3.getValueAt(filaSeleccionada, 2).toString());
+            jdFechaCita.setDate((Date)jTable3.getValueAt(filaSeleccionada, 3));
+            txtHoraCita.setText(jTable3.getValueAt(filaSeleccionada, 4).toString());
+            txtMotivoCita.setText(jTable3.getValueAt(filaSeleccionada, 5).toString());
+            txtAreaNotas.setText(jTable3.getValueAt(filaSeleccionada, 6).toString());
+        }
+    }//GEN-LAST:event_jTable3MouseClicked
     
     private boolean validarCamposPacientes() {
         return validarCamp.validarCamposVacios(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, 
                                    txtTelefonoPaciente, txtCorreoPaciente, jdNacimientoPaciente, jdFechaRegistroPaciente) &&
-               validarCamp.validarNumero(txtTelefonoPaciente, "El teléfono debe ser un número válido.");
+               validarCamp.validarNumero(txtTelefonoPaciente, "El teléfono debe ser un número válido.")&&
+               validarCamp.validarCorreo(txtCorreoPaciente);
     }
 
     private boolean validarCamposDentistas() {
@@ -3294,7 +3323,8 @@ public class Inicio extends javax.swing.JFrame {
                                    cbxEspecialidadDentista, txtTelefonoDentistas, txtCorreoDentista, txtHorarioAtencionDentista) &&
                validarCamp.validarNumero(txtTelefonoDentistas, "El teléfono debe ser un número válido.") &&
                validarCamp.validarFormatoHoraA(txtHorarioAtencionDentista, "El horario debe estar en formato HH:MM-HH:MM.") &&
-               validarCamp.validarEspecialidad(cbxEspecialidadDentista);
+               validarCamp.validarEspecialidad(cbxEspecialidadDentista)&&
+               validarCamp.validarCorreo(txtCorreoDentista);
     }
 
     private boolean validarCamposCitas() {
@@ -3606,8 +3636,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
