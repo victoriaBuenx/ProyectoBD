@@ -7,6 +7,7 @@ package clinica;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Component;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -91,4 +92,30 @@ public class ValidarCampos {
         return true;
     }
     
+    public boolean validarFecha(JDateChooser dateChooser) {
+        Date fechaSeleccionada = dateChooser.getDate();
+        Date fechaActual = new Date();
+
+        if (fechaSeleccionada == null) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (fechaSeleccionada.before(quitarHora(fechaActual))) {
+            JOptionPane.showMessageDialog(null, "No se permiten fechas pasadas.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+
+    private static Date quitarHora(Date fecha) {
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        cal.setTime(fecha);
+        cal.set(java.util.Calendar.HOUR_OF_DAY, 0);
+        cal.set(java.util.Calendar.MINUTE, 0);
+        cal.set(java.util.Calendar.SECOND, 0);
+        cal.set(java.util.Calendar.MILLISECOND, 0);
+        return cal.getTime();
+    }
 }
+

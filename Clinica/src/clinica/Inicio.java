@@ -3299,7 +3299,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private boolean validarCamposCitas() {
         return validarCamp.validarCamposVacios(cbxPacientesCitas, cbxDentistasCitas, jdFechaCita, txtHoraCita, txtMotivoCita) &&
-               validarCamp.validarFormatoHora(txtHoraCita, "La hora debe estar en formato HH:MM.");
+               validarCamp.validarFormatoHora(txtHoraCita, "La hora debe estar en formato HH:MM.") &&
+               validarCamp.validarFecha(jdFechaCita);
     }
 
     private boolean validarCamposHistorialMedico() {
