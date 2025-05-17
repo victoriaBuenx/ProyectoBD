@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/victo/OneDrive/Desktop/repositorioBD/ProyectoBD/Clinica/src/clinica/Inicio.java</file>
             <file>file:/C:/Users/victo/OneDrive/Desktop/repositorioBD/ProyectoBD/Clinica/src/clinica/Login.java</file>
+            <file>file:/C:/Users/victo/OneDrive/Desktop/repositorioBD/ProyectoBD/Clinica/src/clinica/TratamientosDao.java</file>
+            <file>file:/C:/Users/victo/OneDrive/Desktop/repositorioBD/ProyectoBD/Clinica/src/clinica/PacientesTratamientosDao.java</file>
+            <file>file:/C:/Users/victo/OneDrive/Desktop/repositorioBD/ProyectoBD/Clinica/src/clinica/ProductosDao.java</file>
+            <file>file:/C:/Users/victo/OneDrive/Desktop/repositorioBD/ProyectoBD/Clinica/src/clinica/Inicio.java</file>
         </group>
     </open-files>
 </project-private>
