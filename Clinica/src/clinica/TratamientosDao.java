@@ -21,8 +21,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TratamientosDao {
     
-    public int insertarTratamiento(int idDentista, String nombre, String descripcion, int montoTotal, int productoUsado) {
-        String sql = "INSERT INTO Tratamientos (idDentista, Nombre, Descripcion, MontoTotal, ProductoUsado) VALUES (?, ?, ?, ?, ?)";
+    public int insertarTratamiento(int idDentista, String nombre, String descripcion, int montoTotal) {
+        String sql = "INSERT INTO Tratamientos (idDentista, Nombre, Descripcion, MontoTotal) VALUES (?, ?, ?, ?)";
         int idTratamientoGenerado = -1; 
 
         try (Connection con = new Conexion().conexion();
@@ -32,7 +32,6 @@ public class TratamientosDao {
             ps.setString(2, nombre);
             ps.setString(3, descripcion);
             ps.setInt(4, montoTotal);
-            ps.setInt(5, productoUsado);
 
             int filasAfectadas = ps.executeUpdate();
 
@@ -53,8 +52,8 @@ public class TratamientosDao {
             return idTratamientoGenerado;
         }
     
-    public boolean actualizarTratamiento(int idTratamiento, int idDentista, String nombre, String descripcion, int montoTotal, int productoUsado) {
-        String sql = "UPDATE Tratamientos SET idDentista = ?, Nombre = ?, Descripcion = ?, MontoTotal = ? ProductoUsado = ? WHERE idTratamiento = ?";
+    public boolean actualizarTratamiento(int idTratamiento, int idDentista, String nombre, String descripcion, int montoTotal) {
+        String sql = "UPDATE Tratamientos SET idDentista = ?, Nombre = ?, Descripcion = ?, MontoTotal = ? WHERE idTratamiento = ?";
 
         try (Connection con = new Conexion().conexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -63,8 +62,7 @@ public class TratamientosDao {
             ps.setString(2, nombre);
             ps.setString(3, descripcion);
             ps.setInt(4, montoTotal);
-            ps.setInt(5, productoUsado);
-            ps.setInt(6, idTratamiento);
+            ps.setInt(5, idTratamiento);
 
             int filasAfectadas = ps.executeUpdate();
 

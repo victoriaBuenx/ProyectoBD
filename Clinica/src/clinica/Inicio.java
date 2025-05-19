@@ -5,28 +5,14 @@
 package clinica;
 
 import com.formdev.flatlaf.IntelliJTheme;
-import clinica.Conexion;
-import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.*;
-import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.JTableHeader;
 
 
 
@@ -47,6 +33,7 @@ public class Inicio extends javax.swing.JFrame {
     ValidarCampos validarCamp= new ValidarCampos();
     LimpiarCampos limpiar= new LimpiarCampos();
     ReporteClinica reporte= new ReporteClinica();
+    DiseñoTablas tablas = new DiseñoTablas();
 
     public Inicio() {
         IntelliJTheme.setup(getClass().getResourceAsStream("/componentes/LightFlatTheme.theme.json"));
@@ -59,8 +46,8 @@ public class Inicio extends javax.swing.JFrame {
         
         initComponents();
         
-        personalizarTabla(jTable1, jTable3, jTable4, jTable5, jTable6, jTable7, jTable8, jTable9);
-        personalizarRenderizado(jTable1, jTable3, jTable4, jTable5, jTable6, jTable7, jTable8, jTable9);
+        tablas.personalizarTabla(jTable1, jTable3, jTable4, jTable5, jTable6, jTable7, jTable8, jTable9);
+        tablas.personalizarRenderizado(jTable1, jTable3, jTable4, jTable5, jTable6, jTable7, jTable8, jTable9);
         llenarComboBox();
         verTablaPacientes();
         verTablaDentistas();
@@ -72,42 +59,6 @@ public class Inicio extends javax.swing.JFrame {
         verTablaProveedores();
     }
     
-    private void personalizarTabla(JTable... tablas) {
-        for (JTable tabla : tablas) {
-            tabla.setBackground(Color.white);
-            tabla.setShowHorizontalLines(true);
-            tabla.setShowVerticalLines(true);
-            tabla.setRowHeight(30);
-            JTableHeader header = tabla.getTableHeader();
-            header.setForeground(Color.black);
-            header.setPreferredSize(new Dimension(header.getWidth(), (35)));
-            header.setFont(new Font("Poppins", Font.PLAIN, 12));
-            tabla.getColumnModel().getColumn(0).setPreferredWidth(25);
-        }
-    }
-    private void personalizarRenderizado(JTable... tablas) {
-        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-    
-                if (isSelected) {
-                    c.setBackground(new Color (155,196,226));
-                    c.setForeground(Color.BLACK);
-                } else {
-                    c.setBackground(Color.WHITE);
-                    c.setForeground(Color.BLACK);
-                }
-    
-                setBorder(BorderFactory.createEmptyBorder()); 
-                return c;
-            }
-        };
-    
-        for (JTable tabla : tablas) {
-            tabla.setDefaultRenderer(Object.class, renderer);
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -258,8 +209,8 @@ public class Inicio extends javax.swing.JFrame {
         jpFechaInicioTrat = new com.toedter.calendar.JDateChooser();
         jLabel40 = new javax.swing.JLabel();
         jpFechaFinTrat = new com.toedter.calendar.JDateChooser();
-        cbxProductosTrat = new javax.swing.JComboBox<>();
         jLabel45 = new javax.swing.JLabel();
+        btnProductoTrat = new javax.swing.JButton();
         panelRound13 = new proyecto_residencias.Componentes.PanelRound();
         BusquedaTratamientos = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -1337,7 +1288,7 @@ public class Inicio extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtAreaNotas);
 
         txtMotivoCita.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
-        txtMotivoCita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Revisión dental de rutina", "Limpieza", "Dolor o sensibilidad dental.", "Encías inflamadas", "Halitosis", "Revisión de caries", "Dientes flojos o movilidad dental", "Evaluación de mordida", "Blanqueamiento", "Colocación de carillas dentales", "Ortodoncia", "Remodelado estético de encías", "Revisión de empastes o resinas anteriores", "Revisión o ajuste de coronas", "Endodoncia", "Reparación de dientes fracturados", "Evaluación de prótesis dentales", "Dolor agudo e inesperado", "Infección dental", "Inflamación facial", "Control de erupción dental en bebés o niños", "Aplicación de flúor", "Selladores dentales", "Evaluación del desgaste dental", "Revisión y ajuste de dentaduras postizas", "Control de enfermedades periodontales" }));
+        txtMotivoCita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Revisión dental de rutina", "Limpieza", "Dolor o sensibilidad dental.", "Encías inflamadas", "Halitosis", "Revisión de caries", "Dientes flojos o movilidad dental", "Evaluación de mordida", "Blanqueamiento", "Colocación de carillas dentales", "Ortodoncia", "Remodelado estético de encías", "Revisión de empastes o resinas anteriores", "Revisión o ajuste de coronas", "Endodoncia", "Reparación de dientes fracturados", "Evaluación de prótesis dentales", "Dolor agudo e inesperado", "Infección dental", "Inflamación facial", "Control de erupción dental en bebés o niños", "Aplicación de flúor", "Selladores dentales", "Evaluación del desgaste dental", "Revisión y ajuste de dentaduras postizas", "Control de enfermedades periodontales", "Otro" }));
 
         javax.swing.GroupLayout panelRound9Layout = new javax.swing.GroupLayout(panelRound9);
         panelRound9.setLayout(panelRound9Layout);
@@ -1385,10 +1336,10 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(cbxPacientesCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cbxDentistasCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jdFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1400,7 +1351,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMotivoCita, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGap(79, 79, 79))
         );
 
         jPanel4.add(panelRound9);
@@ -1524,11 +1475,22 @@ public class Inicio extends javax.swing.JFrame {
         jpFechaFinTrat.setToolTipText("yyyy/mm/dd");
         jpFechaFinTrat.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
 
-        cbxProductosTrat.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
-        cbxProductosTrat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno" }));
-
         jLabel45.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel45.setText("Poducto a usar:");
+
+        btnProductoTrat.setBackground(new java.awt.Color(204, 204, 204));
+        btnProductoTrat.setFont(new java.awt.Font("Poppins SemiBold", 0, 12)); // NOI18N
+        btnProductoTrat.setIcon(new javax.swing.ImageIcon("C:\\Users\\victo\\OneDrive\\Desktop\\icons8-expand-arrow-16.png")); // NOI18N
+        btnProductoTrat.setText("Seleccionar productos");
+        btnProductoTrat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnProductoTrat.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnProductoTrat.setIconTextGap(40);
+        btnProductoTrat.setInheritsPopupMenu(true);
+        btnProductoTrat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductoTratActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound12Layout = new javax.swing.GroupLayout(panelRound12);
         panelRound12.setLayout(panelRound12Layout);
@@ -1558,12 +1520,12 @@ public class Inicio extends javax.swing.JFrame {
                                 .addComponent(jLabel35)
                                 .addGap(178, 178, 178))
                             .addGroup(panelRound12Layout.createSequentialGroup()
-                                .addGroup(panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jpFechaInicioTrat, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jpFechaInicioTrat, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                                     .addComponent(jLabel40)
-                                    .addComponent(jpFechaFinTrat, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jpFechaFinTrat, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                                     .addComponent(jLabel45)
-                                    .addComponent(cbxProductosTrat, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnProductoTrat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())))))
         );
         panelRound12Layout.setVerticalGroup(
@@ -1592,11 +1554,12 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel34)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxNombreTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxNombreTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnProductoTrat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelRound12Layout.createSequentialGroup()
                         .addComponent(jLabel45)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxProductosTrat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(41, 41, 41)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel29)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1623,13 +1586,13 @@ public class Inicio extends javax.swing.JFrame {
         jTable5.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Dentista", "Paciente", "Tratamiento", "Descripcion", "Fecha de Inicio", "Fecha Fin", "Monto Total", "Producto"
+                "id", "Dentista", "Paciente", "Tratamiento", "Descripcion", "Fecha de Inicio", "Fecha Fin", "Monto Total"
             }
         ));
         jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2506,8 +2469,7 @@ public class Inicio extends javax.swing.JFrame {
                 Date FechaInicio = jpFechaInicioTrat.getDate();
                 Date FechaFin = jpFechaFinTrat.getDate();
                 int montoTotal;
-                int productoUsado = Integer.parseInt(cbxProductosTrat.getSelectedItem().toString().split("-")[0].trim());
-
+                
                 try {
                     montoTotal = Integer.parseInt(txtMontoTotal.getText());
                 } catch (NumberFormatException e) {
@@ -2516,7 +2478,7 @@ public class Inicio extends javax.swing.JFrame {
                 }
 
                 TratamientosDao tratamientosDao = new TratamientosDao();
-                int idTratamiento = tratamientosDao.insertarTratamiento(idDentista, nombre, descripcion, montoTotal, productoUsado);
+                int idTratamiento = tratamientosDao.insertarTratamiento(idDentista, nombre, descripcion, montoTotal);
 
                 if (idTratamiento != -1) {  
 
@@ -2790,9 +2752,7 @@ public class Inicio extends javax.swing.JFrame {
                 int idDentista = Integer.parseInt(cbxDentistasTratamientos.getSelectedItem().toString().split("-")[0].trim());
                 String nombre = cbxNombreTratamiento.getSelectedItem().toString();
                 String descripcion = txtAreaDescripcion.getText();
-                int montoTotal;
-                int productoUsado = Integer.parseInt(cbxProductosTrat.getSelectedItem().toString().split("-")[0].trim());
-                
+                int montoTotal;                
                 try {
                     montoTotal = Integer.parseInt(txtMontoTotal.getText());
                 } catch (NumberFormatException e) {
@@ -2801,7 +2761,7 @@ public class Inicio extends javax.swing.JFrame {
                 }
 
                 TratamientosDao tratamientosDao = new TratamientosDao();
-                boolean resultadoTratamiento = tratamientosDao.actualizarTratamiento(idTratamiento, idDentista, nombre, descripcion, montoTotal, productoUsado);
+                boolean resultadoTratamiento = tratamientosDao.actualizarTratamiento(idTratamiento, idDentista, nombre, descripcion, montoTotal);
 
                 if (resultadoTratamiento) {
                     int idPaciente = Integer.parseInt(cbxPacientesTratamientos.getSelectedItem().toString().split("-")[0].trim());
@@ -3333,6 +3293,12 @@ public class Inicio extends javax.swing.JFrame {
             txtAreaNotas.setText(jTable3.getValueAt(filaSeleccionada, 6).toString());
         }
     }//GEN-LAST:event_jTable3MouseClicked
+
+    private void btnProductoTratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoTratActionPerformed
+        // TODO add your handling code here:
+        VentanaProductos productos = new VentanaProductos();
+        productos.setVisible(true);
+    }//GEN-LAST:event_btnProductoTratActionPerformed
     
     private boolean validarCamposPacientes() {
         return validarCamp.validarCamposVacios(txtNombrePaciente, txtApellidoPatPaciente, txtApellidoMatPaciente, 
@@ -3429,17 +3395,14 @@ public class Inicio extends javax.swing.JFrame {
                         "t.Descripcion, " +
                         "t.MontoTotal, " +
                         "CONCAT(pac.idPaciente, ' - ', pac.Nombre) AS Paciente, " +
-                        "CONCAT(pp.idProveedorProducto, ' - ', prod.NombreProducto) AS ProductoUsado, " +
                         "pt.FechaInicio, " +
                         "pt.FechaFin " +
                     "FROM Tratamientos t " + 
                     "INNER JOIN Dentistas d ON t.idDentista = d.idDentista " +
                     "INNER JOIN PacientesTratamientos pt ON t.idTratamiento = pt.idTratamiento " +
-                    "INNER JOIN Pacientes pac ON pt.idPaciente = pac.idPaciente " +
-                    "LEFT JOIN proveedorproducto pp ON t.ProductoUsado = pp.idProveedorProducto " +
-                    "LEFT JOIN productos prod ON pp.idProducto = prod.idProducto";
+                    "INNER JOIN Pacientes pac ON pt.idPaciente = pac.idPaciente ";
 
-        String[] columnas = {"idTratamiento", "Dentista", "Paciente", "Tratamiento", "Descripcion", "FechaInicio", "FechaFin", "MontoTotal", "ProductoUsado"};
+        String[] columnas = {"idTratamiento", "Dentista", "Paciente", "Tratamiento", "Descripcion", "FechaInicio", "FechaFin", "MontoTotal"};
         visualizarTab.cargarDatos(jTable5, sql, columnas);
     }
     
@@ -3475,11 +3438,6 @@ public class Inicio extends javax.swing.JFrame {
         ComboBoxUtils.llenarComboBox(cbxDentistasTratamientos,"SELECT idDentista, Nombre FROM Dentistas", "idDentista", "Nombre");
         ComboBoxUtils.llenarComboBox(cbxTratamientoPagos, "SELECT idTratamiento, Nombre FROM Tratamientos", "idTratamiento","Nombre");
         ComboBoxUtils.llenarComboBox(cbxProveedores, "SELECT idProveedor, Nombre FROM Proveedores", "idProveedor", "Nombre");
-        ComboBoxUtils.llenarComboBox(cbxProductosTrat, "SELECT pp.idProveedorProducto, p.NombreProducto " +  
-                                                        "FROM proveedorproducto pp " +                        
-                                                        "JOIN productos p ON pp.idProducto = p.idProducto", 
-                                                        "idProveedorProducto", 
-                                                        "NombreProducto");
     }
 
     private int obtenerIdPacienteSeleccionado() {
@@ -3559,6 +3517,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarProductos;
     private javax.swing.JButton btnEliminarProveedores;
     private javax.swing.JButton btnEliminarTratamiento;
+    private javax.swing.JButton btnProductoTrat;
     private javax.swing.JButton btnRegistarPagos;
     private javax.swing.JButton btnRegistrarCitas;
     private javax.swing.JButton btnRegistrarDentistas;
@@ -3587,7 +3546,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxPacientesCitas;
     private javax.swing.JComboBox<String> cbxPacientesHistorial;
     private javax.swing.JComboBox<String> cbxPacientesTratamientos;
-    private javax.swing.JComboBox<String> cbxProductosTrat;
     private javax.swing.JComboBox<String> cbxProveedores;
     private javax.swing.JComboBox<String> cbxTratamientoPagos;
     private javax.swing.JLabel jLabel1;
