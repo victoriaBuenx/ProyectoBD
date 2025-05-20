@@ -7,6 +7,7 @@ package clinica;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -25,6 +26,8 @@ public class LimpiarCampos {
             ((JDateChooser) campo).setDate(null);
         } else if (campo instanceof JComboBox) {
             ((JComboBox<?>) campo).setSelectedItem(null); 
+        } else if (campo instanceof JSpinner) {
+            ((JSpinner) campo).setValue(null);
         }
     }
     

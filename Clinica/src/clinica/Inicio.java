@@ -555,7 +555,7 @@ public class Inicio extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento", "Telefono", "Correo", "Fecha de Registro"
+                "ID Paciente", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento", "Telefono", "Correo", "Fecha de Registro"
             }
         ));
         jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
@@ -650,7 +650,7 @@ public class Inicio extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Nombre", "Apellido Paterno", "Apellido Materno", "Especialidad", "Telefono", "Correo", "Horario de Atención"
+                "ID Dentista", "Nombre", "Apellido Paterno", "Apellido Materno", "Especialidad", "Telefono", "Correo", "Horario de Atención"
             }
         ));
         jTable9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -940,7 +940,7 @@ public class Inicio extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Paciente", "Alergias", "Enfermedades", "Medicación", "Observaciones", "Última Actualización"
+                "ID Historial", "Paciente", "Alergias", "Enfermedades", "Medicación", "Observaciones", "Última Actualización"
             }
         ));
         jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1206,7 +1206,7 @@ public class Inicio extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Paciente", "Dentista", "Fecha", "Hora", "Motivo", "Notas"
+                "ID Cita", "Paciente", "Dentista", "Fecha", "Hora", "Motivo", "Notas"
             }
         ));
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1560,7 +1560,6 @@ public class Inicio extends javax.swing.JFrame {
                     .addGroup(panelRound12Layout.createSequentialGroup()
                         .addComponent(jLabel45)
                         .addGap(41, 41, 41)))
-                .addGap(18, 18, 18)
                 .addComponent(jLabel29)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1572,7 +1571,7 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         jPanel6.add(panelRound12);
-        panelRound12.setBounds(60, 45, 574, 541);
+        panelRound12.setBounds(60, 45, 574, 523);
 
         panelRound13.setBackground(new java.awt.Color(255, 255, 255));
         panelRound13.setRoundBottomLeft(30);
@@ -1592,7 +1591,7 @@ public class Inicio extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Dentista", "Paciente", "Tratamiento", "Descripcion", "Fecha de Inicio", "Fecha Fin", "Monto Total"
+                "ID Tratamiento", "Dentista", "Paciente", "Tratamiento", "Descripcion", "Fecha de Inicio", "Fecha Fin", "Monto Total"
             }
         ));
         jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1804,7 +1803,7 @@ public class Inicio extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Tratamiento", "Metodo de Pago", "Fecha de pago", "Modalidad de pago", "Monto Pagado"
+                "ID Pago", "Tratamiento", "Metodo de Pago", "Fecha de pago", "Modalidad de pago", "Monto Pagado"
             }
         ));
         jTable6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2026,7 +2025,7 @@ public class Inicio extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Nombre", "Telefono", "Correo", "Empresa", "Direccion"
+                "ID Proveedor", "Nombre", "Telefono", "Correo", "Empresa", "Direccion"
             }
         ));
         jTable8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2243,7 +2242,7 @@ public class Inicio extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Proveedor", "Nombre del prducto", "Descripción", "Precio Unitario", "Cantidad Disponible", "Precio Total", "Fecha de Registro"
+                "ID Producto", "Proveedor", "Nombre del prducto", "Descripción", "Precio Unitario", "Cantidad Disponible", "Precio Total", "Fecha de Registro"
             }
         ));
         jTable7.addMouseListener(new java.awt.event.MouseAdapter() {

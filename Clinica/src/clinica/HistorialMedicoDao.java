@@ -136,7 +136,7 @@ public class HistorialMedicoDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "ID", "Nombre", "Alergias", "Enfermedades", "Medicación", "Observaciones", "Última Actualización"
+                "ID Historial", "Nombre", "Alergias", "Enfermedades", "Medicación", "Observaciones", "Última Actualización"
             });
 
             while (rs.next()) {

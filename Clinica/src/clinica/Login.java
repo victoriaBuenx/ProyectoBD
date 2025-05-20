@@ -5,7 +5,6 @@
 package clinica;
 
 import com.formdev.flatlaf.IntelliJTheme;
-import java.awt.Color;
 import java.awt.Window;
 import javax.swing.UIManager;
 import java.sql.*;

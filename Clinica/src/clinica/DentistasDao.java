@@ -125,7 +125,7 @@ public class DentistasDao {
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{
-                "id", "Nombre", "Apellido Paterno", "Apellido Materno", "Especialidad", "Teléfono", "Correo", "HorarioAtencion"
+                "ID Dentista", "Nombre", "Apellido Paterno", "Apellido Materno", "Especialidad", "Teléfono", "Correo", "HorarioAtencion"
             });
 
             while (rs.next()) {
