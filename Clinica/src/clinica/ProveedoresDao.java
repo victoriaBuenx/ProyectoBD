@@ -5,14 +5,12 @@
 package clinica;
 
 
-import clinica.Conexion;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 /**

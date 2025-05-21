@@ -9,18 +9,27 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+
 
 /**
  *
  * @author victo
  */
 public class AsignarProductos extends javax.swing.JFrame {
+    
+    private int idTratamientoActual;
 
     /**
      * Creates new form AsigarProductos
      */
     
     DiseñoTablas tablas = new DiseñoTablas();
+    
+    public AsignarProductos(int idTratamiento) {
+        initComponents();
+        this.idTratamientoActual = idTratamiento;
+    }
     
     public AsignarProductos() {
         IntelliJTheme.setup(getClass().getResourceAsStream("/componentes/LightFlatTheme.theme.json"));
@@ -96,6 +105,11 @@ public class AsignarProductos extends javax.swing.JFrame {
         jToggleButton1.setFont(new java.awt.Font("Poppins SemiBold", 0, 12)); // NOI18N
         jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setText("Agregar al tratamiento");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -156,8 +170,25 @@ public class AsignarProductos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
-    /**
-     * @param args the command line arguments
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            for (int i = 0; i < modelo.getRowCount(); i++) {
+                int idProducto = (int) modelo.getValueAt(i, 0);
+                int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
+
+                ProductosTratamientoDao dao = new ProductosTratamientoDao();
+                dao.insertarProductosTratamiento(idProducto, idTratamientoActual, cantidad);
+            }
+
+            JOptionPane.showMessageDialog(this, "Productos asignados correctamente.");
+            this.dispose();
+            
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    /**s
+     * @param idProducto
+     * @param nombreProducto
      */
     
     public void abrirVentanaProducto(int idProducto, String nombreProducto) {
@@ -184,7 +215,7 @@ public class AsignarProductos extends javax.swing.JFrame {
             modelo.addRow(new Object[]{idProducto, nombreProducto, ""});
         }
     }
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

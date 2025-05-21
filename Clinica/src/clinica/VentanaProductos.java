@@ -11,6 +11,8 @@ import javax.swing.SwingUtilities;
  * @author victo
  */
 public class VentanaProductos extends javax.swing.JFrame {
+    
+    private int idTratamiento;
 
     /**
      * Creates new form VentanaProductos
@@ -20,12 +22,18 @@ public class VentanaProductos extends javax.swing.JFrame {
     DiseñoTablas tablas = new DiseñoTablas();
     AsignarProductos asignacion= new AsignarProductos();
     
-    public VentanaProductos() {
+    public VentanaProductos(int idTratamiento) {
         initComponents();
+        this.idTratamiento = idTratamiento;
         
         tablas.personalizarTabla(jTable5);
         tablas.personalizarRenderizado(jTable5);
         verTablaProductosTratamientos();
+    }
+    
+    public VentanaProductos() {
+        initComponents();
+        
     }
 
     /**
@@ -112,7 +120,7 @@ public class VentanaProductos extends javax.swing.JFrame {
             int id = Integer.parseInt(jTable5.getValueAt(filaSeleccionada, 0).toString());
 
             if (asignacion == null || !asignacion.isDisplayable()) {
-                asignacion = new AsignarProductos();
+                asignacion = new AsignarProductos(idTratamiento);
             }
             asignacion.setVisible(true);
             SwingUtilities.invokeLater(() -> {

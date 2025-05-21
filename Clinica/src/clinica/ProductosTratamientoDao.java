@@ -41,8 +41,8 @@ public class ProductosTratamientoDao {
                 }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al asignar producto", "Error SQL", JOptionPane.ERROR_MESSAGE);
-            //e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al asignar producto " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
         
         return idTratamientoGenerado;
