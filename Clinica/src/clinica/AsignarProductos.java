@@ -17,19 +17,10 @@ import java.sql.*;
  * @author victo
  */
 public class AsignarProductos extends javax.swing.JFrame {
-    
-    private int idTratamientoActual;
-
     /**
      * Creates new form AsigarProductos
      */
-    
     DiseñoTablas tablas = new DiseñoTablas();
-    
-    public AsignarProductos(int idTratamiento) {
-        initComponents();
-        this.idTratamientoActual = idTratamiento;
-    }
     
     public AsignarProductos() {
         IntelliJTheme.setup(getClass().getResourceAsStream("/componentes/LightFlatTheme.theme.json"));
@@ -65,9 +56,8 @@ public class AsignarProductos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jToggleButton1 = new javax.swing.JToggleButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -101,30 +91,15 @@ public class AsignarProductos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jToggleButton1.setBackground(new java.awt.Color(50, 138, 225));
-        jToggleButton1.setFont(new java.awt.Font("Poppins SemiBold", 0, 12)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton1.setText("Agregar al tratamiento");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,10 +108,8 @@ public class AsignarProductos extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,22 +143,6 @@ public class AsignarProductos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-            for (int i = 0; i < modelo.getRowCount(); i++) {
-                int idProducto = (int) modelo.getValueAt(i, 0);
-                int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
-
-                ProductosTratamientoDao dao = new ProductosTratamientoDao();
-                dao.insertarProductosTratamiento(idProducto, idTratamientoActual, cantidad);
-            }
-
-            JOptionPane.showMessageDialog(this, "Productos asignados correctamente.");
-            this.dispose();
-            
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
     /**s
      * @param idProducto
      * @param nombreProducto
@@ -214,7 +171,47 @@ public class AsignarProductos extends javax.swing.JFrame {
         if (!yaExiste) {
             modelo.addRow(new Object[]{idProducto, nombreProducto, ""});
         }
+        
+        JOptionPane.showMessageDialog(null,"Producto agregado correctamente", "Confirmar producto",JOptionPane.INFORMATION_MESSAGE);
+
     }
+
+    public void insertarProductosAsignados(int idTratamiento) {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        System.out.println("Filas en la tabla: " + modelo.getRowCount());
+
+
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            System.out.println("Fila " + i + ": ID Producto = " + modelo.getValueAt(i, 0) + ", Cantidad = " + modelo.getValueAt(i, 2));
+            int idProducto = (int) modelo.getValueAt(i, 0);
+            String cantidadStr = modelo.getValueAt(i, 2).toString().trim();
+            
+            if (cantidadStr.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "La cantidad no puede estar vacía para el producto en la fila " + (i + 1));
+                continue;
+            }
+
+            int cantidad = Integer.parseInt(cantidadStr);
+
+            String sql = "INSERT INTO productostratamiento ( idProducto, idTratamiento, Cantidad) VALUES (?, ?, ?)";
+
+            try (Connection con = new Conexion().conexion();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+
+                ps.setInt(1, idProducto);
+                ps.setInt(2, idTratamiento);
+                ps.setInt(3, cantidad);
+                ps.executeUpdate();
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al asignar producto al tratamiento.");
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, "Productos asignados correctamente.");
+    }
+    
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -222,6 +219,5 @@ public class AsignarProductos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

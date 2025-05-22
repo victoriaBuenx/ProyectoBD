@@ -29,14 +29,13 @@ public class Inicio extends javax.swing.JFrame {
     private int idHistorialMedicoSeleccionado = -1;
     private int idTratamientoSeleccionado = -1;  
     private int idProductoSeleccionado = -1;
-    private int idTratamientoGenerado = -1;
     
     VisualizarTablas visualizarTab= new VisualizarTablas();
     ValidarCampos validarCamp= new ValidarCampos();
     LimpiarCampos limpiar= new LimpiarCampos();
     ReporteClinica reporte= new ReporteClinica();
     DiseñoTablas tablas = new DiseñoTablas();
-    AsignarProductos productos = new AsignarProductos();
+    AsignarProductos asignarProductos = new AsignarProductos();
 
     public Inicio() {
         IntelliJTheme.setup(getClass().getResourceAsStream("/componentes/LightFlatTheme.theme.json"));
@@ -2480,14 +2479,15 @@ public class Inicio extends javax.swing.JFrame {
                 }
 
                 TratamientosDao tratamientosDao = new TratamientosDao();
-                idTratamientoGenerado = tratamientosDao.insertarTratamiento(idDentista, nombre, descripcion, montoTotal);
+                int idTratamiento = tratamientosDao.insertarTratamiento(idDentista, nombre, descripcion, montoTotal);
 
-                if (idTratamientoGenerado != -1) { 
+                if (idTratamiento != -1) { 
                               
                     int idPaciente = Integer.parseInt(cbxPacientesTratamientos.getSelectedItem().toString().split("-")[0].trim());
                     PacientesTratamientosDao pacientesTratDao = new PacientesTratamientosDao();
-                    boolean resultado = pacientesTratDao.insertarPacienteTratamiento(idPaciente, idTratamientoGenerado, FechaInicio, FechaFin);
-
+                    boolean resultado = pacientesTratDao.insertarPacienteTratamiento(idPaciente, idTratamiento, FechaInicio, FechaFin);
+                    asignarProductos.insertarProductosAsignados(idTratamiento);
+                    
                     if (resultado) {
                         verTablaTratamientos();
                         llenarComboBox();
@@ -3298,12 +3298,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnProductoTratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoTratActionPerformed
         // TODO add your handling code here:
-        if (idTratamientoGenerado != -1) {
-            VentanaProductos ventanaProductos = new VentanaProductos(idTratamientoGenerado);
-            ventanaProductos.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Primero debe registrar un tratamiento.");
-        }
+        VentanaProductos ventanaProductos = new VentanaProductos(asignarProductos);
+        ventanaProductos.setVisible(true);
     }//GEN-LAST:event_btnProductoTratActionPerformed
     
     private boolean validarCamposPacientes() {
