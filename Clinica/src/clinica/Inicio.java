@@ -13,6 +13,8 @@ import javax.swing.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -36,7 +38,7 @@ public class Inicio extends javax.swing.JFrame {
     ReporteClinica reporte= new ReporteClinica();
     DiseñoTablas tablas = new DiseñoTablas();
     AsignarProductos asignarProductos = new AsignarProductos();
-
+       
     public Inicio() {
         IntelliJTheme.setup(getClass().getResourceAsStream("/componentes/LightFlatTheme.theme.json"));
         UIManager.put("TextComponent.arc", 15);
@@ -59,7 +61,9 @@ public class Inicio extends javax.swing.JFrame {
         verTablaPagos();
         verTablaProductos();
         verTablaProveedores();
+       
     }
+    
     
 
     /**
@@ -213,6 +217,8 @@ public class Inicio extends javax.swing.JFrame {
         jpFechaFinTrat = new com.toedter.calendar.JDateChooser();
         jLabel45 = new javax.swing.JLabel();
         btnProductoTrat = new javax.swing.JButton();
+        jLabel56 = new javax.swing.JLabel();
+        txtMontoTotalProd = new javax.swing.JTextField();
         panelRound13 = new proyecto_residencias.Componentes.PanelRound();
         BusquedaTratamientos = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -1494,6 +1500,12 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        jLabel56.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel56.setText("Total productos:");
+
+        txtMontoTotalProd.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
+        txtMontoTotalProd.setText("0");
+
         javax.swing.GroupLayout panelRound12Layout = new javax.swing.GroupLayout(panelRound12);
         panelRound12.setLayout(panelRound12Layout);
         panelRound12Layout.setHorizontalGroup(
@@ -1522,12 +1534,16 @@ public class Inicio extends javax.swing.JFrame {
                                 .addComponent(jLabel35)
                                 .addGap(178, 178, 178))
                             .addGroup(panelRound12Layout.createSequentialGroup()
-                                .addGroup(panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jpFechaInicioTrat, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                                    .addComponent(jLabel40)
-                                    .addComponent(jpFechaFinTrat, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                                    .addComponent(jLabel45)
-                                    .addComponent(btnProductoTrat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jpFechaInicioTrat, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                                        .addComponent(jLabel40)
+                                        .addComponent(jpFechaFinTrat, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                                        .addComponent(jLabel45)
+                                        .addComponent(btnProductoTrat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel56, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                        .addComponent(txtMontoTotalProd, javax.swing.GroupLayout.Alignment.LEADING)))
                                 .addContainerGap())))))
         );
         panelRound12Layout.setVerticalGroup(
@@ -1562,10 +1578,18 @@ public class Inicio extends javax.swing.JFrame {
                     .addGroup(panelRound12Layout.createSequentialGroup()
                         .addComponent(jLabel45)
                         .addGap(41, 41, 41)))
-                .addComponent(jLabel29)
+                .addGap(12, 12, 12)
+                .addGroup(panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound12Layout.createSequentialGroup()
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound12Layout.createSequentialGroup()
+                        .addComponent(jLabel56)
+                        .addGap(5, 5, 5)))
+                .addGroup(panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMontoTotalProd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(jLabel30)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMontoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1587,13 +1611,13 @@ public class Inicio extends javax.swing.JFrame {
         jTable5.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Tratamiento", "Dentista", "Paciente", "Tratamiento", "Descripcion", "Fecha de Inicio", "Fecha Fin", "Monto Total"
+                "ID Tratamiento", "Dentista", "Paciente", "Tratamiento", "Descripcion", "Fecha de inicio", "Fecha fin", "Monto total", "Productos"
             }
         ));
         jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1632,12 +1656,12 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(BusquedaTratamientos, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(BuscarTratamientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel6.add(panelRound13);
-        panelRound13.setBounds(710, 45, 600, 541);
+        panelRound13.setBounds(710, 45, 600, 530);
 
         jLabel68.setFont(new java.awt.Font("Poppins Medium", 0, 10)); // NOI18N
         jLabel68.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -2469,6 +2493,7 @@ public class Inicio extends javax.swing.JFrame {
                 String descripcion = txtAreaDescripcion.getText();
                 Date FechaInicio = jpFechaInicioTrat.getDate();
                 Date FechaFin = jpFechaFinTrat.getDate();
+                int montoProductos = Integer.parseInt(txtMontoTotalProd.getText());
                 int montoTotal;
                 
                 try {
@@ -2477,9 +2502,11 @@ public class Inicio extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Ingrese un monto válido", "Error", JOptionPane.ERROR_MESSAGE);
                     montoTotal = 0;
                 }
+                
+                int costoFinal = montoTotal + montoProductos;
 
                 TratamientosDao tratamientosDao = new TratamientosDao();
-                int idTratamiento = tratamientosDao.insertarTratamiento(idDentista, nombre, descripcion, montoTotal);
+                int idTratamiento = tratamientosDao.insertarTratamiento(idDentista, nombre, descripcion, costoFinal);
 
                 if (idTratamiento != -1) { 
                               
@@ -2491,7 +2518,7 @@ public class Inicio extends javax.swing.JFrame {
                     if (resultado) {
                         verTablaTratamientos();
                         llenarComboBox();
-                        limpiar.limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal, cbxPacientesTratamientos, jpFechaInicioTrat, jpFechaFinTrat);
+                        limpiar.limpiarCampos(cbxDentistasTratamientos, cbxNombreTratamiento, txtAreaDescripcion, txtMontoTotal, cbxPacientesTratamientos, jpFechaInicioTrat, jpFechaFinTrat, txtMontoTotalProd);
                     } else {
                         JOptionPane.showMessageDialog(this, "No se pudo registrar el tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
@@ -3451,6 +3478,7 @@ public class Inicio extends javax.swing.JFrame {
         }
         return -1;  
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -3597,6 +3625,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
@@ -3697,6 +3726,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTextField txtHorarioAtencionDentista;
     private javax.swing.JTextField txtMontoPagado;
     private javax.swing.JTextField txtMontoTotal;
+    public static javax.swing.JTextField txtMontoTotalProd;
     private javax.swing.JComboBox<String> txtMotivoCita;
     private javax.swing.JTextField txtNombreDentista;
     private javax.swing.JTextField txtNombrePaciente;

@@ -4,6 +4,7 @@
  */
 package clinica;
 
+import static clinica.Inicio.txtMontoTotalProd;
 import com.formdev.flatlaf.IntelliJTheme;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -33,7 +34,7 @@ public class AsignarProductos extends javax.swing.JFrame {
         tablas.personalizarRenderizado(jTable1);
         
         DefaultTableModel modelo = new DefaultTableModel(
-            new Object[]{"ID Producto", "Nombre", "Cantidad"}, 0
+            new Object[]{"ID Producto", "Nombre", "Cantidad", "Precio unitario"}, 0
         ) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -56,6 +57,7 @@ public class AsignarProductos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -67,17 +69,17 @@ public class AsignarProductos extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Poppins Light", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "id", "Producto", "Cantidad"
+                "ID Producto", "Producto", "Cantidad", "Precio unitario"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -91,15 +93,27 @@ public class AsignarProductos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setBackground(new java.awt.Color(50, 138, 225));
+        jButton1.setFont(new java.awt.Font("Poppins SemiBold", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Total");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -108,8 +122,10 @@ public class AsignarProductos extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,12 +159,37 @@ public class AsignarProductos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        int precioTotal = 0;
+
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            Object cantidadObj = modelo.getValueAt(i, 2); 
+            Object precioUnitarioObj = modelo.getValueAt(i, 3); 
+
+            if (cantidadObj != null && precioUnitarioObj != null) {
+                try {
+                    int cantidad = Integer.parseInt(cantidadObj.toString());
+                    int precioUnitario = Integer.parseInt(precioUnitarioObj.toString());
+                    precioTotal += cantidad * precioUnitario;
+                } catch (NumberFormatException ex) {
+                    System.err.println("Error en fila " + i + ": " + ex.getMessage());
+                }
+            }
+        }
+
+        txtMontoTotalProd.setText(String.valueOf(precioTotal));
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**s
      * @param idProducto
      * @param nombreProducto
+     * @param precioUnitario
      */
     
-    public void abrirVentanaProducto(int idProducto, String nombreProducto) {
+    public void abrirVentanaProducto(int idProducto, String nombreProducto, int precioUnitario) {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
 
         boolean yaExiste = false;
@@ -166,14 +207,14 @@ public class AsignarProductos extends javax.swing.JFrame {
                     System.err.println("Error al convertir ID del producto en la fila " + i);
                 }
             }
+            
+            JOptionPane.showMessageDialog(null,"Producto agregado correctamente", "Asignación de productos",JOptionPane.INFORMATION_MESSAGE);
         }
 
         if (!yaExiste) {
-            modelo.addRow(new Object[]{idProducto, nombreProducto, ""});
+            modelo.addRow(new Object[]{idProducto, nombreProducto, "", precioUnitario});
         }
         
-        JOptionPane.showMessageDialog(null,"Producto agregado correctamente", "Confirmar producto",JOptionPane.INFORMATION_MESSAGE);
-
     }
 
     public void insertarProductosAsignados(int idTratamiento) {
@@ -185,6 +226,7 @@ public class AsignarProductos extends javax.swing.JFrame {
             System.out.println("Fila " + i + ": ID Producto = " + modelo.getValueAt(i, 0) + ", Cantidad = " + modelo.getValueAt(i, 2));
             int idProducto = (int) modelo.getValueAt(i, 0);
             String cantidadStr = modelo.getValueAt(i, 2).toString().trim();
+           
             
             if (cantidadStr.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "La cantidad no puede estar vacía para el producto en la fila " + (i + 1));
@@ -211,10 +253,9 @@ public class AsignarProductos extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Productos asignados correctamente.");
     }
     
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

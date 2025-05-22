@@ -116,13 +116,14 @@ public class VentanaProductos extends javax.swing.JFrame {
         if (filaSeleccionada != -1) {
             String nombre = jTable5.getValueAt(filaSeleccionada, 1).toString();
             int id = Integer.parseInt(jTable5.getValueAt(filaSeleccionada, 0).toString());
+            int precioUnitario = Integer.parseInt(jTable5.getValueAt(filaSeleccionada, 3).toString());
 
             if (asignacion == null || !asignacion.isDisplayable()) {
                 asignacion = new AsignarProductos();
             }
             asignacion.setVisible(true);
             SwingUtilities.invokeLater(() -> {
-                asignacion.abrirVentanaProducto(id, nombre);
+                asignacion.abrirVentanaProducto(id, nombre, precioUnitario);
             });
         }
     }//GEN-LAST:event_jTable5MouseClicked
